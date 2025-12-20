@@ -9408,6 +9408,181 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         });
       </script>
 
+      <!-- Image Star/Bubble Effect Script -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const images = document.querySelectorAll('.section-icon');
+          
+          images.forEach(function(image) {
+            let starCount = 0;
+            const maxStars = 15;
+
+            image.addEventListener('mousemove', function(e) {
+              if (starCount >= maxStars) return;
+
+              const rect = image.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+
+              // Create star/bubble
+              const star = document.createElement('div');
+              star.className = 'image-star';
+              star.style.left = x + 'px';
+              star.style.top = y + 'px';
+              
+              const size = Math.random() * 6 + 3;
+              star.style.width = size + 'px';
+              star.style.height = size + 'px';
+              
+              // Random star shape (some as circles, some as stars)
+              const isStar = Math.random() > 0.5;
+              if (isStar) {
+                star.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
+              }
+              
+              image.style.position = 'relative';
+              image.appendChild(star);
+              starCount++;
+
+              // Animate star
+              const angle = Math.random() * Math.PI * 2;
+              const distance = Math.random() * 40 + 25;
+              const endX = x + Math.cos(angle) * distance;
+              const endY = y + Math.sin(angle) * distance;
+              const rotation = Math.random() * 360;
+
+              star.animate([
+                {
+                  opacity: 1,
+                  transform: 'translate(0, 0) scale(1) rotate(0deg)'
+                },
+                {
+                  opacity: 0.9,
+                  transform: `translate(${endX - x}px, ${endY - y}px) scale(1.8) rotate(${rotation}deg)`
+                },
+                {
+                  opacity: 0,
+                  transform: `translate(${endX - x}px, ${endY - y}px) scale(0) rotate(${rotation * 2}deg)`
+                }
+              ], {
+                duration: 800,
+                easing: 'ease-out'
+              }).onfinish = () => {
+                star.remove();
+                starCount--;
+              };
+            });
+          });
+
+          // Add CSS for star bubbles
+          const starStyle = document.createElement('style');
+          starStyle.textContent = `
+            .image-star {
+              position: absolute;
+              border-radius: 50%;
+              background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 40%, rgba(54, 193, 245, 0.6) 70%, transparent 100%);
+              pointer-events: none;
+              z-index: 100;
+              box-shadow: 
+                0 0 8px rgba(255, 255, 255, 1),
+                0 0 16px rgba(255, 255, 255, 0.8),
+                0 0 24px rgba(54, 193, 245, 0.6),
+                0 0 32px rgba(54, 193, 245, 0.4);
+            }
+          `;
+          document.head.appendChild(starStyle);
+        });
+      </script>
+
+      <!-- Banner Image Star/Bubble Effect Script -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const bannerImage = document.querySelector('.responsive-image');
+          if (!bannerImage) return;
+
+          let bubbleCount = 0;
+          const maxBubbles = 25;
+
+          bannerImage.addEventListener('mousemove', function(e) {
+            if (bubbleCount >= maxBubbles) return;
+
+            const rect = bannerImage.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Create bubble/star
+            const bubble = document.createElement('div');
+            bubble.className = 'banner-bubble';
+            bubble.style.left = x + 'px';
+            bubble.style.top = y + 'px';
+            
+            const size = Math.random() * 10 + 5;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            
+            // Make some bubbles star-shaped
+            const isStar = Math.random() > 0.6;
+            if (isStar) {
+              bubble.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
+            }
+            
+            // Ensure parent has position relative
+            if (getComputedStyle(bannerImage).position === 'static') {
+              bannerImage.style.position = 'relative';
+            }
+            
+            bannerImage.appendChild(bubble);
+            bubbleCount++;
+
+            // Animate bubble
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 50 + 30;
+            const endX = x + Math.cos(angle) * distance;
+            const endY = y + Math.sin(angle) * distance;
+            const rotation = Math.random() * 360;
+
+            bubble.animate([
+              {
+                opacity: 1,
+                transform: 'translate(0, 0) scale(1) rotate(0deg)'
+              },
+              {
+                opacity: 0.9,
+                transform: `translate(${endX - x}px, ${endY - y}px) scale(1.8) rotate(${rotation}deg)`
+              },
+              {
+                opacity: 0,
+                transform: `translate(${endX - x}px, ${endY - y}px) scale(0) rotate(${rotation * 2}deg)`
+              }
+            ], {
+              duration: 800,
+              easing: 'ease-out'
+            }).onfinish = () => {
+              bubble.remove();
+              bubbleCount--;
+            };
+          });
+
+          // Add CSS for banner bubbles
+          const bannerStyle = document.createElement('style');
+          bannerStyle.textContent = `
+            .banner-bubble {
+              position: absolute;
+              border-radius: 50%;
+              background: radial-gradient(circle, rgba(54, 193, 245, 0.9) 0%, rgba(54, 193, 245, 0.6) 40%, rgba(8, 170, 231, 0.4) 70%, transparent 100%);
+              pointer-events: none;
+              z-index: 100;
+              box-shadow: 
+                0 0 12px rgba(54, 193, 245, 0.9),
+                0 0 24px rgba(54, 193, 245, 0.7),
+                0 0 36px rgba(54, 193, 245, 0.5),
+                0 0 48px rgba(32, 178, 170, 0.3);
+            }
+          `;
+          document.head.appendChild(bannerStyle);
+        });
+      </script>
+
 
       <!--- Optional JavaScript; choose one of the two! --->
 
@@ -10743,45 +10918,46 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         .pricing-section::after,
         .trust-section::after,
         .benefits-section::after,
-        .shipping-section::after {
+        .shipping-section::after,
+        .urgency-section::after {
           content: '';
           position: absolute;
           bottom: 0;
           left: 0;
           right: 0;
           height: 4px;
-          background: linear-gradient(90deg, transparent 0%, #4682B4 15%, #20B2AA 35%, #2E8B57 50%, #20B2AA 65%, #4682B4 85%, transparent 100%);
-          background-size: 300% 100%;
+          background: linear-gradient(90deg, transparent 0%, transparent 40%, #1a5f7a 50%, transparent 60%, transparent 100%);
+          background-size: 200% 100%;
           opacity: 1 !important;
-          animation: gradientLineAnimation 4s ease-in-out infinite;
+          animation: gradientLineAnimation 5s linear infinite;
           box-shadow: 
-            0 2px 6px rgba(70, 130, 180, 0.4),
-            0 0 10px rgba(32, 178, 170, 0.3);
+            0 2px 6px rgba(26, 95, 122, 0.6),
+            0 0 10px rgba(26, 95, 122, 0.4);
           border-radius: 2px;
           z-index: 10;
           display: block !important;
+          visibility: visible !important;
+          pointer-events: none !important;
+        }
+
+        /* Remove gradient line from the last urgency-section only */
+        .home-content .urgency-section:last-of-type::after {
+          display: none !important;
+          content: none !important;
         }
 
         @keyframes gradientLineAnimation {
           0% {
-            background-position: -300% 0;
-            opacity: 0.9;
+            background-position: 200% 0;
           }
-          25% {
-            background-position: -150% 0;
-            opacity: 1;
+          40% {
+            background-position: -200% 0;
           }
-          50% {
-            background-position: 0% 0;
-            opacity: 1;
-          }
-          75% {
-            background-position: 150% 0;
-            opacity: 1;
+          40.01% {
+            background-position: 200% 0;
           }
           100% {
-            background-position: 300% 0;
-            opacity: 0.9;
+            background-position: 200% 0;
           }
         }
 
@@ -10810,14 +10986,14 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           right: 0 !important;
           width: 100% !important;
           height: 4px !important;
-          background: linear-gradient(90deg, transparent 0%, #4682B4 15%, #20B2AA 35%, #2E8B57 50%, #20B2AA 65%, #4682B4 85%, transparent 100%) !important;
-          background-size: 300% 100% !important;
+          background: linear-gradient(90deg, transparent 0%, transparent 40%, #1a5f7a 50%, transparent 60%, transparent 100%) !important;
+          background-size: 200% 100% !important;
           background-repeat: no-repeat !important;
           opacity: 1 !important;
-          animation: gradientLineAnimation 4s ease-in-out infinite !important;
+          animation: gradientLineAnimation 5s linear infinite !important;
           box-shadow: 
-            0 2px 6px rgba(70, 130, 180, 0.4),
-            0 0 10px rgba(32, 178, 170, 0.3) !important;
+            0 2px 6px rgba(26, 95, 122, 0.6),
+            0 0 10px rgba(26, 95, 122, 0.4) !important;
           border-radius: 2px !important;
           z-index: 999 !important;
           display: block !important;
@@ -10831,6 +11007,8 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
 
         .urgency-section {
           animation-delay: 0.5s;
+          padding-bottom: 0.8rem !important;
+          overflow: visible !important;
         }
 
         .pricing-section:hover,
@@ -10844,7 +11022,9 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         }
 
         .cta-section {
-          margin-top: 0.1rem;
+          /* margin-top: 0.1rem; */
+          margin-top: 20px;
+
         }
 
         .section-divider {
