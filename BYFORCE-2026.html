@@ -10942,7 +10942,6 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
 
         .pricing-section::after,
         .trust-section::after,
-        .benefits-section::after,
         .shipping-section::after,
         .urgency-section::after {
           content: '';
@@ -10954,7 +10953,7 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           background: linear-gradient(90deg, transparent 0%, transparent 40%, #1a5f7a 50%, transparent 60%, transparent 100%);
           background-size: 200% 100%;
           opacity: 1 !important;
-          animation: gradientLineAnimation 5s linear infinite;
+          animation: gradientLineAnimation 2s linear infinite;
           box-shadow: 
             0 2px 6px rgba(26, 95, 122, 0.6),
             0 0 10px rgba(26, 95, 122, 0.4);
@@ -10975,14 +10974,8 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           0% {
             background-position: 200% 0;
           }
-          40% {
-            background-position: -200% 0;
-          }
-          40.01% {
-            background-position: 200% 0;
-          }
           100% {
-            background-position: 200% 0;
+            background-position: -200% 0;
           }
         }
 
@@ -11001,6 +10994,7 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         .benefits-section {
           padding-bottom: 0.8rem !important;
           overflow: visible !important;
+          position: relative !important;
         }
 
         .benefits-section::after {
@@ -11015,7 +11009,7 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           background-size: 200% 100% !important;
           background-repeat: no-repeat !important;
           opacity: 1 !important;
-          animation: gradientLineAnimation 5s linear infinite !important;
+          animation: gradientLineAnimation 2s linear infinite !important;
           box-shadow: 
             0 2px 6px rgba(26, 95, 122, 0.6),
             0 0 10px rgba(26, 95, 122, 0.4) !important;
