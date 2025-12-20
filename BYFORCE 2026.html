@@ -105,7 +105,7 @@
 
       <!-- navbar -->
       <div class="backgroun_clr">
-        <div class="container-fluid">
+        <div class="container-fluid" style="position: relative; z-index: 1;">
           <div class="home-button-container">
             <a href="https://byforce.uk/">
               <img
@@ -9298,7 +9298,7 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           border: 1px solid #047098;
           margin: 0px 4px;
           color: white !important;
-          background-color: #36c1f5;
+          background-color: #1a5f7a;
           border-radius: 8px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
           transition: all 0.3s ease;
@@ -9361,7 +9361,7 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         .nav-link:hover {
           transform: translateY(-3px) scale(1.05);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.4);
-          background-color: #2bb0e0;
+          background-color: #0d5a7a;
         }
 
         .nav-link:active {
@@ -9371,7 +9371,7 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
 
         .nav-link.active {
           color: #FFFFFF;
-          background-color: #08aae7;
+          background-color: #0d4a6b;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.15);
           transform: translateY(-2px);
         }
@@ -9393,7 +9393,7 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         .nav-link.active:hover {
           transform: translateY(-4px) scale(1.05);
           box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35), 0 3px 7px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.45);
-          background-color: #0799d1;
+          background-color: #0c3a5a;
         }
 
         .nav-link:focus {
@@ -9433,6 +9433,350 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           padding-bottom: 30px;
           /* background-color: #5FDBFC; */
           /* max-height: 100%; */
+          position: relative;
+          overflow: hidden;
+        }
+
+        .backgroun_clr::before,
+        .backgroun_clr::after {
+          content: '';
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          background: rgba(54, 193, 245, 0.4);
+          border: 3px solid rgba(54, 193, 245, 0.7);
+          box-shadow: 
+            inset 0 0 0 2px rgba(255, 255, 255, 0.4),
+            0 0 15px rgba(54, 193, 245, 0.5),
+            4px 4px 0px rgba(0, 0, 0, 0.2);
+          image-rendering: pixelated;
+          image-rendering: -moz-crisp-edges;
+          image-rendering: crisp-edges;
+          z-index: 0;
+        }
+
+        .backgroun_clr::before {
+          top: 15%;
+          left: -40px;
+          animation: boxMove1 30s linear infinite;
+        }
+
+        .backgroun_clr::after {
+          top: 65%;
+          left: -40px;
+          width: 35px;
+          height: 35px;
+          background: rgba(8, 170, 231, 0.35);
+          border: 3px solid rgba(8, 170, 231, 0.65);
+          box-shadow: 
+            inset 0 0 0 2px rgba(255, 255, 255, 0.3),
+            0 0 18px rgba(8, 170, 231, 0.5),
+            4px 4px 0px rgba(0, 0, 0, 0.2);
+          animation: boxMove2 36s linear infinite;
+        }
+
+        @keyframes boxMove1 {
+          0% {
+            transform: translateX(-50px) translateY(0) rotate(0deg);
+            opacity: 0.7;
+          }
+          25% {
+            transform: translateX(calc(25vw)) translateY(-20px) rotate(90deg);
+            opacity: 0.9;
+          }
+          50% {
+            transform: translateX(calc(50vw)) translateY(-40px) rotate(180deg);
+            opacity: 0.8;
+          }
+          75% {
+            transform: translateX(calc(75vw)) translateY(-20px) rotate(270deg);
+            opacity: 0.9;
+          }
+          100% {
+            transform: translateX(calc(100vw + 50px)) translateY(0) rotate(360deg);
+            opacity: 0.7;
+          }
+        }
+
+        @keyframes boxMove2 {
+          0% {
+            transform: translateX(-50px) translateY(0) rotate(0deg);
+            opacity: 0.6;
+          }
+          25% {
+            transform: translateX(calc(25vw)) translateY(25px) rotate(-90deg);
+            opacity: 0.8;
+          }
+          50% {
+            transform: translateX(calc(50vw)) translateY(50px) rotate(-180deg);
+            opacity: 0.7;
+          }
+          75% {
+            transform: translateX(calc(75vw)) translateY(25px) rotate(-270deg);
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateX(calc(100vw + 50px)) translateY(0) rotate(-360deg);
+            opacity: 0.6;
+          }
+        }
+
+        /* Additional floating boxes using pseudo-elements on body */
+        body::before,
+        body::after {
+          content: '';
+          position: fixed;
+          width: 25px;
+          height: 25px;
+          background: rgba(255, 255, 255, 0.3);
+          border: 3px solid rgba(255, 255, 255, 0.5);
+          box-shadow: 
+            inset 0 0 0 2px rgba(255, 255, 255, 0.2),
+            0 0 12px rgba(255, 255, 255, 0.4),
+            4px 4px 0px rgba(0, 0, 0, 0.15);
+          image-rendering: pixelated;
+          image-rendering: -moz-crisp-edges;
+          image-rendering: crisp-edges;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        body::before {
+          top: 35%;
+          left: -40px;
+          animation: boxMove3 24s linear infinite;
+        }
+
+        body::after {
+          top: 75%;
+          left: -40px;
+          width: 28px;
+          height: 28px;
+          background: rgba(133, 238, 209, 0.3);
+          border: 3px solid rgba(133, 238, 209, 0.5);
+          box-shadow: 
+            inset 0 0 0 2px rgba(255, 255, 255, 0.2),
+            0 0 14px rgba(133, 238, 209, 0.4),
+            4px 4px 0px rgba(0, 0, 0, 0.15);
+          animation: boxMove4 32s linear infinite;
+        }
+
+        @keyframes boxMove3 {
+          0% {
+            transform: translateX(-50px) translateY(0) rotate(0deg);
+            opacity: 0.6;
+          }
+          25% {
+            transform: translateX(calc(25vw)) translateY(15px) rotate(90deg);
+            opacity: 0.8;
+          }
+          50% {
+            transform: translateX(calc(50vw)) translateY(30px) rotate(180deg);
+            opacity: 0.7;
+          }
+          75% {
+            transform: translateX(calc(75vw)) translateY(15px) rotate(270deg);
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateX(calc(100vw + 50px)) translateY(0) rotate(360deg);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes boxMove4 {
+          0% {
+            transform: translateX(-50px) translateY(0) rotate(0deg);
+            opacity: 0.5;
+          }
+          25% {
+            transform: translateX(calc(25vw)) translateY(-18px) rotate(-90deg);
+            opacity: 0.7;
+          }
+          50% {
+            transform: translateX(calc(50vw)) translateY(-35px) rotate(-180deg);
+            opacity: 0.6;
+          }
+          75% {
+            transform: translateX(calc(75vw)) translateY(-18px) rotate(-270deg);
+            opacity: 0.7;
+          }
+          100% {
+            transform: translateX(calc(100vw + 50px)) translateY(0) rotate(-360deg);
+            opacity: 0.5;
+          }
+        }
+
+        /* Additional boxes using container-fluid */
+        .container-fluid::before,
+        .container-fluid::after {
+          content: '';
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          background: rgba(244, 235, 167, 0.4);
+          border: 3px solid rgba(244, 235, 167, 0.6);
+          box-shadow: 
+            inset 0 0 0 2px rgba(255, 255, 255, 0.3),
+            0 0 12px rgba(244, 235, 167, 0.5),
+            3px 3px 0px rgba(0, 0, 0, 0.2);
+          image-rendering: pixelated;
+          image-rendering: -moz-crisp-edges;
+          image-rendering: crisp-edges;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .container-fluid::before {
+          top: 25%;
+          left: -40px;
+          animation: boxMove5 28s linear infinite;
+        }
+
+        .container-fluid::after {
+          top: 85%;
+          left: -40px;
+          width: 32px;
+          height: 32px;
+          background: rgba(95, 219, 253, 0.35);
+          border: 3px solid rgba(95, 219, 253, 0.6);
+          box-shadow: 
+            inset 0 0 0 2px rgba(255, 255, 255, 0.3),
+            0 0 16px rgba(95, 219, 253, 0.5),
+            4px 4px 0px rgba(0, 0, 0, 0.2);
+          animation: boxMove6 40s linear infinite;
+        }
+
+        @keyframes boxMove5 {
+          0% {
+            transform: translateX(-50px) translateY(0) rotate(0deg);
+            opacity: 0.6;
+          }
+          25% {
+            transform: translateX(calc(25vw)) translateY(22px) rotate(90deg);
+            opacity: 0.8;
+          }
+          50% {
+            transform: translateX(calc(50vw)) translateY(45px) rotate(180deg);
+            opacity: 0.7;
+          }
+          75% {
+            transform: translateX(calc(75vw)) translateY(22px) rotate(270deg);
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateX(calc(100vw + 50px)) translateY(0) rotate(360deg);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes boxMove6 {
+          0% {
+            transform: translateX(-50px) translateY(0) rotate(0deg);
+            opacity: 0.5;
+          }
+          25% {
+            transform: translateX(calc(25vw)) translateY(-25px) rotate(-90deg);
+            opacity: 0.7;
+          }
+          50% {
+            transform: translateX(calc(50vw)) translateY(-50px) rotate(-180deg);
+            opacity: 0.6;
+          }
+          75% {
+            transform: translateX(calc(75vw)) translateY(-25px) rotate(-270deg);
+            opacity: 0.7;
+          }
+          100% {
+            transform: translateX(calc(100vw + 50px)) translateY(0) rotate(-360deg);
+            opacity: 0.5;
+          }
+        }
+
+        /* More boxes using container */
+        .container::before,
+        .container::after {
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          background: rgba(255, 215, 0, 0.4);
+          border: 3px solid rgba(255, 215, 0, 0.65);
+          box-shadow: 
+            inset 0 0 0 2px rgba(255, 255, 255, 0.3),
+            0 0 14px rgba(255, 215, 0, 0.5),
+            3px 3px 0px rgba(0, 0, 0, 0.2);
+          image-rendering: pixelated;
+          image-rendering: -moz-crisp-edges;
+          image-rendering: crisp-edges;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .container::before {
+          top: 45%;
+          left: -40px;
+          animation: boxMove7 26s linear infinite;
+        }
+
+        .container::after {
+          top: 90%;
+          left: -40px;
+          width: 26px;
+          height: 26px;
+          background: rgba(255, 107, 157, 0.35);
+          border: 3px solid rgba(255, 107, 157, 0.6);
+          box-shadow: 
+            inset 0 0 0 2px rgba(255, 255, 255, 0.3),
+            0 0 15px rgba(255, 107, 157, 0.5),
+            4px 4px 0px rgba(0, 0, 0, 0.2);
+          animation: boxMove8 34s linear infinite;
+        }
+
+        @keyframes boxMove7 {
+          0% {
+            transform: translateX(-50px) translateY(0) rotate(0deg);
+            opacity: 0.6;
+          }
+          25% {
+            transform: translateX(calc(25vw)) translateY(-15px) rotate(90deg);
+            opacity: 0.8;
+          }
+          50% {
+            transform: translateX(calc(50vw)) translateY(-30px) rotate(180deg);
+            opacity: 0.7;
+          }
+          75% {
+            transform: translateX(calc(75vw)) translateY(-15px) rotate(270deg);
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateX(calc(100vw + 50px)) translateY(0) rotate(360deg);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes boxMove8 {
+          0% {
+            transform: translateX(-50px) translateY(0) rotate(0deg);
+            opacity: 0.5;
+          }
+          25% {
+            transform: translateX(calc(25vw)) translateY(20px) rotate(-90deg);
+            opacity: 0.7;
+          }
+          50% {
+            transform: translateX(calc(50vw)) translateY(40px) rotate(-180deg);
+            opacity: 0.6;
+          }
+          75% {
+            transform: translateX(calc(75vw)) translateY(20px) rotate(-270deg);
+            opacity: 0.7;
+          }
+          100% {
+            transform: translateX(calc(100vw + 50px)) translateY(0) rotate(-360deg);
+            opacity: 0.5;
+          }
         }
 
         .tab-content {
@@ -9441,6 +9785,9 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           background-color: #10aae645;
           border-radius: 15px;
           padding: 10px 30px 30px 30px;
+          margin-top: 10px;
+          position: relative;
+          z-index: 1;
         }
 
         .btn_class {
