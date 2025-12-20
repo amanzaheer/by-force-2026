@@ -278,14 +278,6 @@
                 </div>
                 
                 <div class="paynowButtons">
-
-
-
-
-
-
-
-
                 
                   <script>
                     const bundleToButtonMapping = {
@@ -299,7 +291,7 @@
                         'bundle-selectedSizesB': 'updateOptionsButton1B',
                     };
                     
-                                        function updatePayNowButtonsVisibility() {
+                        function updatePayNowButtonsVisibility() {
                         // Hide all buttons by default
                         Object.values(bundleToButtonMapping).forEach(buttonId => {
                             const btn = document.getElementById(buttonId);
@@ -9081,19 +9073,111 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
             right: 20px;
             width: 60px;
             height: 60px;
-            background: #36c1f5;
-            border: 3px solid #047098;
+            background: linear-gradient(135deg, #36c1f5 0%, #08aae7 100%);
+            border: 3px solid #034057;
             border-radius: 50%;
             z-index: 10000;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: bold;
             color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 
+              0 0 20px rgba(54, 193, 245, 0.6),
+              0 0 40px rgba(54, 193, 245, 0.4),
+              0 4px 15px rgba(0,0,0,0.3),
+              inset 0 2px 10px rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
+            animation: gamingAlive 3s ease-in-out infinite;
+            overflow: visible;
+          }
+
+          #tutorialHelper::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(2, 62, 83, 0.5), rgba(4, 106, 143, 0.5), rgba(8, 158, 212, 0.5));
+            background-size: 200% 200%;
+            z-index: -1;
+            animation: rotateGlow 7s linear infinite;
+            opacity: 0.8;
+          }
+
+          #tutorialHelper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            animation: innerGlow 1s ease-in-out infinite;
+            pointer-events: none;
+          }
+
+          @keyframes gamingAlive {
+            0%, 100% {
+              transform: translateY(0) scale(1) rotate(0deg);
+              box-shadow: 
+                0 0 20px rgba(54, 193, 245, 0.6),
+                0 0 40px rgba(54, 193, 245, 0.4),
+                0 4px 15px rgba(0,0,0,0.3),
+                inset 0 2px 10px rgba(255, 255, 255, 0.3);
+            }
+            25% {
+              transform: translateY(-5px) scale(1.05) rotate(5deg);
+              box-shadow: 
+                0 0 30px rgba(54, 193, 245, 0.8),
+                0 0 60px rgba(54, 193, 245, 0.6),
+                0 6px 20px rgba(0,0,0,0.4),
+                inset 0 2px 10px rgba(255, 255, 255, 0.4);
+            }
+            50% {
+              transform: translateY(-8px) scale(1.1) rotate(0deg);
+              box-shadow: 
+                0 0 40px rgba(54, 193, 245, 1),
+                0 0 80px rgba(54, 193, 245, 0.8),
+                0 8px 25px rgba(0,0,0,0.5),
+                inset 0 2px 10px rgba(255, 255, 255, 0.5);
+            }
+            75% {
+              transform: translateY(-5px) scale(1.05) rotate(-5deg);
+              box-shadow: 
+                0 0 30px rgba(54, 193, 245, 0.8),
+                0 0 60px rgba(54, 193, 245, 0.6),
+                0 6px 20px rgba(0,0,0,0.4),
+                inset 0 2px 10px rgba(255, 255, 255, 0.4);
+            }
+          }
+
+          @keyframes rotateGlow {
+            0% {
+              background-position: 0% 50%;
+              transform: rotate(0deg);
+            }
+            100% {
+              background-position: 200% 50%;
+              transform: rotate(360deg);
+            }
+          }
+
+          @keyframes innerGlow {
+            0%, 100% {
+              opacity: 0.3;
+              transform: translate(-50%, -50%) scale(0.8);
+            }
+            50% {
+              opacity: 0.6;
+              transform: translate(-50%, -50%) scale(1.2);
+            }
           }
 
 
@@ -9109,14 +9193,33 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
 
 
           #tutorialHelper:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transform: scale(1.15) rotate(360deg);
+            box-shadow: 
+              0 0 50px rgba(54, 193, 245, 1),
+              0 0 100px rgba(54, 193, 245, 0.8),
+              0 0 150px rgba(54, 193, 245, 0.6),
+              0 10px 30px rgba(0,0,0,0.5),
+              inset 0 2px 15px rgba(255, 255, 255, 0.5);
+            animation: hoverPulse 0.5s ease-in-out infinite;
           }
 
-          @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(54, 193, 245, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(54, 193, 245, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(54, 193, 245, 0); }
+          @keyframes hoverPulse {
+            0%, 100% {
+              transform: scale(1.15) rotate(360deg);
+            }
+            50% {
+              transform: scale(1.2) rotate(360deg);
+            }
+          }
+
+          #tutorialHelper:hover::before {
+            animation: rotateGlow 1s linear infinite;
+            opacity: 1;
+          }
+
+          #tutorialHelper:hover::after {
+            animation: innerGlow 0.5s ease-in-out infinite;
+            opacity: 0.8;
           }
 
           .tutorial-overlay {
