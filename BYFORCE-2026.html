@@ -10245,11 +10245,14 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
 
         .home-content {
           flex: 1;
-          max-width: 600px;
+          max-width: 1000px;
           display: flex;
           flex-direction: column;
           /* gap: 0.15rem; */
           position: relative;
+          background: transparent;
+          padding: 1.5rem;
+          border-radius: 8px;
         }
 
         /* Additional Tiny Shiny Particles */
@@ -10516,13 +10519,58 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           align-items: center;
           gap: 0.3rem;
           margin: 0.1rem 0;
-          padding: 0.1rem;
+          padding: 0.1rem 0 0.5rem 0;
           transition: all 0.3s ease;
           border-radius: 0;
+          opacity: 0;
+          transform: translateX(-50px);
+          animation: slideInFromLeft 0.8s ease-out forwards;
+          position: relative;
+          overflow: hidden;
+        }
+
+
+        .section-content:nth-child(1) {
+          animation-delay: 0.1s;
+        }
+
+        .section-content:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+
+        .section-content:nth-child(3) {
+          animation-delay: 0.3s;
+        }
+
+        .section-content:nth-child(4) {
+          animation-delay: 0.4s;
+        }
+
+        .section-content:nth-child(5) {
+          animation-delay: 0.5s;
+        }
+
+        .section-content:nth-child(6) {
+          animation-delay: 0.6s;
+        }
+
+        .section-content:nth-child(7) {
+          animation-delay: 0.7s;
+        }
+
+        @keyframes slideInFromLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
         }
 
         .section-content:hover {
-          transform: translateX(2px);
+          transform: translateX(5px);
           background: transparent;
           padding-left: 0.2rem;
         }
@@ -10530,6 +10578,24 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         .section-text {
           flex: 1;
           text-align: left;
+          font-family: "Press Start 2P", system-ui, sans-serif !important;
+          font-size: 11px !important;
+          line-height: 1.8 !important;
+          color: #20B2AA !important;
+          text-shadow: none;
+          letter-spacing: 0.5px;
+          font-weight: normal;
+          -webkit-font-smoothing: none;
+          -moz-osx-font-smoothing: auto;
+          image-rendering: pixelated;
+          image-rendering: -moz-crisp-edges;
+          image-rendering: crisp-edges;
+          transition: all 0.3s ease;
+        }
+
+        .section-text:hover {
+          color: #17A89A !important;
+          transform: translateX(3px);
         }
 
         .section-image {
@@ -10575,100 +10641,128 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           opacity: 1;
         }
 
-        .pricing-section {
-          display: flex;
-          flex-direction: column;
-          gap: 0.1rem;
-          padding: 0.2rem 0 0.1rem 0;
-          background: transparent;
-          border: none;
-          border-radius: 0;
-          backdrop-filter: none;
-          box-shadow: none;
-          transition: all 0.3s ease;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .pricing-section:hover {
-          background: transparent;
-          box-shadow: none;
-          border-bottom-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .trust-section {
-          display: flex;
-          flex-direction: column;
-          gap: 0.2rem;
-          padding: 0.2rem 0 0.1rem 0;
-          background: transparent;
-          border-radius: 0;
-          border: none;
-          box-shadow: none;
-          transition: all 0.3s ease;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .trust-section:hover {
-          background: transparent;
-          box-shadow: none;
-          border-bottom-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .benefits-section {
-          display: flex;
-          flex-direction: column;
-          gap: 0.2rem;
-          padding: 0.2rem 0 0.1rem 0;
-          background: transparent;
-          border-radius: 0;
-          border: none;
-          box-shadow: none;
-          transition: all 0.3s ease;
-          border-bottom: 1px solid rgba(54, 193, 245, 0.3);
-        }
-
-        .benefits-section:hover {
-          background: transparent;
-          box-shadow: none;
-          border-bottom-color: rgba(54, 193, 245, 0.5);
-        }
-
-        .shipping-section {
-          display: flex;
-          flex-direction: column;
-          gap: 0.2rem;
-          padding: 0.2rem 0 0.1rem 0;
-          background: transparent;
-          border-radius: 0;
-          border: none;
-          box-shadow: none;
-          transition: all 0.3s ease;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .shipping-section:hover {
-          background: transparent;
-          box-shadow: none;
-          border-bottom-color: rgba(255, 255, 255, 0.25);
-        }
-
+        .pricing-section,
+        .trust-section,
+        .benefits-section,
+        .shipping-section,
         .urgency-section {
           display: flex;
           flex-direction: column;
           gap: 0.2rem;
-          padding: 0.2rem 0 0.1rem 0;
+          padding: 0.5rem 0 0.8rem 0;
           background: transparent;
           border-radius: 0;
           border: none;
           box-shadow: none;
           transition: all 0.3s ease;
-          border-bottom: 1px solid rgba(255, 193, 7, 0.3);
+          opacity: 0;
+          transform: translateX(-50px);
+          animation: slideInFromLeft 0.8s ease-out forwards;
+          position: relative;
+          overflow: visible;
         }
 
+        .pricing-section::after,
+        .trust-section::after,
+        .benefits-section::after,
+        .shipping-section::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, transparent 0%, #4682B4 15%, #20B2AA 35%, #2E8B57 50%, #20B2AA 65%, #4682B4 85%, transparent 100%);
+          background-size: 300% 100%;
+          opacity: 1 !important;
+          animation: gradientLineAnimation 4s ease-in-out infinite;
+          box-shadow: 
+            0 2px 6px rgba(70, 130, 180, 0.4),
+            0 0 10px rgba(32, 178, 170, 0.3);
+          border-radius: 2px;
+          z-index: 10;
+          display: block !important;
+        }
+
+        @keyframes gradientLineAnimation {
+          0% {
+            background-position: -300% 0;
+            opacity: 0.9;
+          }
+          25% {
+            background-position: -150% 0;
+            opacity: 1;
+          }
+          50% {
+            background-position: 0% 0;
+            opacity: 1;
+          }
+          75% {
+            background-position: 150% 0;
+            opacity: 1;
+          }
+          100% {
+            background-position: 300% 0;
+            opacity: 0.9;
+          }
+        }
+
+        .pricing-section {
+          animation-delay: 0.1s;
+        }
+
+        .trust-section {
+          animation-delay: 0.2s;
+        }
+
+        .benefits-section {
+          animation-delay: 0.3s;
+        }
+
+        .benefits-section {
+          padding-bottom: 0.8rem !important;
+          overflow: visible !important;
+        }
+
+        .benefits-section::after {
+          content: '' !important;
+          position: absolute !important;
+          bottom: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          height: 4px !important;
+          background: linear-gradient(90deg, transparent 0%, #4682B4 15%, #20B2AA 35%, #2E8B57 50%, #20B2AA 65%, #4682B4 85%, transparent 100%) !important;
+          background-size: 300% 100% !important;
+          background-repeat: no-repeat !important;
+          opacity: 1 !important;
+          animation: gradientLineAnimation 4s ease-in-out infinite !important;
+          box-shadow: 
+            0 2px 6px rgba(70, 130, 180, 0.4),
+            0 0 10px rgba(32, 178, 170, 0.3) !important;
+          border-radius: 2px !important;
+          z-index: 999 !important;
+          display: block !important;
+          visibility: visible !important;
+          pointer-events: none !important;
+        }
+
+        .shipping-section {
+          animation-delay: 0.4s;
+        }
+
+        .urgency-section {
+          animation-delay: 0.5s;
+        }
+
+        .pricing-section:hover,
+        .trust-section:hover,
+        .benefits-section:hover,
+        .shipping-section:hover,
         .urgency-section:hover {
           background: transparent;
           box-shadow: none;
-          border-bottom-color: rgba(255, 193, 7, 0.5);
+          transform: translateX(5px);
         }
 
         .cta-section {
@@ -10747,25 +10841,65 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(10px);
-          transition: all 0.3s ease;
+          /* transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); */
+          overflow: visible;
         }
 
-        .image-container:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-          border-color: rgba(54, 193, 245, 0.3);
-        }
+
+
 
         .responsive-image {
           max-width: 100%;
           height: auto;
           display: block;
           border-radius: 15px;
-          transition: all 0.3s ease;
+          animation: 
+            imageGaming 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite,
+            imageGlow 5s ease-in-out infinite,
+            imageShimmer 6s ease-in-out infinite;
+          position: relative;
+          filter: drop-shadow(0 0 10px rgba(54, 193, 245, 0.3));
+          transform-style: preserve-3d;
+          transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .image-container:hover .responsive-image {
-          transform: scale(1.02);
+        @keyframes imageGaming {
+          0% {
+            transform: translate(0, 0) rotateZ(0deg) rotateX(0deg) scale(1);
+          }
+          20% {
+            transform: translate(12px, -8px) rotateZ(-2deg) rotateX(1.5deg) scale(1.015);
+          }
+          40% {
+            transform: translate(0, -12px) rotateZ(0deg) rotateX(-1.5deg) scale(1.02);
+          }
+          60% {
+            transform: translate(-12px, -8px) rotateZ(2deg) rotateX(1deg) scale(1.015);
+          }
+          80% {
+            transform: translate(-8px, 4px) rotateZ(-1.5deg) rotateX(-0.8deg) scale(1.008);
+          }
+          100% {
+            transform: translate(0, 0) rotateZ(0deg) rotateX(0deg) scale(1);
+          }
+        }
+
+        @keyframes imageGlow {
+          0%, 100% {
+            filter: drop-shadow(0 0 10px rgba(54, 193, 245, 0.3)) drop-shadow(0 0 20px rgba(54, 193, 245, 0.2));
+          }
+          50% {
+            filter: drop-shadow(0 0 20px rgba(54, 193, 245, 0.6)) drop-shadow(0 0 40px rgba(54, 193, 245, 0.4)) drop-shadow(0 0 60px rgba(54, 193, 245, 0.2));
+          }
+        }
+
+        @keyframes imageShimmer {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.97;
+          }
         }
 
         .image-overlay {
@@ -10774,14 +10908,10 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           left: 0;
           right: 0;
           bottom: 0;
-          background: linear-gradient(45deg, rgba(54, 193, 245, 0.1), rgba(8, 170, 231, 0.1));
+          background: linear-gradient(135deg, rgba(54, 193, 245, 0.05), rgba(8, 170, 231, 0.05));
           border-radius: 20px;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-
-        .image-container:hover .image-overlay {
-          opacity: 1;
+          opacity: 0.3;
+          pointer-events: none;
         }
 
         /* Responsive Design - 100% Mobile First */
@@ -10967,27 +11097,126 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         .footer_main {
           border: 0px solid #047098;
           margin-top: 50px;
-          background-color: #36c1f5;
-          /* margin: 10px; */
-          border-radius: 10px;
+          background: linear-gradient(135deg, #1a5f7a 0%, #0d4a6b 50%, #0d5a7a 100%);
+          border-radius: 15px;
           width: 100%;
-          padding: 10px !important;
+          max-width: 100%;
+          padding: 1rem 2rem !important;
           display: flex;
           flex-direction: column;
-          /* justify-content: center; */
+          position: relative;
+          overflow: hidden;
+          box-shadow: 
+            0 10px 40px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            0 0 60px rgba(4, 112, 152, 0.4);
+          animation: footerGlow 4s ease-in-out infinite;
         }
+
+        .footer_main::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+            radial-gradient(circle at 20% 30%, rgba(54, 193, 245, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(8, 170, 231, 0.15) 0%, transparent 50%);
+          pointer-events: none;
+          animation: footerShimmer 6s ease-in-out infinite;
+        }
+
+        .footer_main::after {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+          animation: footerRotate 8s linear infinite;
+          pointer-events: none;
+        }
+
+        @keyframes footerGlow {
+          0%, 100% {
+            box-shadow: 
+              0 10px 40px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1),
+              0 0 60px rgba(4, 112, 152, 0.4);
+          }
+          50% {
+            box-shadow: 
+              0 15px 50px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15),
+              0 0 80px rgba(4, 112, 152, 0.6),
+              0 0 100px rgba(54, 193, 245, 0.3);
+          }
+        }
+
+        
 
         .heading_class {
           display: flex;
           align-items: center;
           justify-content: center;
+          padding: 0.4rem 0.8rem;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 2;
+          margin: 0.2rem 0;
+        }
+
+        .heading_class:hover {
+          background: rgba(54, 193, 245, 0.1);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(54, 193, 245, 0.2);
+        }
+
+        .heading_class::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 3px;
+          background: linear-gradient(180deg, rgba(54, 193, 245, 0.6), rgba(8, 170, 231, 0.6));
+          border-radius: 0 4px 4px 0;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .heading_class:hover::before {
+          opacity: 1;
+          box-shadow: 0 0 10px rgba(54, 193, 245, 0.6);
         }
 
         .footer_heading {
           font-family: "Press Start 2P", system-ui !important;
           color: #FFFFFF !important;
-          font-size: 12px;
-          margin-top: 2px;
+          font-size: 11px;
+          margin: 0;
+          text-shadow: 
+            2px 2px 4px rgba(0, 0, 0, 0.5),
+            0 0 10px rgba(54, 193, 245, 0.4),
+            0 0 20px rgba(54, 193, 245, 0.2);
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 2;
+          letter-spacing: 1px;
+          line-height: 1.4;
+        }
+
+        .footer_heading:hover {
+          color: #36c1f5 !important;
+          text-shadow: 
+            2px 2px 4px rgba(0, 0, 0, 0.6),
+            0 0 15px rgba(54, 193, 245, 0.7),
+            0 0 30px rgba(54, 193, 245, 0.5),
+            0 0 45px rgba(54, 193, 245, 0.3);
+          transform: translateY(-2px);
         }
 
         .social_icons {
