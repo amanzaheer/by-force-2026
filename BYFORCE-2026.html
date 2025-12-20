@@ -9635,6 +9635,7 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           justify-content: center;
           /* flex-direction: column; */
           align-items: center;
+          flex-wrap: nowrap;
         }
 
         /* width: 600px; */
@@ -9759,17 +9760,41 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
 
         button.nav-link {
           width: auto;
-          min-width: 100px;
+          /* min-width: 100px; */
           /* Consistent button sizing */
         }
 
-        /* .tab-pane {
-      display: none;
-      }
-      
-      .tab-pane.active {
-      display: block;
-      border-top: 2px solid white; /* Matches active tab's bottom border */
+        /* Responsive Navbar - Only adjust tab sizes to fit in one line */
+        @media (max-width: 992px) {
+          .nav-link {
+            padding: 10px 16px;
+            font-size: 11px;
+            margin: 0px 3px;
+            min-width: 85px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .nav-link {
+            padding: 8px 10px;
+            font-size: 9px;
+            margin: 0px 2px;
+            min-width: 70px;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .nav-link {
+            padding: 6px 6px;
+            font-size: 8px;
+            margin: 0px 1px;
+            min-width: 80px;
+          }
+        }
+
+       
+
+       
         .backgroun_clr {
           margin: 0;
           /* Remove default margin */
