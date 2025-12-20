@@ -9540,6 +9540,317 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           overflow: hidden;
         }
 
+        /* Tiny Shiny Particles for Whole Background */
+        .container-fluid::after {
+          content: '';
+          position: fixed;
+          width: 5px;
+          height: 5px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 80%);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.4);
+          pointer-events: none;
+          z-index: 0;
+          top: 15%;
+          left: 15%;
+          animation: tinyParticle1 18s ease-in-out infinite;
+        }
+
+        .container::before {
+          content: '';
+          position: fixed;
+          width: 5px;
+          height: 5px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 80%);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.4);
+          pointer-events: none;
+          z-index: 0;
+          top: 40%;
+          right: 20%;
+          animation: tinyParticle2 20s ease-in-out infinite 2s;
+        }
+
+        .container::after {
+          content: '';
+          position: fixed;
+          width: 5px;
+          height: 5px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 80%);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.4);
+          pointer-events: none;
+          z-index: 0;
+          bottom: 30%;
+          left: 25%;
+          animation: tinyParticle3 16s ease-in-out infinite 4s;
+        }
+
+        @keyframes tinyParticle1 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.5);
+            opacity: 0.3;
+          }
+          20% {
+            transform: translate(150px, -100px) scale(1.8);
+            opacity: 1;
+          }
+          40% {
+            transform: translate(300px, -50px) scale(1.2);
+            opacity: 0.6;
+          }
+          60% {
+            transform: translate(250px, 80px) scale(1.5);
+            opacity: 0.9;
+          }
+          80% {
+            transform: translate(100px, 150px) scale(0.9);
+            opacity: 0.5;
+          }
+        }
+
+        @keyframes tinyParticle2 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.5);
+            opacity: 0.3;
+          }
+          25% {
+            transform: translate(-120px, 90px) scale(1.6);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(-250px, 40px) scale(1.1);
+            opacity: 0.7;
+          }
+          75% {
+            transform: translate(-180px, -70px) scale(1.4);
+            opacity: 0.9;
+          }
+        }
+
+        @keyframes tinyParticle3 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.5);
+            opacity: 0.3;
+          }
+          30% {
+            transform: translate(80px, -120px) scale(1.7);
+            opacity: 1;
+          }
+          60% {
+            transform: translate(200px, -60px) scale(1.3);
+            opacity: 0.8;
+          }
+          90% {
+            transform: translate(120px, 100px) scale(1.1);
+            opacity: 0.6;
+          }
+        }
+
+        /* Shiny Particles Animation */
+        .tab-content::before,
+        .tab-content::after {
+          content: '';
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 40%, transparent 70%);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.4);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .tab-content::before {
+          top: 10%;
+          left: 15%;
+          animation: particleFloat1 8s ease-in-out infinite;
+        }
+
+        .tab-content::after {
+          top: 70%;
+          right: 20%;
+          animation: particleFloat2 10s ease-in-out infinite 2s;
+        }
+
+        @keyframes particleFloat1 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.8);
+            opacity: 0.4;
+          }
+          25% {
+            transform: translate(30px, -40px) scale(1.2);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(60px, -20px) scale(1);
+            opacity: 0.8;
+          }
+          75% {
+            transform: translate(30px, 20px) scale(1.1);
+            opacity: 0.9;
+          }
+        }
+
+        @keyframes particleFloat2 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.8);
+            opacity: 0.4;
+          }
+          25% {
+            transform: translate(-40px, 30px) scale(1.2);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(-60px, 10px) scale(1);
+            opacity: 0.8;
+          }
+          75% {
+            transform: translate(-30px, -30px) scale(1.1);
+            opacity: 0.9;
+          }
+        }
+
+        /* Additional Shiny Particles using home-container */
+        .home-container {
+          position: relative;
+          overflow: visible;
+        }
+
+        .home-container::before,
+        .home-container::after {
+          content: '';
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 30%, transparent 70%);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.4);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .home-container::before {
+          top: 20%;
+          left: 10%;
+          animation: particleSparkle1 12s ease-in-out infinite;
+        }
+
+        .home-container::after {
+          bottom: 25%;
+          right: 15%;
+          animation: particleSparkle2 14s ease-in-out infinite 3s;
+        }
+
+        @keyframes particleSparkle1 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.6) rotate(0deg);
+            opacity: 0.3;
+          }
+          20% {
+            transform: translate(50px, -60px) scale(1.5) rotate(90deg);
+            opacity: 1;
+          }
+          40% {
+            transform: translate(100px, -30px) scale(1.2) rotate(180deg);
+            opacity: 0.7;
+          }
+          60% {
+            transform: translate(80px, 40px) scale(1.3) rotate(270deg);
+            opacity: 0.9;
+          }
+          80% {
+            transform: translate(30px, 60px) scale(1.1) rotate(360deg);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes particleSparkle2 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.6) rotate(0deg);
+            opacity: 0.3;
+          }
+          20% {
+            transform: translate(-60px, 50px) scale(1.5) rotate(-90deg);
+            opacity: 1;
+          }
+          40% {
+            transform: translate(-100px, 20px) scale(1.2) rotate(-180deg);
+            opacity: 0.7;
+          }
+          60% {
+            transform: translate(-70px, -50px) scale(1.3) rotate(-270deg);
+            opacity: 0.9;
+          }
+          80% {
+            transform: translate(-20px, -70px) scale(1.1) rotate(-360deg);
+            opacity: 0.6;
+          }
+        }
+
+        /* More particles using nav element */
+        .nav {
+          position: relative;
+        }
+
+        .nav::before {
+          content: '';
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 40%, transparent 70%);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.4);
+          pointer-events: none;
+          z-index: 0;
+          top: 50%;
+          left: 50%;
+          animation: particleTwinkle 6s ease-in-out infinite;
+        }
+
+        @keyframes particleTwinkle {
+          0%, 100% {
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0.2;
+          }
+          25% {
+            transform: translate(calc(-50% + 80px), calc(-50% - 50px)) scale(1.8);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(calc(-50% + 120px), calc(-50% + 30px)) scale(1.2);
+            opacity: 0.6;
+          }
+          75% {
+            transform: translate(calc(-50% + 60px), calc(-50% + 80px)) scale(1.5);
+            opacity: 0.9;
+          }
+        }
+
         .backgroun_clr::before,
         .backgroun_clr::after {
           content: '';
@@ -9891,6 +10202,7 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           margin-top: 10px;
           position: relative;
           z-index: 1;
+          overflow: visible;
         }
 
         .btn_class {
@@ -9937,6 +10249,75 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           display: flex;
           flex-direction: column;
           /* gap: 0.15rem; */
+          position: relative;
+        }
+
+        /* Additional Tiny Shiny Particles */
+        .home-content::before,
+        .home-content::after {
+          content: '';
+          position: fixed;
+          width: 5px;
+          height: 5px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 80%);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.4);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .home-content::before {
+          top: 60%;
+          left: 10%;
+          animation: tinyParticle4 22s ease-in-out infinite 1s;
+        }
+
+        .home-content::after {
+          top: 80%;
+          right: 15%;
+          animation: tinyParticle5 19s ease-in-out infinite 3s;
+        }
+
+        @keyframes tinyParticle4 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.5);
+            opacity: 0.3;
+          }
+          25% {
+            transform: translate(120px, -90px) scale(1.6);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(250px, -40px) scale(1.1);
+            opacity: 0.7;
+          }
+          75% {
+            transform: translate(180px, 70px) scale(1.4);
+            opacity: 0.9;
+          }
+        }
+
+        @keyframes tinyParticle5 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.5);
+            opacity: 0.3;
+          }
+          30% {
+            transform: translate(-100px, 110px) scale(1.7);
+            opacity: 1;
+          }
+          60% {
+            transform: translate(-220px, 50px) scale(1.2);
+            opacity: 0.8;
+          }
+          90% {
+            transform: translate(-140px, -80px) scale(1.3);
+            opacity: 0.6;
+          }
         }
 
         .content-section {
@@ -9947,6 +10328,187 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           border: none;
           border-radius: 0;
           box-shadow: none;
+          position: relative;
+        }
+
+        /* Tiny shiny particles for whole background - using sections */
+        .content-section::before,
+        .pricing-section::before,
+        .trust-section::before,
+        .benefits-section::before,
+        .shipping-section::before,
+        .urgency-section::before {
+          content: '';
+          position: fixed;
+          width: 5px;
+          height: 5px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 80%);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.4);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .content-section::before {
+          top: 25%;
+          left: 5%;
+          animation: bgParticle1 25s ease-in-out infinite;
+        }
+
+        .pricing-section::before {
+          top: 35%;
+          right: 8%;
+          animation: bgParticle2 28s ease-in-out infinite 3s;
+        }
+
+        .trust-section::before {
+          top: 50%;
+          left: 12%;
+          animation: bgParticle3 22s ease-in-out infinite 6s;
+        }
+
+        .benefits-section::before {
+          top: 65%;
+          right: 10%;
+          animation: bgParticle4 30s ease-in-out infinite 2s;
+        }
+
+        .shipping-section::before {
+          top: 75%;
+          left: 8%;
+          animation: bgParticle5 26s ease-in-out infinite 4s;
+        }
+
+        .urgency-section::before {
+          top: 85%;
+          right: 15%;
+          animation: bgParticle6 24s ease-in-out infinite 5s;
+        }
+
+        @keyframes bgParticle1 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.4);
+            opacity: 0.2;
+          }
+          20% {
+            transform: translate(200px, -150px) scale(1.8);
+            opacity: 1;
+          }
+          40% {
+            transform: translate(400px, -80px) scale(1.2);
+            opacity: 0.6;
+          }
+          60% {
+            transform: translate(300px, 100px) scale(1.5);
+            opacity: 0.9;
+          }
+          80% {
+            transform: translate(100px, 200px) scale(0.9);
+            opacity: 0.4;
+          }
+        }
+
+        @keyframes bgParticle2 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.4);
+            opacity: 0.2;
+          }
+          25% {
+            transform: translate(-180px, 120px) scale(1.7);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(-350px, 60px) scale(1.1);
+            opacity: 0.7;
+          }
+          75% {
+            transform: translate(-250px, -90px) scale(1.4);
+            opacity: 0.9;
+          }
+        }
+
+        @keyframes bgParticle3 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.4);
+            opacity: 0.2;
+          }
+          30% {
+            transform: translate(150px, -120px) scale(1.6);
+            opacity: 1;
+          }
+          60% {
+            transform: translate(280px, -50px) scale(1.3);
+            opacity: 0.8;
+          }
+          90% {
+            transform: translate(120px, 150px) scale(1.1);
+            opacity: 0.5;
+          }
+        }
+
+        @keyframes bgParticle4 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.4);
+            opacity: 0.2;
+          }
+          20% {
+            transform: translate(-160px, 140px) scale(1.9);
+            opacity: 1;
+          }
+          40% {
+            transform: translate(-320px, 70px) scale(1.2);
+            opacity: 0.6;
+          }
+          60% {
+            transform: translate(-220px, -110px) scale(1.5);
+            opacity: 0.9;
+          }
+          80% {
+            transform: translate(-80px, -180px) scale(0.8);
+            opacity: 0.4;
+          }
+        }
+
+        @keyframes bgParticle5 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.4);
+            opacity: 0.2;
+          }
+          25% {
+            transform: translate(180px, -130px) scale(1.7);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(340px, -60px) scale(1.1);
+            opacity: 0.7;
+          }
+          75% {
+            transform: translate(240px, 110px) scale(1.4);
+            opacity: 0.9;
+          }
+        }
+
+        @keyframes bgParticle6 {
+          0%, 100% {
+            transform: translate(0, 0) scale(0.4);
+            opacity: 0.2;
+          }
+          30% {
+            transform: translate(-140px, -110px) scale(1.6);
+            opacity: 1;
+          }
+          60% {
+            transform: translate(-270px, -40px) scale(1.3);
+            opacity: 0.8;
+          }
+          90% {
+            transform: translate(-100px, 130px) scale(1.1);
+            opacity: 0.5;
+          }
         }
 
         .section-content {
