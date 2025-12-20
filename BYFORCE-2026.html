@@ -232,7 +232,9 @@
                     </div>
                     
                     <div class="cta-section">
-                      <button class="btn btn-light btn_class home-cta-btn" type="button" id="buyNowBtn">Shop & Save Now</button>
+                      <button class="btn btn-light btn_class home-cta-btn" type="button" id="buyNowBtn">
+                        <span>Shop & Save Now</span>
+                      </button>
                     </div>
                   </div>
                   
@@ -9330,6 +9332,82 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
       </div>
       <script src="script.js"></script>
 
+      <!-- Button Bubble Effect Script -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const button = document.getElementById('buyNowBtn');
+          if (!button) return;
+
+          let bubbleCount = 0;
+          const maxBubbles = 20;
+
+          button.addEventListener('mousemove', function(e) {
+            if (bubbleCount >= maxBubbles) return;
+
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Create bubble
+            const bubble = document.createElement('div');
+            bubble.className = 'button-bubble';
+            bubble.style.left = x + 'px';
+            bubble.style.top = y + 'px';
+            
+            const size = Math.random() * 8 + 4;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            
+            button.appendChild(bubble);
+            bubbleCount++;
+
+            // Animate bubble
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 30 + 20;
+            const endX = x + Math.cos(angle) * distance;
+            const endY = y + Math.sin(angle) * distance;
+
+            bubble.animate([
+              {
+                opacity: 1,
+                transform: 'translate(0, 0) scale(1)'
+              },
+              {
+                opacity: 0.8,
+                transform: `translate(${endX - x}px, ${endY - y}px) scale(1.5)`
+              },
+              {
+                opacity: 0,
+                transform: `translate(${endX - x}px, ${endY - y}px) scale(0)`
+              }
+            ], {
+              duration: 600,
+              easing: 'ease-out'
+            }).onfinish = () => {
+              bubble.remove();
+              bubbleCount--;
+            };
+          });
+
+          // Add CSS for bubbles
+          const style = document.createElement('style');
+          style.textContent = `
+            .button-bubble {
+              position: absolute;
+              border-radius: 50%;
+              background: radial-gradient(circle, rgba(54, 193, 245, 0.9) 0%, rgba(54, 193, 245, 0.5) 50%, transparent 100%);
+              pointer-events: none;
+              z-index: 10;
+              box-shadow: 
+                0 0 10px rgba(54, 193, 245, 0.8),
+                0 0 20px rgba(54, 193, 245, 0.6),
+                0 0 30px rgba(54, 193, 245, 0.4);
+            }
+          `;
+          document.head.appendChild(style);
+        });
+      </script>
+
 
       <!--- Optional JavaScript; choose one of the two! --->
 
@@ -10778,21 +10856,93 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         }
 
         .home-cta-btn {
-          padding: 1.2rem 2.8rem !important;
+          padding: 1.3rem 3.5rem !important;
           font-size: 15px !important;
           border-radius: 12px !important;
-          transition: all 0.3s ease !important;
+          transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
           position: relative;
-          overflow: hidden;
+          overflow: hidden !important;
           color: #000000 !important;
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 
+            0 8px 24px rgba(0, 0, 0, 0.2),
+            0 0 20px rgba(54, 193, 245, 0.1),
+            0 0 30px rgba(54, 193, 245, 0.05) !important;
           font-weight: 600;
-          letter-spacing: 0.3px;
+          letter-spacing: 0.5px;
+          border: 2px solid rgba(54, 193, 245, 0.3) !important;
+          background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%) !important;
+          animation: buttonGlow 3s ease-in-out infinite, buttonBounce 2s ease-in-out infinite;
+          font-family: "Press Start 2P", system-ui !important;
+          cursor: pointer;
+          width: auto !important;
+          max-width: 350px;
+          margin: 0 auto;
+          display: inline-block;
+        }
+
+        .home-cta-btn span {
+          position: relative;
+          z-index: 2;
+          transition: all 0.3s ease;
+          display: inline-block;
+          animation: textBounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes buttonGlow {
+          0%, 100% {
+            box-shadow: 
+              0 8px 24px rgba(0, 0, 0, 0.2),
+              0 0 20px rgba(54, 193, 245, 0.1),
+              0 0 30px rgba(54, 193, 245, 0.05) !important;
+          }
+          50% {
+            box-shadow: 
+              0 12px 32px rgba(54, 193, 245, 0.3),
+              0 0 30px rgba(54, 193, 245, 0.4),
+              0 0 50px rgba(54, 193, 245, 0.3),
+              0 0 70px rgba(32, 178, 170, 0.2) !important;
+          }
+        }
+
+        @keyframes buttonBounce {
+          0%, 100% {
+            transform: translateY(0) scale(1);
+          }
+          50% {
+            transform: translateY(-2px) scale(1.01);
+          }
+        }
+
+        @keyframes textBounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          25% {
+            transform: translateY(-2px);
+          }
+          50% {
+            transform: translateY(0);
+          }
+          75% {
+            transform: translateY(-1px);
+          }
         }
 
         .home-cta-btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+          transform: translateY(-4px) scale(1.03) !important;
+          box-shadow: 
+            0 12px 32px rgba(54, 193, 245, 0.4),
+            0 0 30px rgba(54, 193, 245, 0.5),
+            0 0 50px rgba(54, 193, 245, 0.4),
+            0 0 70px rgba(32, 178, 170, 0.3) !important;
+          border-color: rgba(54, 193, 245, 0.8) !important;
+          background: linear-gradient(135deg, #ffffff 0%, #e0f7ff 100%) !important;
+          animation: buttonGlow 1.5s ease-in-out infinite, buttonBounce 1s ease-in-out infinite !important;
+        }
+
+        .home-cta-btn:hover span {
+          animation: textBounce 0.8s ease-in-out infinite !important;
+          color: #000000 !important;
         }
 
         .home-cta-btn::before {
@@ -10802,28 +10952,20 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           left: -100%;
           width: 100%;
           height: 100%;
-          /* background: #36c1f5; */
-          transition: left 0.3s ease;
+          background: linear-gradient(90deg, transparent 0%, rgba(54, 193, 245, 0.3) 50%, transparent 100%);
+          transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           z-index: 1;
+          pointer-events: none;
+          border-radius: 12px;
         }
 
         .home-cta-btn:hover::before {
-          left: 0;
+          left: 100%;
         }
 
-        .home-cta-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(54, 193, 245, 0.4) !important;
-        }
-
-        .home-cta-btn:hover span {
-          color: #FFFFFF !important;
-        }
-
-        .home-cta-btn span {
-          position: relative;
-          z-index: 2;
-          transition: color 0.3s ease;
+        .home-cta-btn:not(:hover)::before {
+          left: -100%;
+          transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .home-image {
