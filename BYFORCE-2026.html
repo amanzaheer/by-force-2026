@@ -11007,7 +11007,8 @@ bottom: 199px;
     .tab-content {
       border: 1px solid #047098;
       /* border-top: none; */
-      background-color: #10aae645;
+      background-image: linear-gradient(#45d6fe, #54d3af, #faef9b);
+      /* Same gradient as home background */
       border-radius: 15px;
       padding: 10px 30px 30px 30px;
       margin-top: 10px;
@@ -11542,20 +11543,21 @@ bottom: 199px;
     .pricing-section::after,
     .trust-section::after,
     .shipping-section::after,
+    .benefits-section::after,
     .urgency-section::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, transparent 0%, transparent 40%, #1a5f7a 50%, transparent 60%, transparent 100%);
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, transparent 40%, #ffffff 50%, transparent 60%, transparent 100%);
       background-size: 200% 100%;
       opacity: 1 !important;
       animation: gradientLineAnimation 2s linear infinite;
       box-shadow:
-        0 2px 6px rgba(26, 95, 122, 0.6),
-        0 0 10px rgba(26, 95, 122, 0.4);
+        0 1px 6px rgba(26, 95, 122, 0.6);
+      /* 0 0 10px rgba(26, 95, 122, 0.4); */
       border-radius: 2px;
       z-index: 10;
       display: block !important;
@@ -11597,7 +11599,7 @@ bottom: 199px;
       position: relative !important;
     }
 
-    .benefits-section::after {
+    /* .benefits-section::after {
       content: '' !important;
       position: absolute !important;
       bottom: 0 !important;
@@ -11618,7 +11620,7 @@ bottom: 199px;
       display: block !important;
       visibility: visible !important;
       pointer-events: none !important;
-    }
+    } */
 
     .shipping-section {
       animation-delay: 0.4s;
@@ -12022,13 +12024,30 @@ bottom: 199px;
       font-weight: bold;
     }
 
+    .typing-heading {
+      color: #0a8888 !important;
+      min-height: 45px;
+      text-shadow:
+        /* 3px 3px 0 rgba(0, 0, 0, 0.3), */
+        /* -1px -1px 0 rgba(255, 255, 255, 0.8), */
+        1px -1px 0 rgba(255, 255, 255, 0.8),
+        -1px 1px 0 rgba(255, 255, 255, 0.8),
+        /* 0 4px 8px rgba(0, 0, 0, 0.2), */
+        0 0 20px rgba(10, 136, 136, 0.4) !important;
+      font-weight: bold !important;
+      letter-spacing: 1px !important;
+    }
+
     .typing-heading::after {
       content: '|';
       display: inline-block;
       animation: blinkCursor 1s infinite;
-      color: #047098;
+      color: #0a8888 !important;
       margin-left: 5px;
       font-weight: bold;
+      text-shadow:
+        2px 2px 0 rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(10, 136, 136, 0.6) !important;
     }
 
     .typing-heading.typing-complete::after {
