@@ -9729,23 +9729,33 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         }
 
         .nav-link {
-          cursor: pointer;
-          padding: 12px 24px;
-          font-size: 12px;
-          line-height: 16px;
           font-family: "Press Start 2P", system-ui !important;
-          border: 1px solid #047098;
-          margin: 0px 4px;
-          color: white !important;
-          background-color: #1a5f7a;
-          border-radius: 8px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s ease;
+          font-size: 11px !important;
+          padding: 14px 22px !important;
+          background: linear-gradient(180deg, #3a8a9a 0%, #2a7080 100%) !important;
+          color: #fff !important;
+          text-decoration: none;
+          border: 3px solid #1a5060 !important;
+          border-radius: 8px !important;
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+          text-transform: uppercase;
+          box-shadow: 
+            0 5px 0 #0a4050, 
+            0 8px 20px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
           position: relative;
-          transform: translateY(0);
           overflow: hidden;
+          cursor: pointer;
+          margin: 0px 4px;
           min-width: 100px;
           text-align: center;
+          line-height: 16px;
+          z-index: 1;
+        }
+        
+        .nav-link > * {
+          position: relative;
+          z-index: 2;
         }
 
         .nav-link::before {
@@ -9757,10 +9767,10 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           height: 100%;
           background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
           z-index: 1;
-          animation: shineAlive 3s ease-in-out infinite;
+          animation: navShine 3s ease-in-out infinite;
         }
 
-        @keyframes shineAlive {
+        @keyframes navShine {
           0% {
             left: -100%;
           }
@@ -9772,29 +9782,8 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           }
         }
 
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          bottom: -8px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 90%;
-          height: 6px;
-          background: rgba(0, 0, 0, 0.4);
-          border-radius: 50%;
-          opacity: 0;
-          transition: opacity 0.3s ease, width 0.3s ease;
-          z-index: 0;
-          filter: blur(4px);
-        }
-
         .nav-link:hover::before {
           animation-duration: 1.5s;
-        }
-
-        .nav-link:hover::after {
-          opacity: 1;
-          width: 95%;
         }
 
         .nav-link:hover {
@@ -9804,35 +9793,30 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         }
 
         .nav-link:active {
-          transform: translateY(-1px) scale(1.02);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          transform: translateY(2px) !important;
+          box-shadow: 
+            0 3px 0 #0a4050, 
+            0 5px 15px rgba(0, 0, 0, 0.2) !important;
         }
 
         .nav-link.active {
-          color: #FFFFFF;
-          background-color: #0d4a6b;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.15);
-          transform: translateY(-2px);
+          background: linear-gradient(180deg, #1a6070 0%, #0a4050 100%) !important;
+          transform: translateY(3px) !important;
+          box-shadow: 0 2px 0 #0a3040, inset 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+          color: #fff !important;
         }
 
         .nav-link.active::before {
           background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
         }
 
-        .nav-link.active::after {
-          opacity: 0.6;
-          width: 92%;
-        }
-
-        .nav-link.active:hover::after {
-          opacity: 1;
-          width: 95%;
-        }
-
         .nav-link.active:hover {
-          transform: translateY(-4px) scale(1.05);
-          box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35), 0 3px 7px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.45);
-          background-color: #0c3a5a;
+          background: linear-gradient(180deg, #2a7080 0%, #1a5060 100%) !important;
+          transform: translateY(1px) scale(1.02) !important;
+          box-shadow: 
+            0 4px 0 #0a3040, 
+            0 8px 20px rgba(0, 0, 0, 0.3),
+            0 0 15px rgba(42, 112, 128, 0.3) !important;
         }
 
         .nav-link:focus {
@@ -11168,6 +11152,22 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           z-index: 2;
           display: inline-block;
           white-space: nowrap !important;
+          animation: textBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes textBounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          25% {
+            transform: translateY(-3px);
+          }
+          50% {
+            transform: translateY(0);
+          }
+          75% {
+            transform: translateY(-1.5px);
+          }
         }
 
         @keyframes ctaPulse {
@@ -11187,6 +11187,10 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
             0 0 30px rgba(91, 200, 200, 0.4) !important;
           color: #222 !important;
           background: linear-gradient(180deg, #fff 0%, #fff 50%, #f0f0f0 100%) !important;
+        }
+
+        .home-cta-btn:hover span {
+          animation: textBounce 1s ease-in-out infinite !important;
         }
 
         .home-cta-btn::before {
