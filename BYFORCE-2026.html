@@ -143,7 +143,7 @@
                     <div class="content-section">
                                               <div class="section-content">
                           <div class="section-text">
-                            <h3 class="content_heading1">Last Call on Iconic All-White AF1s — Half the Price!</h3>
+                            <h3 class="content_heading1 typing-heading" id="typingHeading">Last Call on Iconic All-White AF1s — Half the Price!</h3>
                           </div>
                           <div class="section-image">
                             <img src="https://images.squarespace-cdn.com/content/647e1982c1836a5f267634f1/8334c70f-bc8e-41ee-a17d-0e7b2ff8abc9/AIR%2BFORCE%2B1%2B%2707+1.png?content-type=image%2Fpng" alt="AF1s Icon" class="section-icon">
@@ -258,6 +258,40 @@
                     
                       if (buyBtn && shopTab) {
                         buyBtn.addEventListener('click', () => shopTab.click());  // ← simulate click
+                      }
+
+                      // Continuous typing effect for main heading
+                      const typingHeading = document.getElementById('typingHeading');
+                      if (typingHeading) {
+                        const fullText = typingHeading.textContent.trim();
+                        let charIndex = 0;
+                        const typingSpeed = 60; // milliseconds per character
+                        const pauseAfterComplete = 2000; // pause 2 seconds before restarting
+                        
+                        function typeChar() {
+                          if (charIndex < fullText.length) {
+                            typingHeading.textContent = fullText.substring(0, charIndex + 1);
+                            typingHeading.classList.remove('typing-complete');
+                            charIndex++;
+                            setTimeout(typeChar, typingSpeed);
+                          } else {
+                            // Remove cursor after typing completes
+                            setTimeout(() => {
+                              typingHeading.classList.add('typing-complete');
+                            }, 500);
+                            
+                            // Wait before restarting
+                            setTimeout(() => {
+                              charIndex = 0;
+                              typingHeading.textContent = '';
+                              typingHeading.classList.remove('typing-complete');
+                              typeChar(); // Restart typing
+                            }, pauseAfterComplete);
+                          }
+                        }
+                        
+                        // Start typing after a short delay
+                        setTimeout(typeChar, 800);
                       }
                     });
                     </script>
@@ -11505,17 +11539,75 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         .content_heading1 {
           margin-top: 20px;
           font-family: "Press Start 2P", system-ui !important;
-          font-size: 28px !important;
+          font-size: 32px !important;
           color: #FFFFFF !important;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+          text-shadow: 
+            0 3px 6px rgba(0, 0, 0, 0.5),
+            0 0 25px rgba(54, 193, 245, 0.8),
+            0 0 50px rgba(54, 193, 245, 0.6),
+            0 0 75px rgba(54, 193, 245, 0.4),
+            0 0 100px rgba(54, 193, 245, 0.3);
           transition: all 0.3s ease;
-          letter-spacing: 0.5px;
+          letter-spacing: 1px;
+          line-height: 1.5;
+          position: relative;
+          display: inline-block;
+          animation: headingGlow 3s ease-in-out infinite;
+          font-weight: bold;
+          -webkit-text-stroke: 1px rgba(54, 193, 245, 0.3);
+        }
+
+        .typing-heading::after {
+          content: '|';
+          display: inline-block;
+          animation: blinkCursor 1s infinite;
+          color: #36c1f5;
+          margin-left: 5px;
+          font-weight: bold;
+        }
+
+        .typing-heading.typing-complete::after {
+          animation: none;
+          opacity: 0;
+        }
+
+        @keyframes blinkCursor {
+          0%, 50% {
+            opacity: 1;
+          }
+          51%, 100% {
+            opacity: 0;
+          }
+        }
+
+        @keyframes headingGlow {
+          0%, 100% {
+            text-shadow: 
+              0 2px 4px rgba(0, 0, 0, 0.3),
+              0 0 20px rgba(54, 193, 245, 0.5),
+              0 0 40px rgba(54, 193, 245, 0.3),
+              0 0 60px rgba(54, 193, 245, 0.2);
+          }
+          50% {
+            text-shadow: 
+              0 2px 4px rgba(0, 0, 0, 0.3),
+              0 0 30px rgba(54, 193, 245, 0.8),
+              0 0 60px rgba(54, 193, 245, 0.6),
+              0 0 90px rgba(54, 193, 245, 0.4),
+              0 0 120px rgba(54, 193, 245, 0.2);
+          }
         }
 
         .content_heading1:hover {
-          text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-          transform: translateY(-2px);
-          color: #36c1f5 !important;
+          text-shadow: 
+            0 4px 8px rgba(0, 0, 0, 0.6),
+            0 0 35px rgba(54, 193, 245, 1),
+            0 0 70px rgba(54, 193, 245, 0.8),
+            0 0 100px rgba(54, 193, 245, 0.6),
+            0 0 130px rgba(54, 193, 245, 0.4);
+          transform: translateY(-3px) scale(1.03);
+          color: #FFFFFF !important;
+          -webkit-text-stroke: 1.5px rgba(54, 193, 245, 0.5);
         }
 
         .content_heading2 {
