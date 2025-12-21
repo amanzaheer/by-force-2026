@@ -9479,16 +9479,6 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
           document.head.appendChild(style);
         });
       </script>
-              z-index: 10;
-              box-shadow: 
-                0 0 10px rgba(54, 193, 245, 0.8),
-                0 0 20px rgba(54, 193, 245, 0.6),
-                0 0 30px rgba(54, 193, 245, 0.4);
-            }
-          `;
-          document.head.appendChild(style);
-        });
-      </script>
 
       <!-- Image Star/Bubble Effect Script -->
       <script>
@@ -11606,6 +11596,24 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
               inset 0 1px 0 rgba(255, 255, 255, 0.15),
               0 0 80px rgba(4, 112, 152, 0.6),
               0 0 100px rgba(54, 193, 245, 0.3);
+          }
+        }
+
+        @keyframes footerShimmer {
+          0%, 100% {
+            opacity: 0.15;
+          }
+          50% {
+            opacity: 0.25;
+          }
+        }
+
+        @keyframes footerRotate {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
           }
         }
 
