@@ -9554,9 +9554,37 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
                 starCount--;
               };
             });
+
+            // Sparkle effect on hover (mouseenter)
+            image.addEventListener('mouseenter', function() {
+              // Create multiple sparkles around the icon
+              for (let i = 0; i < 5; i++) {
+                setTimeout(() => createIconSparkle(this), i * 100);
+              }
+            });
           });
 
-          // Add CSS for star bubbles
+          // Function to create sparkle effect (from reference)
+          function createIconSparkle(element) {
+            const rect = element.getBoundingClientRect();
+            const sparkle = document.createElement('div');
+            
+            sparkle.textContent = '👟';
+            sparkle.style.cssText = `
+              position: fixed;
+              left: ${rect.left + Math.random() * rect.width}px;
+              top: ${rect.top + Math.random() * rect.height}px;
+              font-size: ${Math.random() * 10 + 10}px;
+              pointer-events: none;
+              z-index: 9999;
+              animation: sparkle 0.8s ease-out forwards;
+            `;
+            
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 800);
+          }
+
+          // Add CSS for star bubbles and sparkle animations
           const starStyle = document.createElement('style');
           starStyle.textContent = `
             .image-star {
@@ -9570,6 +9598,21 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
                 0 0 16px rgba(255, 255, 255, 0.8),
                 0 0 24px rgba(54, 193, 245, 0.6),
                 0 0 32px rgba(54, 193, 245, 0.4);
+            }
+            
+            @keyframes sparkle {
+              0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+              }
+              50% {
+                transform: scale(1.2) rotate(180deg);
+                opacity: 1;
+              }
+              100% {
+                transform: scale(1.5) rotate(360deg);
+                opacity: 0;
+              }
             }
           `;
           document.head.appendChild(starStyle);
@@ -10952,14 +10995,20 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         .section-icon {
           width: 70px;
           height: 70px;
+          flex-shrink: 0;
           object-fit: contain;
           border: none;
           background: transparent;
           box-shadow: none;
           border-radius: 12px;
-          transition: all 0.3s ease;
-          filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+          filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.2));
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          animation: iconBob 3s ease-in-out infinite;
           position: relative;
+        }
+
+        .section-icon:nth-child(odd) {
+          animation-delay: 0.5s;
         }
 
         .section-icon::after {
@@ -10977,8 +11026,20 @@ document.getElementById('cartIconBtn').addEventListener('click', function(e) {
         }
 
         .section-icon:hover {
-          transform: scale(1.05);
-          filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+          transform: scale(1.25) rotate(10deg) !important;
+          filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3)) !important;
+        }
+
+        @keyframes iconBob {
+          0%, 100% { 
+            transform: translateY(0) rotate(0deg); 
+          }
+          25% { 
+            transform: translateY(-5px) rotate(2deg); 
+          }
+          75% { 
+            transform: translateY(3px) rotate(-2deg); 
+          }
         }
 
         .section-icon:hover::after {
