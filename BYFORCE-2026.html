@@ -9572,69 +9572,171 @@ bottom: 199px;
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      right: 0;
+      bottom: 0;
       background: rgba(0, 0, 0, 0.8);
-      z-index: 9999;
       display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: modalFadeIn 0.4s ease;
+      backdrop-filter: blur(5px);
     }
 
     .tutorial-modal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #36c1f5;
-      border: 3px solid #047098;
-      border-radius: 15px;
-      padding: 30px;
-      max-width: 500px;
+      position: relative;
+      background: linear-gradient(180deg, #5BC8C8, #80DDB8);
+      padding: 40px 50px;
+      border-radius: 25px;
+      text-align: center;
+      font-family: 'Press Start 2P', system-ui, sans-serif;
+      color: #fff;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 100px rgba(91, 200, 200, 0.3);
+      border: 5px solid rgba(255, 255, 255, 0.4);
+      animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-width: 700px;
       width: 90%;
-      color: white;
-      font-family: "Press Start 2P", system-ui;
+      overflow: hidden;
+    }
+
+    .tutorial-modal::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.2) 50%, transparent 60%);
+      animation: sparkleMove 3s linear infinite;
+      pointer-events: none;
     }
 
     .tutorial-modal h3 {
-      font-size: 16px;
-      margin-bottom: 20px;
-      text-align: center;
-      color: white;
+      font-size: 18px;
+      margin-bottom: 25px;
+      text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
     }
 
     .tutorial-modal p {
       font-size: 10px;
-      line-height: 18px;
-      margin-bottom: 20px;
-      color: white;
+      margin-bottom: 12px;
+      line-height: 2;
+      position: relative;
+      z-index: 1;
     }
 
     .tutorial-buttons {
       display: flex;
       justify-content: space-between;
       gap: 10px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+      flex-wrap: nowrap;
     }
 
     .tutorial-btn {
-      padding: 10px 20px;
-      background: white;
-      color: #36c1f5;
-      border: none;
-      border-radius: 5px;
-      font-family: "Press Start 2P", system-ui;
-      font-size: 8px;
+      font-family: 'Press Start 2P', system-ui, sans-serif;
+      font-size: 11px;
+      padding: 15px 40px;
+      background: linear-gradient(180deg, #fff, #f0f0f0);
+      color: #333;
+      border: 3px solid #ddd;
+      border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 0 #bbb;
+      position: relative;
+      overflow: hidden;
+      flex: 1 1 auto;
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    .tutorial-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(91, 200, 200, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .tutorial-btn:hover::before {
+      left: 100%;
     }
 
     .tutorial-btn:hover {
-      background: #047098;
-      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 0 #bbb;
+    }
+
+    .tutorial-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #bbb;
     }
 
     .tutorial-btn:disabled {
-      background: #ccc;
+      background: linear-gradient(180deg, #ccc, #bbb);
       color: #666;
       cursor: not-allowed;
+      transform: none;
+      box-shadow: 0 2px 0 #999;
+    }
+
+    .tutorial-btn:disabled:hover {
+      transform: none;
+      box-shadow: 0 2px 0 #999;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes modalFadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    @keyframes modalPop {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes sparkleMove {
+      0% {
+        transform: translateX(-100%) rotate(45deg);
+      }
+
+      100% {
+        transform: translateX(100%) rotate(45deg);
+      }
     }
 
     .tutorial-highlight {
@@ -9680,6 +9782,76 @@ bottom: 199px;
 
       50% {
         transform: translateY(-10px);
+      }
+    }
+
+    /* Responsive styles for tutorial modal */
+    @media screen and (max-width: 768px) {
+      .tutorial-modal {
+        max-width: 95%;
+        width: 95%;
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
+
+      .tutorial-modal h3 {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .tutorial-modal p {
+        font-size: 8px;
+        margin-bottom: 15px;
+        line-height: 1.8;
+      }
+
+      .tutorial-buttons {
+        flex-direction: row;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .tutorial-btn {
+        font-size: 8px;
+        padding: 12px 15px;
+        border-radius: 8px;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .tutorial-modal {
+        max-width: 95%;
+        width: 95%;
+        padding: 25px 15px;
+        border-radius: 15px;
+      }
+
+      .tutorial-modal h3 {
+        font-size: 12px;
+        margin-bottom: 15px;
+      }
+
+      .tutorial-modal p {
+        font-size: 7px;
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+
+      .tutorial-buttons {
+        flex-direction: row;
+        gap: 6px;
+        margin-top: 12px;
+      }
+
+      .tutorial-btn {
+        font-size: 7px;
+        padding: 10px 10px;
+        border-radius: 6px;
+        border-width: 2px;
+        flex: 1 1 auto;
+        min-width: 0;
       }
     }
   </style>
@@ -11015,6 +11187,30 @@ bottom: 199px;
       position: relative;
       z-index: 1;
       overflow: visible;
+    }
+
+    /* Mobile: Match banner width to navbar and footer */
+    @media (max-width: 768px) {
+      .container {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .tab-content {
+        padding: 8px 15px 20px 15px;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .tab-content {
+        padding: 6px 10px 15px 10px;
+      }
     }
 
     .btn_class {
@@ -13089,6 +13285,13 @@ bottom: 199px;
       nextBtn.addEventListener('click', () => this.nextStep());
       skipBtn.addEventListener('click', () => this.endTutorial());
 
+      // Close modal when clicking outside (on overlay)
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          this.endTutorial();
+        }
+      });
+
       // Auto-start tutorial for first-time visitors
       if (!localStorage.getItem('tutorialCompleted')) {
         setTimeout(() => this.startTutorial(), 2000);
@@ -13181,12 +13384,41 @@ bottom: 199px;
 
     showOverlay() {
       const overlay = document.getElementById('tutorialOverlay');
-      overlay.style.display = 'block';
+      const modal = overlay.querySelector('.tutorial-modal');
+
+      // Reset animation
+      overlay.style.animation = 'none';
+      if (modal) modal.style.animation = 'none';
+
+      // Force reflow
+      void overlay.offsetWidth;
+
+      // Show overlay with fade in
+      overlay.style.display = 'flex';
+      overlay.style.animation = 'modalFadeIn 0.4s ease';
+
+      // Animate modal pop
+      if (modal) {
+        setTimeout(() => {
+          modal.style.animation = 'modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        }, 10);
+      }
     }
 
     hideOverlay() {
       const overlay = document.getElementById('tutorialOverlay');
-      overlay.style.display = 'none';
+      const modal = overlay.querySelector('.tutorial-modal');
+
+      // Fade out animation
+      overlay.style.animation = 'modalFadeOut 0.3s ease forwards';
+
+      // Remove after animation completes
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        // Reset animations for next time
+        overlay.style.animation = '';
+        if (modal) modal.style.animation = '';
+      }, 300);
     }
 
     switchToTab(tabId) {
