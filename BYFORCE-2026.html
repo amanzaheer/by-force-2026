@@ -9574,13 +9574,13 @@ bottom: 199px;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.3);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 9999;
       animation: modalFadeIn 0.4s ease;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(1px);
     }
 
     .tutorial-modal {
@@ -9617,6 +9617,32 @@ bottom: 199px;
       text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
       position: relative;
       z-index: 1;
+      animation: headingBounce 2s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes headingBounce {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      10% {
+        transform: translateY(-8px) scale(1.05);
+      }
+      20% {
+        transform: translateY(0) scale(1);
+      }
+      30% {
+        transform: translateY(-5px) scale(1.03);
+      }
+      40% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-3px) scale(1.02);
+      }
+      60% {
+        transform: translateY(0) scale(1);
+      }
     }
 
     .tutorial-modal p {
@@ -9646,13 +9672,26 @@ bottom: 199px;
       border: 3px solid #ddd;
       border-radius: 10px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 0 #bbb;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 
+        0 6px 0 #bbb, 
+        0 10px 25px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
       position: relative;
       overflow: hidden;
       flex: 1 1 auto;
       min-width: 0;
       white-space: nowrap;
+      animation: tutorialBtnPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes tutorialBtnPulse {
+      0%, 100% {
+        box-shadow: 0 6px 0 #bbb, 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(91, 200, 200, 0);
+      }
+      50% {
+        box-shadow: 0 6px 0 #bbb, 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 0 15px rgba(91, 200, 200, 0.2);
+      }
     }
 
     .tutorial-btn::before {
@@ -9671,12 +9710,17 @@ bottom: 199px;
     }
 
     .tutorial-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 7px 0 #bbb;
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 12px 0 #bbb, 
+        0 18px 35px rgba(0, 0, 0, 0.25),
+        0 0 30px rgba(91, 200, 200, 0.4);
+      color: #222;
+      background: linear-gradient(180deg, #fff 0%, #fff 50%, #f0f0f0 100%);
     }
 
     .tutorial-btn:active {
-      transform: translateY(2px);
+      transform: translateY(4px) scale(0.98);
       box-shadow: 0 2px 0 #bbb;
     }
 
@@ -10003,6 +10047,157 @@ bottom: 199px;
             }
           `;
       document.head.appendChild(style);
+    });
+  </script>
+
+  <!-- Tutorial Buttons Bubble Effect Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tutorialButtons = document.querySelectorAll('.tutorial-btn');
+      
+      tutorialButtons.forEach(button => {
+        let bubbleCount = 0;
+        const maxBubbles = 20;
+
+        // Bubble effect on mousemove
+        button.addEventListener('mousemove', function (e) {
+          if (bubbleCount >= maxBubbles) return;
+
+          const rect = button.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          // Create bubble
+          const bubble = document.createElement('div');
+          bubble.className = 'tutorial-button-bubble';
+          bubble.style.left = x + 'px';
+          bubble.style.top = y + 'px';
+
+          const size = Math.random() * 8 + 4;
+          bubble.style.width = size + 'px';
+          bubble.style.height = size + 'px';
+
+          button.appendChild(bubble);
+          bubbleCount++;
+
+          // Animate bubble
+          const angle = Math.random() * Math.PI * 2;
+          const distance = Math.random() * 30 + 20;
+          const endX = x + Math.cos(angle) * distance;
+          const endY = y + Math.sin(angle) * distance;
+
+          bubble.animate([
+            {
+              opacity: 1,
+              transform: 'translate(0, 0) scale(1)'
+            },
+            {
+              opacity: 0.8,
+              transform: `translate(${endX - x}px, ${endY - y}px) scale(1.5)`
+            },
+            {
+              opacity: 0,
+              transform: `translate(${endX - x}px, ${endY - y}px) scale(0)`
+            }
+          ], {
+            duration: 600,
+            easing: 'ease-out'
+          }).onfinish = () => {
+            bubble.remove();
+            bubbleCount--;
+          };
+        });
+
+        // Ripple effect on click
+        button.addEventListener('click', function (e) {
+          if (button.disabled) return;
+          
+          const ripple = document.createElement('span');
+          ripple.style.cssText = `
+            position: absolute;
+            background: rgba(91, 200, 200, 0.5);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: tutorialRipple 0.6s linear;
+            pointer-events: none;
+          `;
+
+          const rect = button.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+          ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+
+          button.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+
+          // Burst particles (sparks) on click
+          for (let i = 0; i < 12; i++) {
+            createTutorialBurstParticle(e.clientX, e.clientY);
+          }
+        });
+      });
+
+      // Function to create burst particles (sparks) for tutorial buttons
+      function createTutorialBurstParticle(x, y) {
+        const particle = document.createElement('div');
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 100 + 50;
+        const size = Math.random() * 10 + 5;
+
+        particle.style.cssText = `
+          position: fixed;
+          width: ${size}px;
+          height: ${size}px;
+          background: linear-gradient(135deg, #5BC8C8, #80DDB8);
+          border-radius: 50%;
+          left: ${x}px;
+          top: ${y}px;
+          pointer-events: none;
+          z-index: 10000;
+          animation: tutorialBurst 0.8s ease-out forwards;
+          --tx: ${Math.cos(angle) * velocity}px;
+          --ty: ${Math.sin(angle) * velocity}px;
+        `;
+
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 800);
+      }
+
+      // Add CSS for tutorial button bubbles, ripple, and burst animations
+      const tutorialStyle = document.createElement('style');
+      tutorialStyle.textContent = `
+        .tutorial-button-bubble {
+          position: absolute;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(91, 200, 200, 0.9) 0%, rgba(91, 200, 200, 0.5) 50%, transparent 100%);
+          pointer-events: none;
+          z-index: 10;
+          box-shadow: 
+            0 0 10px rgba(91, 200, 200, 0.8),
+            0 0 20px rgba(91, 200, 200, 0.6),
+            0 0 30px rgba(91, 200, 200, 0.4);
+        }
+        
+        @keyframes tutorialRipple {
+          to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+        
+        @keyframes tutorialBurst {
+          0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(var(--tx), var(--ty)) scale(0);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(tutorialStyle);
     });
   </script>
 
