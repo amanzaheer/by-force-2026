@@ -1,0 +1,12 @@
+{
+  "name": "byforce-dev-server",
+  "version": "1.0.0",
+  "description": "Local development server for ByForce",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
