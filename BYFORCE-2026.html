@@ -55,29 +55,35 @@
       <title>By force</title>
 
       <script>
-        // CORS Proxy Fix for Local Development
-        // Automatically routes API calls through local proxy when running on localhost
+        // CORS Proxy Fix for Local Development and Vercel
+        // Automatically routes API calls through proxy when needed
         (function() {
           const isLocalhost = window.location.hostname === 'localhost' || 
                              window.location.hostname === '127.0.0.1' ||
                              window.location.protocol === 'file:';
           
-          if (isLocalhost) {
+          const isVercel = window.location.hostname.includes('vercel.app') || 
+                          window.location.hostname.includes('vercel.com');
+          
+          // Use proxy for localhost or Vercel
+          if (isLocalhost || isVercel) {
             // Intercept fetch calls to rxid.co.uk and route through proxy
             const originalFetch = window.fetch;
             window.fetch = function(url, options) {
               if (typeof url === 'string' && url.includes('rxid.co.uk')) {
                 // Extract the API endpoint
                 const apiPath = url.replace('https://rxid.co.uk/', '');
-                // Route through local proxy
+                // Route through proxy (works for both localhost and Vercel)
                 const proxyUrl = `/api/${apiPath}`;
-                console.log(`[DEV] Proxying API call: ${url} -> ${proxyUrl}`);
+                const env = isLocalhost ? 'DEV' : 'VERCEL';
+                console.log(`[${env}] Proxying API call: ${url} -> ${proxyUrl}`);
                 return originalFetch(proxyUrl, options);
               }
               // For all other URLs, use original fetch
               return originalFetch(url, options);
             };
-            console.log('[DEV] CORS proxy enabled for localhost');
+            const env = isLocalhost ? 'DEV' : 'VERCEL';
+            console.log(`[${env}] CORS proxy enabled`);
           }
         })();
       </script>
