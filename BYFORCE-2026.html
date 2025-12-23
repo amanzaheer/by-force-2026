@@ -14190,6 +14190,180 @@ bottom: 199px;
         cardBorderGlowFade 2.5s ease-in-out infinite;
     }
 
+    /* White shine border effect on hover - similar to ALL-WHITES heading */
+    /* Add white shine border using box-shadow and outline approach */
+    .card:hover {
+      outline: 3px solid transparent;
+      outline-offset: -3px;
+      background-image:
+        linear-gradient(to bottom, rgb(0 185 255 / 15%) 24%, rgb(115 241 190 / 24%) 39%, rgb(5 149 255 / 14%) 64%),
+        linear-gradient(90deg,
+          rgba(54, 193, 245, 0.8) 0%,
+          rgba(4, 112, 152, 0.9) 25%,
+          rgba(54, 193, 245, 0.8) 50%,
+          rgba(4, 112, 152, 0.9) 75%,
+          rgba(54, 193, 245, 0.8) 100%);
+      background-size:
+        100% 100%,
+        200% 100%;
+      background-position:
+        0 0,
+        0 0;
+      animation: cardWhiteShineBorder 4s linear infinite;
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(54, 193, 245, 0.4),
+        0 0 60px rgba(149, 222, 167, 0.3),
+        5.15px 6.3px 0.58px 0px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 3px rgba(255, 255, 255, 0.3),
+        0 0 10px rgba(54, 193, 245, 0.6),
+        0 0 20px rgba(54, 193, 245, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    /* White shine border effect - similar to ALL-WHITES heading */
+    .card-body {
+      position: relative;
+    }
+
+    /* Gradient border with white shine - always visible */
+    .card .card-body::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 12px;
+      padding: 3px;
+      background: linear-gradient(90deg,
+          rgba(54, 193, 245, 0.8) 0%,
+          rgba(4, 112, 152, 0.9) 25%,
+          rgba(54, 193, 245, 0.8) 50%,
+          rgba(4, 112, 152, 0.9) 75%,
+          rgba(54, 193, 245, 0.8) 100%);
+      background-size: 200% 100%;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      animation: cardGradientShine 3s ease-in-out infinite, cardGradientMove 4s linear infinite;
+      box-shadow:
+        0 0 10px rgba(54, 193, 245, 0.6),
+        0 0 20px rgba(54, 193, 245, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(255, 255, 255, 0.2);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* Enhanced gradient border on hover */
+    .card:hover .card-body::after {
+      animation: cardGradientShine 1.5s ease-in-out infinite, cardGradientMove 2s linear infinite;
+      box-shadow:
+        0 0 20px rgba(54, 193, 245, 0.9),
+        0 0 40px rgba(54, 193, 245, 0.7),
+        0 0 60px rgba(255, 255, 255, 0.6),
+        0 0 80px rgba(54, 193, 245, 0.5);
+    }
+
+    /* White shine sweep effect - using col-md-6 wrapper */
+    .col-md-6 {
+      position: relative;
+    }
+
+    /* White shine sweep overlay - always visible */
+    .col-md-6::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 12px;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.8),
+          transparent);
+      background-size: 200% 100%;
+      animation: cardShinySweep 3s ease-in-out infinite;
+      z-index: 4;
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      padding: 3px;
+    }
+
+    /* Enhanced white shine sweep on hover */
+    .col-md-6:hover::after,
+    .col-md-6:has(.card:hover)::after {
+      animation: cardShinySweep 1.5s ease-in-out infinite;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 1),
+          transparent);
+    }
+
+    @keyframes cardGradientShine {
+
+      0%,
+      100% {
+        box-shadow:
+          0 0 10px rgba(54, 193, 245, 0.6),
+          0 0 20px rgba(54, 193, 245, 0.4),
+          0 0 30px rgba(255, 255, 255, 0.3);
+      }
+
+      50% {
+        box-shadow:
+          0 0 20px rgba(54, 193, 245, 0.9),
+          0 0 40px rgba(54, 193, 245, 0.7),
+          0 0 60px rgba(255, 255, 255, 0.6),
+          0 0 80px rgba(54, 193, 245, 0.5);
+      }
+    }
+
+    @keyframes cardGradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    @keyframes cardShinySweep {
+      0% {
+        background-position: -100% 0;
+        opacity: 0;
+      }
+
+      50% {
+        background-position: 100% 0;
+        opacity: 1;
+      }
+
+      100% {
+        background-position: 100% 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes cardWhiteShineBorder {
+      0% {
+        background-position: 0% 0, 0% 50%;
+      }
+
+      100% {
+        background-position: 0% 0, 200% 50%;
+      }
+    }
+
     /* Ensure card background and content are above the border */
     .card>* {
       position: relative;
