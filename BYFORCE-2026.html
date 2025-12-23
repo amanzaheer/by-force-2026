@@ -6140,27 +6140,65 @@
                       }
 
                       .buynow {
-                        box-shadow: 5.15px 6.3px 0.58px 0px rgba(0, 0, 0, 0.25);
-                        text-align: center;
-                        border: 1px solid #047098;
-                        font-weight: 400;
-                        font-size: 13px;
-                        background-color: #08aae7;
-                        border: 0px solid #047098;
+                        font-family: 'Press Start 2P', system-ui, sans-serif;
+                        font-size: 11px;
+                        padding: 15px 40px;
+                        background: linear-gradient(180deg, #fff, #f0f0f0);
+                        color: #333;
+                        border: 3px solid #ddd;
                         border-radius: 10px;
-                        /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-                        /* overflow: hidden; */
-                        background-color: #ffffff;
-                        font-family: "Press Start 2P";
-                        color: #08aae7;
-                        transition: box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out;
+                        cursor: pointer;
+                        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        box-shadow:
+                          0 6px 0 #bbb,
+                          0 10px 25px rgba(0, 0, 0, 0.2),
+                          inset 0 1px 0 rgba(255, 255, 255, 1);
+                        position: relative;
+                        overflow: hidden;
+                        animation: tutorialBtnPulse 2s ease-in-out infinite;
                       }
 
-                      /* Remove shadow on click */
+                      .buynow::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba(91, 200, 200, 0.3), transparent);
+                        transition: left 0.5s ease;
+                      }
+
+                      .buynow:hover::before {
+                        left: 100%;
+                      }
+
+                      .buynow:hover {
+                        transform: translateY(-5px) scale(1.05);
+                        box-shadow:
+                          0 12px 0 #bbb,
+                          0 18px 35px rgba(0, 0, 0, 0.25),
+                          0 0 30px rgba(91, 200, 200, 0.4);
+                        color: #222;
+                        background: linear-gradient(180deg, #fff 0%, #fff 50%, #f0f0f0 100%);
+                      }
+
                       .buynow:active {
-                        box-shadow: none;
-                        transform: translateY(2px);
-                        /* Slightly move the button down for a pressed effect */
+                        transform: translateY(4px) scale(0.98);
+                        box-shadow: 0 2px 0 #bbb;
+                      }
+
+                      .buynow:disabled {
+                        background: linear-gradient(180deg, #ccc, #bbb);
+                        color: #666;
+                        cursor: not-allowed;
+                        transform: none;
+                        box-shadow: 0 2px 0 #999;
+                      }
+
+                      .buynow:disabled:hover {
+                        transform: none;
+                        box-shadow: 0 2px 0 #999;
                       }
                     </style>
 
@@ -10770,7 +10808,8 @@ bottom: 199px;
     document.addEventListener('DOMContentLoaded', function () {
       const tutorialButtons = document.querySelectorAll('.tutorial-btn');
       const captureButtons = document.querySelectorAll('.capture-btn');
-      const allButtons = [...tutorialButtons, ...captureButtons];
+      const buynowButtons = document.querySelectorAll('.buynow');
+      const allButtons = [...tutorialButtons, ...captureButtons, ...buynowButtons];
 
       allButtons.forEach(button => {
         let bubbleCount = 0;
@@ -10880,6 +10919,7 @@ bottom: 199px;
         document.body.appendChild(particle);
         setTimeout(() => particle.remove(), 800);
       }
+
 
       // Add CSS for tutorial button bubbles, ripple, and burst animations
       const tutorialStyle = document.createElement('style');
