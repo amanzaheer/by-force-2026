@@ -806,7 +806,8 @@
                     </div>
 
                     <h2 class="capture-title">This is a sign up only offer</h2>
-                    <p class="capture-subtitle">Enter your email to access our exclusive deals</p>
+                    <p class="capture-subtitle" style="margin-bottom: 10px;">Enter your email to access our exclusive
+                      deals</p>
 
                     <!-- Email Input Stage -->
                     <div id="emailStage" class="capture-stage">
@@ -818,7 +819,7 @@
 
                     <!-- Code Input Stage -->
                     <div id="codeStage" class="capture-stage" style="display: none;">
-                      <p class="code-instruction">We've sent a 6-digit code to your email</p>
+                      <p class="capture-subtitle">We've sent a 6-digit code to your email</p>
                       <div class="code-input-container">
                         <input type="text" maxlength="1" class="code-digit" data-index="0">
                         <input type="text" maxlength="1" class="code-digit" data-index="1">
@@ -827,8 +828,8 @@
                         <input type="text" maxlength="1" class="code-digit" data-index="4">
                         <input type="text" maxlength="1" class="code-digit" data-index="5">
                       </div>
-                      <button id="verifyCodeBtn" class="capture-btn">Verify & Shop</button>
-                      <button id="resendCodeBtn" class="capture-btn-secondary">Resend Code</button>
+                      <button id="verifyCodeBtn" class="capture-btn" style="margin-bottom: 15px;">Verify & Shop</button>
+                      <button id="resendCodeBtn" class="capture-btn">Resend Code</button>
                     </div>
 
                     <!-- Loading State -->
@@ -1364,21 +1365,57 @@
                       }
 
                       .capture-btn-secondary {
-                        background: transparent;
-                        color: white;
-                        border: 2px solid white;
-                        padding: 10px 20px;
-                        border-radius: 8px;
-                        font-family: "Press Start 2P", system-ui;
-                        font-size: 10px;
+                        font-family: 'Press Start 2P', system-ui, sans-serif;
+                        font-size: 11px;
+                        padding: 15px 40px;
+                        background: linear-gradient(180deg, #fff, #f0f0f0);
+                        color: #333;
+                        border: 3px solid #ddd;
+                        border-radius: 10px;
                         cursor: pointer;
-                        transition: all 0.3s ease;
+                        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        box-shadow:
+                          0 6px 0 #bbb,
+                          0 10px 25px rgba(0, 0, 0, 0.2),
+                          inset 0 1px 0 rgba(255, 255, 255, 1);
+                        position: relative;
+                        overflow: hidden;
+                        animation: tutorialBtnPulse 2s ease-in-out infinite;
                         margin-top: 10px;
+                        text-transform: none;
+                        letter-spacing: normal;
+                        width: auto;
+                        max-width: none;
+                      }
+
+                      .capture-btn-secondary::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba(91, 200, 200, 0.3), transparent);
+                        transition: left 0.5s ease;
+                      }
+
+                      .capture-btn-secondary:hover::before {
+                        left: 100%;
                       }
 
                       .capture-btn-secondary:hover {
-                        background: white;
-                        color: #36c1f5;
+                        transform: translateY(-5px) scale(1.05);
+                        box-shadow:
+                          0 12px 0 #bbb,
+                          0 18px 35px rgba(0, 0, 0, 0.25),
+                          0 0 30px rgba(91, 200, 200, 0.4);
+                        color: #222;
+                        background: linear-gradient(180deg, #fff 0%, #fff 50%, #f0f0f0 100%);
+                      }
+
+                      .capture-btn-secondary:active {
+                        transform: translateY(4px) scale(0.98);
+                        box-shadow: 0 2px 0 #bbb;
                       }
 
                       .code-instruction {
