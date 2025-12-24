@@ -13649,52 +13649,7 @@ bottom: 199px;
       }
     }
 
-    /* Card border gradient animation - rotating conic gradient */
-    /* Card border shine animation - traveling light effect - smooth and slow */
-    /* Premium border glow animations - ultra-smooth 60fps */
-    @keyframes cardBorderGlowRotate {
-      0% {
-        transform: translateZ(0) rotate(0deg);
-      }
-
-      100% {
-        transform: translateZ(0) rotate(360deg);
-      }
-    }
-
-    /* Fade in/out effect for smooth glow transition */
-    @keyframes cardBorderGlowFade {
-
-      0%,
-      100% {
-        opacity: 0.7;
-      }
-
-      25% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.8;
-      }
-
-      75% {
-        opacity: 1;
-      }
-    }
-
-    /* Card hover pulse animation - subtle breathing effect */
-    @keyframes cardHoverPulse {
-
-      0%,
-      100% {
-        transform: translateY(-8px) translateZ(0) scale(1.02);
-      }
-
-      50% {
-        transform: translateY(-10px) translateZ(0) scale(1.025);
-      }
-    }
+    /* Card animations removed for better performance */
 
     .footer_main {
       border: 0px solid #047098;
@@ -13962,14 +13917,12 @@ bottom: 199px;
       overflow: hidden !important;
       position: relative;
       isolation: isolate;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform: translateZ(0);
-      will-change: transform, box-shadow;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* Card hover animations - makes card feel alive */
+    /* Simplified card hover effect */
     .card:hover {
-      transform: translateY(-8px) translateZ(0) scale(1.02);
+      transform: translateY(-5px);
       box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.3),
         0 0 30px rgba(54, 193, 245, 0.4),
@@ -13984,176 +13937,17 @@ bottom: 199px;
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* Premium animated glowing border - smooth rotating gradient light beam */
-    .card::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: conic-gradient(from 0deg,
-          transparent 0deg,
-          transparent 60deg,
-          rgba(4, 112, 152, 0.3) 80deg,
-          rgba(54, 193, 245, 0.5) 85deg,
-          rgba(149, 222, 167, 0.7) 88deg,
-          rgba(255, 255, 255, 0.9) 90deg,
-          rgba(149, 222, 167, 1) 92deg,
-          rgba(54, 193, 245, 1) 94deg,
-          rgba(255, 255, 255, 1) 95deg,
-          rgba(149, 222, 167, 1) 96deg,
-          rgba(54, 193, 245, 1) 98deg,
-          rgba(149, 222, 167, 0.7) 100deg,
-          rgba(54, 193, 245, 0.5) 105deg,
-          rgba(4, 112, 152, 0.3) 110deg,
-          transparent 130deg,
-          transparent 360deg);
-      border-radius: 12px;
-      z-index: 0;
-      animation:
-        cardBorderGlowRotate 4s linear infinite,
-        cardBorderGlowFade 4s ease-in-out infinite;
-      pointer-events: none;
-      padding: 2px;
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      filter: blur(0.5px);
-      will-change: transform, opacity;
-      transform: translateZ(0) rotate(0deg);
-      transform-origin: center center;
-      backface-visibility: hidden;
-      -webkit-font-smoothing: antialiased;
-      transition: filter 0.4s ease, opacity 0.4s ease;
-    }
+    /* Animated borders removed for performance */
 
-    /* Enhanced border glow on hover */
-    .card:hover::after {
-      filter: blur(1px) brightness(1.3);
-      opacity: 1;
-      animation:
-        cardBorderGlowRotate 2.5s linear infinite,
-        cardBorderGlowFade 2.5s ease-in-out infinite;
-    }
-
-    /* Outer glow effect for premium neon feel */
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      background: conic-gradient(from 0deg,
-          transparent 0deg,
-          transparent 60deg,
-          rgba(54, 193, 245, 0.2) 80deg,
-          rgba(149, 222, 167, 0.4) 88deg,
-          rgba(255, 255, 255, 0.6) 90deg,
-          rgba(149, 222, 167, 0.4) 92deg,
-          rgba(54, 193, 245, 0.2) 100deg,
-          transparent 130deg,
-          transparent 360deg);
-      border-radius: 14px;
-      z-index: -1;
-      animation:
-        cardBorderGlowRotate 4s linear infinite,
-        cardBorderGlowFade 4s ease-in-out infinite;
-      pointer-events: none;
-      filter: blur(2px);
-      opacity: 0.6;
-      will-change: transform, opacity;
-      transform: translateZ(0) rotate(0deg);
-      transform-origin: center center;
-      backface-visibility: hidden;
-      transition: filter 0.4s ease, opacity 0.4s ease;
-    }
-
-    /* Enhanced outer glow on hover */
-    .card:hover::before {
-      filter: blur(3px) brightness(1.4);
-      opacity: 0.9;
-      animation:
-        cardBorderGlowRotate 2.5s linear infinite,
-        cardBorderGlowFade 2.5s ease-in-out infinite;
-    }
-
-    /* White shine border effect on hover - similar to ALL-WHITES heading */
-    /* Add white shine border using box-shadow and outline approach */
+    /* Simplified hover effect without animations */
     .card:hover {
-      outline: 3px solid transparent;
-      outline-offset: -3px;
-      background-image:
-        linear-gradient(to bottom, rgb(0 185 255 / 15%) 24%, rgb(115 241 190 / 24%) 39%, rgb(5 149 255 / 14%) 64%),
-        linear-gradient(90deg,
-          rgba(54, 193, 245, 0.8) 0%,
-          rgba(4, 112, 152, 0.9) 25%,
-          rgba(54, 193, 245, 0.8) 50%,
-          rgba(4, 112, 152, 0.9) 75%,
-          rgba(54, 193, 245, 0.8) 100%);
-      background-size:
-        100% 100%,
-        200% 100%;
-      background-position:
-        0 0,
-        0 0;
-      animation: cardWhiteShineBorder 4s linear infinite;
       box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(54, 193, 245, 0.4),
-        0 0 60px rgba(149, 222, 167, 0.3),
-        5.15px 6.3px 0.58px 0px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 3px rgba(255, 255, 255, 0.3),
-        0 0 10px rgba(54, 193, 245, 0.6),
-        0 0 20px rgba(54, 193, 245, 0.4),
-        0 0 30px rgba(255, 255, 255, 0.3);
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        5.15px 6.3px 0.58px 0px rgba(0, 0, 0, 0.25);
     }
 
-    /* White shine border effect - similar to ALL-WHITES heading */
     .card-body {
       position: relative;
-    }
-
-    /* Gradient border with white shine - always visible */
-    .card .card-body::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 12px;
-      padding: 3px;
-      background: linear-gradient(90deg,
-          rgba(54, 193, 245, 0.8) 0%,
-          rgba(4, 112, 152, 0.9) 25%,
-          rgba(54, 193, 245, 0.8) 50%,
-          rgba(4, 112, 152, 0.9) 75%,
-          rgba(54, 193, 245, 0.8) 100%);
-      background-size: 200% 100%;
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      animation: cardGradientShine 3s ease-in-out infinite, cardGradientMove 4s linear infinite;
-      box-shadow:
-        0 0 10px rgba(54, 193, 245, 0.6),
-        0 0 20px rgba(54, 193, 245, 0.4),
-        0 0 30px rgba(255, 255, 255, 0.3),
-        0 0 40px rgba(255, 255, 255, 0.2);
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    /* Enhanced gradient border on hover */
-    .card:hover .card-body::after {
-      animation: cardGradientShine 1.5s ease-in-out infinite, cardGradientMove 2s linear infinite;
-      box-shadow:
-        0 0 20px rgba(54, 193, 245, 0.9),
-        0 0 40px rgba(54, 193, 245, 0.7),
-        0 0 60px rgba(255, 255, 255, 0.6),
-        0 0 80px rgba(54, 193, 245, 0.5);
     }
 
     /* White shine sweep effect - using col-md-6 wrapper */
@@ -14161,40 +13955,7 @@ bottom: 199px;
       position: relative;
     }
 
-    /* White shine sweep overlay - always visible */
-    .col-md-6::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 12px;
-      background: linear-gradient(90deg,
-          transparent,
-          rgba(255, 255, 255, 0.8),
-          transparent);
-      background-size: 200% 100%;
-      animation: cardShinySweep 3s ease-in-out infinite;
-      z-index: 4;
-      pointer-events: none;
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      padding: 3px;
-    }
-
-    /* Enhanced white shine sweep on hover */
-    .col-md-6:hover::after,
-    .col-md-6:has(.card:hover)::after {
-      animation: cardShinySweep 1.5s ease-in-out infinite;
-      background: linear-gradient(90deg,
-          transparent,
-          rgba(255, 255, 255, 1),
-          transparent);
-    }
+    /* Shine effects removed for better performance */
 
     @keyframes cardGradientShine {
 
@@ -14258,19 +14019,7 @@ bottom: 199px;
       z-index: 2;
     }
 
-    /* Sparkle effect moved to card content area to avoid conflict with border glow */
-    .card-body::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.2) 50%, transparent 60%);
-      animation: sparkleMove 3s linear infinite;
-      pointer-events: none;
-      z-index: 1;
-    }
+    /* Sparkle effect removed for better performance */
 
     .card_images {
       display: flex;
@@ -14284,14 +14033,12 @@ bottom: 199px;
       object-fit: contain;
       position: relative;
       z-index: 2;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
-      will-change: transform, filter;
+      transition: transform 0.3s ease;
     }
 
-    /* Card image hover effect */
+    /* Simplified card image hover effect */
     .card:hover .card_image_class {
-      transform: translateZ(0) scale(1.05);
-      filter: brightness(1.1) drop-shadow(0 4px 8px rgba(54, 193, 245, 0.3));
+      transform: scale(1.05);
     }
 
     .cardimage_heading {
@@ -14302,19 +14049,15 @@ bottom: 199px;
       margin-right: 15px;
       position: relative;
       z-index: 5;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        text-shadow 0.4s ease,
-        color 0.4s ease;
-      will-change: transform, text-shadow;
+      transition: transform 0.3s ease,
+        text-shadow 0.3s ease,
+        color 0.3s ease;
     }
 
-    /* Card heading hover effect */
+    /* Simplified card heading hover effect */
     .card:hover .cardimage_heading {
-      transform: translateZ(0) translateY(-2px);
-      text-shadow:
-        2px 2px 4px rgba(0, 0, 0, 0.5),
-        0 0 10px rgba(54, 193, 245, 0.6),
-        0 0 20px rgba(149, 222, 167, 0.4);
+      transform: translateY(-2px);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       color: #ffffff !important;
     }
 
@@ -14340,19 +14083,14 @@ bottom: 199px;
       padding-right: 10px;
       position: relative;
       z-index: 5;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        text-shadow 0.4s ease,
-        scale 0.4s ease;
-      will-change: transform, text-shadow;
+      transition: transform 0.3s ease,
+        text-shadow 0.3s ease;
     }
 
-    /* Card title hover effect */
+    /* Simplified card title hover effect */
     .card:hover .card-title {
-      transform: translateZ(0) scale(1.05);
-      text-shadow:
-        2px 2px 4px rgba(0, 0, 0, 0.5),
-        0 0 12px rgba(54, 193, 245, 0.7),
-        0 0 24px rgba(149, 222, 167, 0.5);
+      transform: scale(1.03);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .col-md-6 {
