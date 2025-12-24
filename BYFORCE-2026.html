@@ -438,8 +438,14 @@
 
                       this.setupEventListeners();
                       this.setupCodeInputs();
-                      // Show overlay and prevent scrolling
-                      this.showOverlay();
+                      
+                      // Only show overlay if we're on the SHOP tab
+                      const servicesTab = document.getElementById('services');
+                      const isServicesTabActive = servicesTab && servicesTab.classList.contains('active') && servicesTab.classList.contains('show');
+                      
+                      if (isServicesTabActive) {
+                        this.showOverlay();
+                      }
                     }
 
                     setupEventListeners() {
@@ -743,60 +749,37 @@
                     }
                   }
 
-                  // Initialize email capture system when page loads
+                  // Initialize email capture system only once
+                  let emailCaptureInstance = null;
+
                   document.addEventListener('DOMContentLoaded', () => {
                     // Ensure body scrolling is enabled by default on page load
-                    // It will only be disabled when login form overlay is actually visible
-                    const overlay = document.getElementById('emailCaptureOverlay');
-                    if (overlay && overlay.style.display !== 'flex') {
-                      document.body.style.overflow = '';
-                    }
+                    document.body.style.overflow = '';
 
-                    // Only initialize on SHOP tab
-                    const servicesTab = document.getElementById('services');
-                    if (servicesTab) {
-                      new EmailCaptureSystem();
-                    }
-                  });
-
-                  // Handle tab switching
-                  document.addEventListener('DOMContentLoaded', () => {
                     // Function to restore body scrolling
                     function restoreBodyScroll() {
                       document.body.style.overflow = '';
                     }
 
-                    // Function to check if overlay is visible and manage scroll
-                    function manageScrollForOverlay() {
-                      const overlay = document.getElementById('emailCaptureOverlay');
-                      if (overlay && overlay.style.display === 'flex') {
-                        // Overlay is visible, prevent scrolling
-                        document.body.style.overflow = 'hidden';
-                      } else {
-                        // Overlay is not visible, allow scrolling
-                        restoreBodyScroll();
-                      }
+                    // Initialize email capture system only once
+                    const servicesTab = document.getElementById('services');
+                    if (servicesTab && !emailCaptureInstance) {
+                      emailCaptureInstance = new EmailCaptureSystem();
                     }
 
-                    // Handle services tab (SHOP tab)
+                    // Handle services tab (SHOP tab) switching
                     const servicesTabButton = document.getElementById('services-tab');
                     if (servicesTabButton) {
                       servicesTabButton.addEventListener('shown.bs.tab', () => {
-                        // Show overlay if not verified
-                        if (localStorage.getItem('emailVerified') !== 'true') {
-                          const overlay = document.getElementById('emailCaptureOverlay');
-                          if (overlay) {
-                            overlay.style.display = 'flex';
-                            // Prevent body scrolling when overlay is open
-                            document.body.style.overflow = 'hidden';
-                          }
+                        // Only show overlay if not verified and system is initialized
+                        if (localStorage.getItem('emailVerified') !== 'true' && emailCaptureInstance) {
+                          emailCaptureInstance.showOverlay();
                         } else {
                           // Hide overlay if already verified
                           const overlay = document.getElementById('emailCaptureOverlay');
                           if (overlay) {
                             overlay.style.display = 'none';
                             overlay.classList.add('verified');
-                            // Restore body scrolling when overlay is closed
                             restoreBodyScroll();
                           }
                         }
