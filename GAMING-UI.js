@@ -215,9 +215,9 @@ function initNavigation() {
     });
 }
 
-// CTA button click effect
+// CTA button click effect - updated to use .home-cta-btn
 function initCtaButton() {
-    const ctaBtn = document.querySelector('.cta-btn');
+    const ctaBtn = document.querySelector('.home-cta-btn');
     if (ctaBtn) {
         ctaBtn.addEventListener('click', function (e) {
             // Create burst particles
@@ -255,7 +255,7 @@ function createBurstParticle(x, y) {
 
 // Feature items animation on scroll
 function initFeatureAnimations() {
-    const featureItems = document.querySelectorAll('.feature-item');
+    const featureItems = document.querySelectorAll('.feature-item, .content-section, .pricing-section, .urgency-section, .trust-section, .benefits-section, .shipping-section, .cta-section');
 
     const observerOptions = {
         threshold: 0.2,
@@ -319,9 +319,9 @@ function showCoinCollect(x, y) {
     setTimeout(() => text.remove(), 1000);
 }
 
-// Pixel icon hover effects
+// Section icon hover effects - updated to use .section-icon
 function initPixelIconEffects() {
-    const icons = document.querySelectorAll('.pixel-icon');
+    const icons = document.querySelectorAll('.section-icon');
     icons.forEach(icon => {
         icon.addEventListener('mouseenter', function () {
             // Create sparkles around icon
