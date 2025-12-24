@@ -50,7 +50,10 @@
       <!-- Bootstrap Icons -->
       <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
         rel="stylesheet">
-      <!-- <link rel="stylesheet" href="style.css"> -->
+      <!-- External CSS File -->
+      <link rel="stylesheet" href="Gaming-UI.css">
+      <!-- External JavaScript File -->
+      <script src="GAMING-UI.js" defer></script>
 
       <title>By force</title>
 
@@ -139,7 +142,7 @@
 
       <!-- navbar -->
       <div class="backgroun_clr">
-        <div class="container-fluid" style="position: relative; z-index: 1;">
+        <div class="container-fluid">
           <div class="home-button-container">
             <a href="https://byforce.uk/">
               <img
@@ -10206,9 +10209,7 @@ bottom: 199px;
 
   </div>
   <style>
-    .backgroun_clr {
-      overflow-x: hidden;
-    }
+    /* All navbar CSS moved to Gaming-UI.css */
 
     /* Tutorial Helper Styles */
     #tutorialHelper {
@@ -11265,123 +11266,7 @@ bottom: 199px;
 
 
   <style>
-    .home-button-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /* Center vertically */
-      max-height: 10px;
-    }
-
-    .home-button-container img {
-      max-width: 2000px;
-      height: auto;
-      transform: scale(100%);
-      padding-top: 100px;
-      animation: logoAlive 3s ease-in-out infinite;
-    }
-
-    @keyframes logoAlive {
-
-      0%,
-      100% {
-        transform: translateY(0) scale(1);
-      }
-
-      50% {
-        transform: translateY(-8px) scale(1.02);
-      }
-    }
-
-    .nav {
-      padding-top: 90px;
-      display: flex;
-      justify-content: center;
-      /* flex-direction: column; */
-      align-items: center;
-      flex-wrap: nowrap;
-    }
-
-    /* width: 600px; */
-    .main_page_data {
-      /* margin-top: 20px; */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .nav-link {
-      font-family: "Press Start 2P", system-ui !important;
-      font-size: 11px !important;
-      padding: 14px 22px !important;
-      background: linear-gradient(180deg, #3a8a9a 0%, #2a7080 100%) !important;
-      color: #fff !important;
-      text-decoration: none;
-      border: 3px solid #1a5060 !important;
-      border-radius: 8px !important;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-      text-transform: uppercase;
-      box-shadow:
-        0 5px 0 #0a4050,
-        0 8px 20px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      margin: 0px 4px;
-      min-width: 100px;
-      text-align: center;
-      line-height: 16px;
-      z-index: 1;
-    }
-
-    .nav-link>* {
-      position: relative;
-      z-index: 2;
-    }
-
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      z-index: 1;
-      animation: navShine 3s ease-in-out infinite;
-    }
-
-    @keyframes navShine {
-      0% {
-        left: -100%;
-      }
-
-      50% {
-        left: 100%;
-      }
-
-      100% {
-        left: -100%;
-      }
-    }
-
-    .nav-link:hover::before {
-      animation-duration: 1.5s;
-    }
-
-    .nav-link:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.4);
-      background-color: #0d5a7a;
-    }
-
-    .nav-link:active {
-      transform: translateY(2px) !important;
-      box-shadow:
-        0 3px 0 #0a4050,
-        0 5px 15px rgba(0, 0, 0, 0.2) !important;
-    }
+    /* All navbar CSS moved to Gaming-UI.css */
 
     /* Gaming Style Main Headings */
     .gaming-headings-container {
@@ -11702,133 +11587,7 @@ bottom: 199px;
       }
     }
 
-    .nav-link.active {
-      background: linear-gradient(180deg, #1a6070 0%, #0a4050 100%) !important;
-      transform: translateY(3px) !important;
-      box-shadow: 0 2px 0 #0a3040, inset 0 2px 5px rgba(0, 0, 0, 0.2) !important;
-      color: #fff !important;
-    }
-
-    .nav-link.active::before {
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    }
-
-    .nav-link.active:hover {
-      background: linear-gradient(180deg, #2a7080 0%, #1a5060 100%) !important;
-      transform: translateY(1px) scale(1.02) !important;
-      box-shadow:
-        0 4px 0 #0a3040,
-        0 8px 20px rgba(0, 0, 0, 0.3),
-        0 0 15px rgba(42, 112, 128, 0.3) !important;
-    }
-
-    .nav-link:focus {
-      outline: none;
-      /* Remove the default focus outline */
-    }
-
-    button.nav-link {
-      width: auto;
-      /* min-width: 100px; */
-      /* Consistent button sizing */
-    }
-
-    /* Responsive Navbar - Only adjust tab sizes to fit in one line */
-    @media (max-width: 992px) {
-      .nav-link {
-        padding: 10px 16px;
-        font-size: 11px;
-        margin: 0px 3px;
-        min-width: 85px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-link {
-        padding: 8px 10px;
-        font-size: 9px;
-        margin: 0px 2px;
-        min-width: 70px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .nav-link {
-        padding: 6px 6px;
-        font-size: 8px;
-        margin: 0px 1px;
-        min-width: 80px;
-      }
-    }
-
-
-
-
-    .backgroun_clr {
-      margin: 0;
-      /* Remove default margin */
-      padding: 0;
-      /* Remove default padding */
-      background-image: linear-gradient(#5FDBFD, #85EED1, #F4EBA7);
-      /* Replace with your image path */
-      background-size: cover;
-      /* Ensures the image covers the entire background */
-      background-position: center;
-      /* Center the image */
-      background-repeat: no-repeat;
-      /* Prevents the image from repeating */
-      background-attachment: fixed;
-      /* Keeps the background fixed during scroll */
-      min-height: 100vh;
-      padding-bottom: 30px;
-      /* background-color: #5FDBFC; */
-      /* max-height: 100%; */
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Animated Background Particles - Moving Nodes Animation (Same as Home Page) */
-    .backgroun_clr::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image:
-        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
-        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-        radial-gradient(circle at 60% 60%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-        radial-gradient(circle at 90% 90%, rgba(255, 255, 255, 0.3) 2px, transparent 2px);
-      background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px, 200px 200px;
-      background-position: 0% 0%, 100% 100%, 50% 50%, 75% 75%, 25% 25%;
-      animation: particleFloat 20s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes particleFloat {
-      0% {
-        background-position: 0% 0%, 100% 100%, 50% 50%, 75% 75%, 25% 25%;
-      }
-
-      25% {
-        background-position: 20% 30%, 80% 70%, 60% 40%, 55% 65%, 35% 15%;
-      }
-
-      50% {
-        background-position: 40% 60%, 60% 40%, 70% 70%, 35% 55%, 65% 85%;
-      }
-
-      75% {
-        background-position: 30% 20%, 70% 80%, 50% 60%, 65% 45%, 45% 35%;
-      }
-
-      100% {
-        background-position: 0% 0%, 100% 100%, 50% 50%, 75% 75%, 25% 25%;
-      }
-    }
+    /* All background and navbar CSS moved to Gaming-UI.css */
 
     /* Tiny Shiny Particles for Whole Background */
     .container-fluid::after {
@@ -12136,53 +11895,7 @@ bottom: 199px;
       }
     }
 
-    /* More particles using nav element */
-    .nav {
-      position: relative;
-    }
-
-    .nav::before {
-      content: '';
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 40%, transparent 70%);
-      border-radius: 50%;
-      box-shadow:
-        0 0 10px rgba(255, 255, 255, 1),
-        0 0 20px rgba(255, 255, 255, 0.8),
-        0 0 30px rgba(255, 255, 255, 0.6),
-        0 0 40px rgba(255, 255, 255, 0.4);
-      pointer-events: none;
-      z-index: 0;
-      top: 50%;
-      left: 50%;
-      animation: particleTwinkle 6s ease-in-out infinite;
-    }
-
-    @keyframes particleTwinkle {
-
-      0%,
-      100% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 0.2;
-      }
-
-      25% {
-        transform: translate(calc(-50% + 80px), calc(-50% - 50px)) scale(1.8);
-        opacity: 1;
-      }
-
-      50% {
-        transform: translate(calc(-50% + 120px), calc(-50% + 30px)) scale(1.2);
-        opacity: 0.6;
-      }
-
-      75% {
-        transform: translate(calc(-50% + 60px), calc(-50% + 80px)) scale(1.5);
-        opacity: 0.9;
-      }
-    }
+    /* All .nav CSS moved to Gaming-UI.css */
 
     .backgroun_clr::before,
     .backgroun_clr::after {
