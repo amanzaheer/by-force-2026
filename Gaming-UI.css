@@ -618,24 +618,35 @@ header {
 }
 
 /* Footer */
-.footer-bar {
+.footer_main {
+    padding: 20px 0;
+}
+
+.footer_main > .row {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background: linear-gradient(90deg, #5BC8C8 0%, #70D8B8 50%, #90E8A8 100%);
-    padding: 18px 0;
-    border-top: 3px solid rgba(255, 255, 255, 0.4);
+    padding: 18px 20px;
     box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
     z-index: 100;
+    margin: 0;
 }
 
-.footer-brand {
+.heading_class {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.footer_heading {
     font-family: 'Press Start 2P', cursive;
     font-size: 13px;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     animation: footerGlow 2s ease-in-out infinite alternate;
+    margin: 0;
 }
 
 @keyframes footerGlow {
@@ -753,7 +764,7 @@ header {
         height: 45px;
     }
     
-    .footer-brand,
+    .footer_heading,
     .footer-link,
     .footer-phone {
         font-size: 8px;
