@@ -626,16 +626,52 @@ header {
     left: 0;
     right: 0;
     background: linear-gradient(90deg, #5BC8C8 0%, #70D8B8 50%, #90E8A8 100%);
-    padding: 18px 20px;
+    padding: 18px;
+    padding-left: calc((100vw - min(90vw, 1200px)) / 2);
+    padding-right: calc((100vw - min(90vw, 1200px)) / 2);
     box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
+    border-top: 3px solid rgba(255, 255, 255, 0.4);
     z-index: 100;
     margin: 0;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.footer_main > .row > div {
+    flex-shrink: 0;
+    min-width: 0;
+    flex-basis: auto !important;
+    max-width: none !important;
 }
 
 .heading_class {
+    width: fit-content;
     margin: 0;
     padding: 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.footer_main .row {
+    align-items: center;
+}
+
+.footer_main .col-lg-5 .heading_class {
+    justify-content: flex-start;
+}
+
+.footer_main .col-lg-3 .heading_class {
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.footer_main .col-lg-4 .heading_class {
+    justify-content: flex-end;
+    margin-left: auto;
 }
 
 .footer_heading {
@@ -643,8 +679,10 @@ header {
     font-size: 13px;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    animation: footerGlow 2s ease-in-out infinite alternate;
+    /* animation: footerGlow 2s ease-in-out infinite alternate; */
     margin: 0;
+    padding: 0;
+    line-height: 1;
 }
 
 @keyframes footerGlow {
@@ -652,8 +690,9 @@ header {
     100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.5); }
 }
 
-.footer-link {
+.footer_link {
     font-family: 'Press Start 2P', cursive;
+    width:fit-content;
     font-size: 10px;
     color: #fff;
     text-decoration: none;
@@ -662,7 +701,7 @@ header {
     position: relative;
 }
 
-.footer-link::after {
+.footer_link::after {
     content: '';
     position: absolute;
     bottom: -3px;
@@ -673,16 +712,16 @@ header {
     transition: width 0.3s ease;
 }
 
-.footer-link:hover::after {
+.footer_link:hover::after {
     width: 100%;
 }
 
-.footer-link:hover {
+.footer_link:hover {
     color: #fff;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
-.footer-phone {
+.footer_phone {
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
     color: #fff;
@@ -725,6 +764,23 @@ header {
     .sneaker-stack {
         margin-top: 20px;
     }
+    
+    .footer_main > .row {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 10px;
+    }
+    
+    .footer_main > .row > div {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        width: auto !important;
+    }
+    
+    .footer_heading {
+        font-size: 9px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -763,9 +819,31 @@ header {
     }
     
     .footer_heading,
-    .footer-link,
-    .footer-phone {
+    .footer_brand,
+    .footer_link,
+    .footer_phone {
         font-size: 8px;
+    }
+    
+    /* Center all footer items on mobile */
+    .footer_main .col-lg-5 .heading_class,
+    .footer_main .col-lg-3 .heading_class,
+    .footer_main .col-lg-4 .heading_class {
+        justify-content: center;
+        margin: 8px auto;
+    }
+    
+    .footer_main > .row {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 5px;
+    }
+    
+    .footer_main > .row > div {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        width: auto !important;
     }
     
     .responsive-image {
@@ -830,5 +908,23 @@ header {
     .section-icon {
         width: 40px;
         height: 40px;
+    }
+    
+    .footer_main > .row {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        padding: 15px 10px;
+        gap: 5px;
+    }
+    
+    .footer_main > .row > div {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        width: auto !important;
+    }
+    
+    .footer_heading {
+        font-size: 7px !important;
     }
 }
