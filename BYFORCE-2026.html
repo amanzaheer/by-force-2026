@@ -835,13 +835,13 @@
                   /* Responsive fix for Email Capture Overlay on small screens */
                   @media (max-width: 600px) {
                     #emailCaptureOverlay {
-                      height: 70vh !important;
-                      min-height: 70vh;
+                      height: 100vh !important;
+                      min-height: 100vh;
                       padding: 0;
                       top: 0;
                       left: 0;
-                      align-items: flex-start;
-                      justify-content: center;
+                      align-items: center !important;
+                      justify-content: center !important;
                       background: none !important;
                       overflow: visible !important;
                       /* Ensure popup can overflow the overlay */
@@ -851,11 +851,8 @@
                       width: 94vw !important;
                       max-width: 97vw;
                       min-width: unset;
-                      /* Move modal further up the screen */
-                      margin-top: 8vw !important;
-                      margin-bottom: 0;
-                      margin-left: 3vw;
-                      margin-right: 3vw;
+                      /* Center the modal */
+                      margin: 0 auto !important;
                       border-radius: 14px;
                       padding: 22px 15px 30px 15px !important;
                       position: relative;
@@ -919,9 +916,8 @@
 
                     .email-capture-modal {
                       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
-                      /* Ensure it doesn't get pushed out of the viewport */
-                      transform: translateY(-2vw);
-                      /* Subtle move further up */
+                      /* Keep modal centered */
+                      transform: none;
                     }
                   }
 
@@ -932,74 +928,6 @@
                   }
                 </style>
 
-
-                <!-- Email Capture Overlay -->
-                <div id="emailCaptureOverlay" class="email-capture-overlay" style="
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 70%;
-                    background: none;
-                    backdrop-filter: blur(8px);
-                    -webkit-backdrop-filter: blur(8px);
-                    z-index: 10001;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    animation: modalFadeIn 0.4s ease;
-                    overflow: hidden;
-                  " style="background:none !important; height:100vh !important;">
-                  <!-- Animated cursor elements -->
-                  <div class="overlay-cursor overlay-cursor-1"></div>
-                  <div class="overlay-cursor overlay-cursor-2"></div>
-                  <div class="overlay-cursor overlay-cursor-3"></div>
-                  <div class="overlay-cursor overlay-cursor-4"></div>
-                  <div class="overlay-cursor overlay-cursor-5"></div>
-
-                  <div class="email-capture-modal">
-                    <!-- Close Button -->
-                    <button id="closeEmailCaptureBtn" class="email-capture-close-btn" title="Close">×</button>
-
-                    <div class="padlock-container">
-                      <div class="padlock-icon">🔒</div>
-                      <div class="email-icon">📧</div>
-                    </div>
-
-                    <h2 class="capture-title">This is a sign up only offer</h2>
-                    <p class="capture-subtitle" style="margin-bottom: 10px;">Enter your email to access our exclusive
-                      deals</p>
-
-                    <!-- Email Input Stage -->
-                    <div id="emailStage" class="capture-stage">
-                      <div class="email-input-container">
-                        <input type="email" id="captureEmailInput" placeholder="Enter your email address" required>
-                        <button id="sendCodeBtn" class="capture-btn">Access Offer</button>
-                      </div>
-                    </div>
-
-                    <!-- Code Input Stage -->
-                    <div id="codeStage" class="capture-stage" style="display: none;">
-                      <p class="capture-subtitle">We've sent a 6-digit code to your email</p>
-                      <div class="code-input-container">
-                        <input type="text" maxlength="1" class="code-digit" data-index="0">
-                        <input type="text" maxlength="1" class="code-digit" data-index="1">
-                        <input type="text" maxlength="1" class="code-digit" data-index="2">
-                        <input type="text" maxlength="1" class="code-digit" data-index="3">
-                        <input type="text" maxlength="1" class="code-digit" data-index="4">
-                        <input type="text" maxlength="1" class="code-digit" data-index="5">
-                      </div>
-                      <button id="verifyCodeBtn" class="capture-btn" style="margin-bottom: 15px;">Verify & Shop</button>
-                      <button id="resendCodeBtn" class="capture-btn">Resend Code</button>
-                    </div>
-
-                    <!-- Loading State -->
-                    <div id="loadingStage" class="capture-stage" style="display: none;">
-                      <div class="loading-spinner"></div>
-                      <p class="loading-text">Verifying your code...</p>
-                    </div>
-                  </div>
-                </div>
 
                 <div class="carousel-container">
                   <div class="products and order">
@@ -1082,6 +1010,7 @@
                         padding: 40px;
                         max-width: 500px;
                         width: 90%;
+                        margin: 0 auto;
                         text-align: center;
                         color: white;
                         font-family: "Press Start 2P", system-ui;
@@ -13125,6 +13054,77 @@ bottom: 199px;
     new TutorialGuide();
   });
 </script>
+
+<!-- Email Capture Overlay - Positioned at document root for full screen coverage -->
+<div id="emailCaptureOverlay" class="email-capture-overlay" style="
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10001 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    animation: modalFadeIn 0.4s ease;
+    overflow: hidden;
+  ">
+  <!-- Animated cursor elements -->
+  <div class="overlay-cursor overlay-cursor-1"></div>
+  <div class="overlay-cursor overlay-cursor-2"></div>
+  <div class="overlay-cursor overlay-cursor-3"></div>
+  <div class="overlay-cursor overlay-cursor-4"></div>
+  <div class="overlay-cursor overlay-cursor-5"></div>
+
+  <div class="email-capture-modal">
+    <!-- Close Button -->
+    <button id="closeEmailCaptureBtn" class="email-capture-close-btn" title="Close">×</button>
+
+    <div class="padlock-container">
+      <div class="padlock-icon">🔒</div>
+      <div class="email-icon">📧</div>
+    </div>
+
+    <h2 class="capture-title">This is a sign up only offer</h2>
+    <p class="capture-subtitle" style="margin-bottom: 10px;">Enter your email to access our exclusive deals</p>
+
+    <!-- Email Input Stage -->
+    <div id="emailStage" class="capture-stage">
+      <div class="email-input-container">
+        <input type="email" id="captureEmailInput" placeholder="Enter your email address" required>
+        <button id="sendCodeBtn" class="capture-btn">Access Offer</button>
+      </div>
+    </div>
+
+    <!-- Code Input Stage -->
+    <div id="codeStage" class="capture-stage" style="display: none;">
+      <p class="capture-subtitle">We've sent a 6-digit code to your email</p>
+      <div class="code-input-container">
+        <input type="text" maxlength="1" class="code-digit" data-index="0">
+        <input type="text" maxlength="1" class="code-digit" data-index="1">
+        <input type="text" maxlength="1" class="code-digit" data-index="2">
+        <input type="text" maxlength="1" class="code-digit" data-index="3">
+        <input type="text" maxlength="1" class="code-digit" data-index="4">
+        <input type="text" maxlength="1" class="code-digit" data-index="5">
+      </div>
+      <button id="verifyCodeBtn" class="capture-btn" style="margin-bottom: 15px;">Verify & Shop</button>
+      <button id="resendCodeBtn" class="capture-btn">Resend Code</button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingStage" class="capture-stage" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Verifying your code...</p>
+    </div>
+  </div>
+</div>
 
 </body>
 
