@@ -57,9 +57,9 @@ function createParticle(container) {
 
 // Float animation is now in Gaming-UI.css
 
-// Help button functionality
+// Help button functionality - renamed to match .audio-button in HTML
 function initHelpButton() {
-  const helpBtn = document.querySelector(".help-btn");
+  const helpBtn = document.querySelector(".audio-button");
   if (helpBtn) {
     helpBtn.addEventListener("click", function () {
       createModal();
@@ -278,25 +278,25 @@ function initFeatureAnimations() {
   });
 }
 
-// Coin animation in sneaker stack
+// Product card image hover animations - renamed to match .product.card_image_class in HTML
 function initCoinAnimations() {
-  const coins = document.querySelectorAll(".sneaker-stack-svg circle");
-  coins.forEach((coin, index) => {
-    coin.style.transformOrigin = "center";
-    coin.style.cursor = "pointer";
+  const productImages = document.querySelectorAll(".product.card_image_class");
+  productImages.forEach((img, index) => {
+    img.style.cursor = "pointer";
+    img.style.transition = "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-    coin.addEventListener("mouseenter", function () {
-      this.style.transform = "scale(1.3)";
-      this.style.filter = "brightness(1.5) drop-shadow(0 0 10px gold)";
+    img.addEventListener("mouseenter", function () {
+      this.style.transform = "scale(1.05) rotate(2deg)";
+      this.style.filter = "drop-shadow(15px 15px 30px rgba(0, 0, 0, 0.25))";
     });
 
-    coin.addEventListener("mouseleave", function () {
+    img.addEventListener("mouseleave", function () {
       this.style.transform = "";
-      this.style.filter = "";
+      this.style.filter = "drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.2))";
     });
 
-    coin.addEventListener("click", function () {
-      // Coin collect effect
+    img.addEventListener("click", function () {
+      // Click effect on product image
       const rect = this.getBoundingClientRect();
       showCoinCollect(rect.left + rect.width / 2, rect.top + rect.height / 2);
     });
