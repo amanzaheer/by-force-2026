@@ -174,7 +174,12 @@
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <!-- Professional Home Page Layout -->
-                <div class="home-container">
+                <div class="home-container" style="
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-left: 0px;
+                width: 100%;
+            ">
                   <!-- Left Content Section -->
                   <div class="home-content">
                     <div class="content-section">
@@ -11918,7 +11923,7 @@ bottom: 199px;
     .footer_main {
       border: 0px solid #047098;
       margin-top: 50px;
-      background: linear-gradient(135deg, #1a5f7a 0%, #0d4a6b 50%, #0d5a7a 100%);
+      background: transparent;
       border-radius: 15px;
       width: 100%;
       max-width: 100%;
@@ -11927,10 +11932,6 @@ bottom: 199px;
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 0 60px rgba(4, 112, 152, 0.4);
       animation: footerGlow 4s ease-in-out infinite;
     }
 
@@ -11941,9 +11942,6 @@ bottom: 199px;
       left: 0;
       right: 0;
       bottom: 0;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(54, 193, 245, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(8, 170, 231, 0.15) 0%, transparent 50%);
       pointer-events: none;
       animation: footerShimmer 6s ease-in-out infinite;
     }
@@ -11958,25 +11956,6 @@ bottom: 199px;
       background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
       animation: footerRotate 8s linear infinite;
       pointer-events: none;
-    }
-
-    @keyframes footerGlow {
-
-      0%,
-      100% {
-        box-shadow:
-          0 10px 40px rgba(0, 0, 0, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1),
-          0 0 60px rgba(4, 112, 152, 0.4);
-      }
-
-      50% {
-        box-shadow:
-          0 15px 50px rgba(0, 0, 0, 0.4),
-          inset 0 1px 0 rgba(255, 255, 255, 0.15),
-          0 0 80px rgba(4, 112, 152, 0.6),
-          0 0 100px rgba(54, 193, 245, 0.3);
-      }
     }
 
     @keyframes footerShimmer {
