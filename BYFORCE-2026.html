@@ -170,11 +170,12 @@
             </button>
           </div>
           <!-- Tabs Content -->
-          <div class="container">
-            <div class="tab-content" id="myTabContent">
+          <div class="container home-container">
+            <div class="tab-content" id="myTabContent" style="width: 100%">
               <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <!-- Professional Home Page Layout -->
-                <div class="home-container" style="
+
+                <div class="d-flex md:flex-row flex-column" style="
                 margin-top: 0px;
                 margin-right: 0px;
                 margin-left: 0px;
@@ -325,8 +326,9 @@
 
               </div>
               <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
-                <div class="deals-section-container">
-                  <h3 class="content_heading1 deals-heading">Deals That Move: Single Pairs, Multipacks, Big Savings</h3>
+                <div class="deals-section-container d-flex justify-content-center flex-column align-items-center">
+                  <h3 class=" content_heading1 deals-heading">Deals That Move: Single Pairs, Multipacks, Big Savings
+                  </h3>
                   <div class="trust-reminder professional-trust-box">
                     <h6 class="content_heading4 trust-heading-text">All sizes stocked, authentic, and
                       shipped directly from outlet—no markups, just value.</h6>
@@ -829,9 +831,125 @@
                     location.reload();
                   };
                 </script>
+                <style>
+                  /* Responsive fix for Email Capture Overlay on small screens */
+                  @media (max-width: 600px) {
+                    #emailCaptureOverlay {
+                      height: 70vh !important;
+                      min-height: 70vh;
+                      padding: 0;
+                      top: 0;
+                      left: 0;
+                      align-items: flex-start;
+                      justify-content: center;
+                      background: none !important;
+                      overflow: visible !important;
+                      /* Ensure popup can overflow the overlay */
+                    }
+
+                    .email-capture-modal {
+                      width: 94vw !important;
+                      max-width: 97vw;
+                      min-width: unset;
+                      /* Move modal further up the screen */
+                      margin-top: 8vw !important;
+                      margin-bottom: 0;
+                      margin-left: 3vw;
+                      margin-right: 3vw;
+                      border-radius: 14px;
+                      padding: 22px 15px 30px 15px !important;
+                      position: relative;
+                    }
+
+                    .padlock-container {
+                      gap: 8px;
+                      margin-bottom: 6px !important;
+                    }
+
+                    .padlock-icon,
+                    .email-icon {
+                      font-size: 22px !important;
+                    }
+
+                    .capture-title {
+                      font-size: 1.0rem !important;
+                      letter-spacing: 0 !important;
+                    }
+
+                    .capture-subtitle {
+                      font-size: 0.71rem !important;
+                      margin-bottom: 10px !important;
+                    }
+
+                    .email-input-container {
+                      flex-direction: column;
+                      gap: 7px !important;
+                    }
+
+                    #captureEmailInput {
+                      font-size: 0.92rem !important;
+                      padding: 10px 11px;
+                      border-radius: 7px;
+                    }
+
+                    #sendCodeBtn {
+                      width: 100%;
+                      font-size: 0.95rem !important;
+                      padding: 11px 0 !important;
+                    }
+
+                    .code-input-container {
+                      gap: 8px !important;
+                      justify-content: center;
+                      margin-bottom: 12px;
+                    }
+
+                    .code-digit {
+                      width: 29px !important;
+                      height: 36px !important;
+                      font-size: 1.1rem !important;
+                      border-radius: 7px !important;
+                    }
+
+                    .email-capture-close-btn {
+                      font-size: 1.5rem !important;
+                      top: 12px !important;
+                      right: 10px !important;
+                    }
+
+                    .email-capture-modal {
+                      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+                      /* Ensure it doesn't get pushed out of the viewport */
+                      transform: translateY(-2vw);
+                      /* Subtle move further up */
+                    }
+                  }
+
+                  /* General fix to ensure highest z-index on overlay elements in mobile */
+                  #emailCaptureOverlay,
+                  .email-capture-modal {
+                    z-index: 99999 !important;
+                  }
+                </style>
+
 
                 <!-- Email Capture Overlay -->
-                <div id="emailCaptureOverlay" class="email-capture-overlay">
+                <div id="emailCaptureOverlay" class="email-capture-overlay" style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 70%;
+                    background: none;
+                    backdrop-filter: blur(8px);
+                    -webkit-backdrop-filter: blur(8px);
+                    z-index: 10001;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    animation: modalFadeIn 0.4s ease;
+                    overflow: hidden;
+                  " style="background:none !important; height:100vh !important;">
                   <!-- Animated cursor elements -->
                   <div class="overlay-cursor overlay-cursor-1"></div>
                   <div class="overlay-cursor overlay-cursor-2"></div>
@@ -1132,6 +1250,35 @@
                         position: relative;
                         overflow: hidden;
                         animation: tutorialBtnPulse 2s ease-in-out infinite;
+                      }
+
+                      .audio-button {
+                        background: linear-gradient(180deg,
+                            rgba(215, 249, 248, 0.95) 0%,
+                            rgba(215, 249, 248, 0.95) 50%,
+                            rgba(215, 249, 248, 0.95) 100%);
+                        border-radius: 18px;
+                        padding: 30px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        max-width: 1200px;
+                        width: 100%;
+                        box-shadow:
+                          0 20px 60px rgba(0, 0, 0, 0.18),
+                          0 0 80px rgba(91, 200, 200, 0.15),
+                          inset 0 2px 0 rgba(255, 255, 255, 0.9),
+                          inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+                        border: 4px solid rgba(100, 200, 180, 0.5);
+                        position: relative;
+                        z-index: 1;
+                        animation: cardEntry 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                        overflow: hidden;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 40px;
+                        color: #26706f;
+                        align-items: center;
+                        justify-content: center;
                       }
 
                       .capture-btn::before {
@@ -6612,9 +6759,9 @@
               <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 <style>
                   #contact button {
-                    box-shadow: 5.15px 6.3px 0.58px 0px rgba(0, 0, 0, 0.25);
+                    /* box-shadow: 5.15px 6.3px 0.58px 0px rgba(0, 0, 0, 0.25); */
                     width: 100%;
-                    border: 1px solid #047098;
+                    /* border: 1px solid #047098; */
                     font-weight: 400;
                     font-size: 13px;
                     background-color: #08aae7;
@@ -6634,9 +6781,6 @@
                     transform: translateY(2px);
                     /* Slightly move the button down for a pressed effect */
                   }
-
-
-
 
 
                   /* stages*/
@@ -6675,7 +6819,8 @@
                   <div id="stage1" class="stage active">
                     <div class="intro-section" id="introSection">
                       <div class="form-container">
-                        <h3 class="content_heading1">Earn While You Shop: Join the ByForce Rewards Club</h3>
+                        <h3 class="content_heading1 deals-heading">Earn While You Shop: Join the ByForce Rewards Club
+                        </h3>
 
                         <div class="login-container">
                           <div class="login-header">
@@ -6692,7 +6837,8 @@
                             <div class="email-input-container">
                               <input type="email" id="emailInput" class="capture-email-input"
                                 placeholder="Enter your email address" required="">
-                              <button type="submit" class="capture-btn">Access Dashboard</button>
+                              <button type="submit" class="nav-link" style="max-width: 500px !important;">Access
+                                Dashboard</button>
                             </div>
                           </form>
 
@@ -6856,7 +7002,8 @@
 
                       </div>
                       <!-- Beautiful Code Verification Form - SHOP Page Style -->
-                      <div id="codeForm" class="capture-stage" style="display: none;">
+                      <div id="codeForm" class="capture-stage d-flex flex-column align-items-center"
+                        style="display: none;">
                         <p class="code-instruction">We've sent a 6-digit code to your email</p>
                         <div class="code-input-container">
                           <input type="text" maxlength="1" class="code-digit" data-index="0">
@@ -6867,7 +7014,7 @@
                           <input type="text" maxlength="1" class="code-digit" data-index="5">
                         </div>
 
-                        <button class="capture-btn" onclick="submitCode();">Verify</button>
+                        <button class="capture-btn" style="color:black;" onclick="submitCode();">Verify</button>
                         <button class="capture-btn-secondary" onclick="resendCode();">Resend Code</button>
                       </div>
                       <style>
@@ -6925,22 +7072,27 @@
                           align-items: center;
                         }
 
+                        .email-input-container .nav-link {
+                          width: auto;
+                          align-self: center;
+                        }
+
                         .capture-email-input {
                           width: 100%;
-                          max-width: 350px;
+                          max-width: 500px;
                           padding: 15px;
-                          border: 2px solid rgba(54, 193, 245, 0.5);
+                          border: 4px solid rgb(197, 197, 197);
                           border-radius: 12px;
                           font-size: 14px;
                           font-family: "Press Start 2P", system-ui;
-                          background: rgba(255, 255, 255, 0.1);
-                          color: white;
+                          background: white;
+                          color: black;
                           text-align: center;
                           backdrop-filter: blur(10px);
                         }
 
                         .capture-email-input::placeholder {
-                          color: rgba(255, 255, 255, 0.6);
+                          color: rgb(100, 100, 100);
                           font-size: 10px;
                         }
 
@@ -6951,6 +7103,8 @@
                           transform: translateY(-2px);
                           box-shadow: 0 8px 25px rgba(54, 193, 245, 0.3);
                         }
+
+
 
                         .capture-btn {
                           font-family: 'Press Start 2P', system-ui, sans-serif;
@@ -7050,6 +7204,8 @@
                             transform: translateY(0) scale(1);
                           }
                         }
+
+
 
                         .capture-btn-secondary {
                           background: transparent;
@@ -8767,8 +8923,7 @@
                   </audio>
 
                   <!-- TTS Button -->
-                  <div><button id="tts-toggle"
-                      style="padding: 0.5rem 1rem;font-family: 'Press Start 2P', system-ui, sans-serif;width: 100%;border-radius: 8px;background-color: #45ccf6;border: 1px solid #047098;color: white;box-shadow: black;">🔊
+                  <div><button id="tts-toggle" class="audio-button">🔊
                       Play Audio</button>
 
                   </div>
