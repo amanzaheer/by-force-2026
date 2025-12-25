@@ -180,7 +180,8 @@
                     <div class="content-section">
                       <div class="section-content">
                         <div class="section-text">
-                          <h3 class="content_heading1" id="typingHeading">Last Call on Iconic All-White AF1s — Half the Price!</h3>
+                          <h3 class="content_heading1" id="typingHeading">Last Call on Iconic All-White AF1s — Half the
+                            Price!</h3>
                         </div>
                         <div class="section-image">
                           <img
@@ -203,7 +204,7 @@
                       </div>
                     </div>
 
-                    <hr class="section-divider">
+                    <div class="section-divider"></div>
 
                     <div class="urgency-section">
                       <div class="section-content">
@@ -219,7 +220,7 @@
                       </div>
                     </div>
 
-                    <hr class="section-divider">
+                    <div class="section-divider"></div>
 
                     <div class="trust-section">
                       <div class="section-content">
@@ -236,7 +237,7 @@
                       </div>
                     </div>
 
-                    <hr class="section-divider">
+                    <div class="section-divider"></div>
 
                     <!-- New Section 5: Product Benefits -->
                     <div class="benefits-section">
@@ -253,7 +254,7 @@
                       </div>
                     </div>
 
-                    <hr class="section-divider">
+                    <div class="section-divider"></div>
 
                     <!-- New Section 6: Shipping & Delivery -->
                     <div class="shipping-section">
@@ -270,8 +271,7 @@
                       </div>
                     </div>
 
-                    <!-- <hr class="section-divider"> -->
-
+                    <div class="section-divider"></div>
                     <!-- New Section 7: Limited Time Offer -->
                     <div class="urgency-section">
                       <div class="section-content">
@@ -344,7 +344,7 @@
 
                     function updatePayNowButtonsVisibility() {
                       console.log('updatePayNowButtonsVisibility called');
-                      
+
                       // Don't hide all buttons - only hide those without selections
                       // This prevents hiding buttons that already have selections
 
@@ -355,9 +355,9 @@
                           const additionalContent = container.closest('.additionalContent');
                           const btnId = bundleToButtonMapping[containerId];
                           const btn = document.getElementById(btnId);
-                          
+
                           if (!btn) return;
-                          
+
                           // Check if there's a valid selection
                           let hasSelection = false;
                           if (container.dataset.selectedSizeData) {
@@ -365,7 +365,7 @@
                               const data = JSON.parse(container.dataset.selectedSizeData);
                               hasSelection = Array.isArray(data) && data.length > 0;
                               console.log(`Container ${containerId}: hasSelection=${hasSelection}, data:`, data);
-                            } catch(e) {
+                            } catch (e) {
                               hasSelection = false;
                               console.log(`Container ${containerId}: parse error`, e);
                             }
@@ -385,7 +385,7 @@
                             // Mark button as permanently visible
                             btn.setAttribute('data-permanently-visible', 'true');
                           }
-                          
+
                           // If button was already shown before, keep it visible
                           if (btn.getAttribute('data-permanently-visible') === 'true') {
                             btn.style.setProperty('display', 'flex', 'important');
@@ -397,7 +397,7 @@
                     }
 
                     // Initialize button visibility on page load
-                    document.addEventListener('DOMContentLoaded', function() {
+                    document.addEventListener('DOMContentLoaded', function () {
                       console.log('Initializing button visibility');
                       updatePayNowButtonsVisibility();
                     });
@@ -436,11 +436,11 @@
 
                       this.setupEventListeners();
                       this.setupCodeInputs();
-                      
+
                       // Only show overlay if we're on the SHOP tab
                       const servicesTab = document.getElementById('services');
                       const isServicesTabActive = servicesTab && servicesTab.classList.contains('active') && servicesTab.classList.contains('show');
-                      
+
                       if (isServicesTabActive) {
                         this.showOverlay();
                       }
@@ -1641,26 +1641,30 @@
                       @media (max-width: 768px) {
                         .section-nav-controls {
                           gap: 12px;
-                          flex-wrap: nowrap; /* Keep in flex, no wrapping */
+                          flex-wrap: nowrap;
+                          /* Keep in flex, no wrapping */
                           align-items: center;
                           justify-content: space-between;
                         }
 
                         .section-heading.all-whites-heading,
                         .section-heading.all-blacks-heading {
-                          font-size: 18px !important; /* Smaller heading */
+                          font-size: 18px !important;
+                          /* Smaller heading */
                           margin: 15px 0 10px 0 !important;
                         }
 
                         .section-heading.all-whites-heading::after,
                         .section-heading.all-blacks-heading::after {
-                          height: 2px; /* Thinner border */
+                          height: 2px;
+                          /* Thinner border */
                           bottom: -8px;
                         }
 
                         .section-heading.all-whites-heading::before,
                         .section-heading.all-blacks-heading::before {
-                          height: 2px; /* Thinner animated border */
+                          height: 2px;
+                          /* Thinner animated border */
                           bottom: -8px;
                         }
 
@@ -1680,7 +1684,8 @@
                           width: 40px;
                           height: 40px;
                           padding: 8px;
-                          border-width: 2px; /* Thinner border */
+                          border-width: 2px;
+                          /* Thinner border */
                         }
 
                         .nav-btn-icon {
@@ -1695,7 +1700,8 @@
 
                         .section-heading.all-whites-heading,
                         .section-heading.all-blacks-heading {
-                          font-size: 14px !important; /* Even smaller on mobile */
+                          font-size: 14px !important;
+                          /* Even smaller on mobile */
                           margin: 10px 0 8px 0 !important;
                         }
 
@@ -3411,7 +3417,7 @@
                             // Detect touch device and use appropriate threshold
                             const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
                             const DRAG_THRESHOLD = isTouchDevice ? 15 : 5; // Higher threshold for touch devices
-                            
+
                             document.querySelectorAll(".col-md-6").forEach((card) => {
                               let pointerDown = false;
                               let isDragging = false;
@@ -3445,12 +3451,12 @@
                                 const dx = e.clientX - startX;
                                 const dy = e.clientY - startY;
                                 const distance = Math.sqrt(dx * dx + dy * dy);
-                                
+
                                 // If it was quick and minimal movement, treat as tap not drag
                                 if (isTouchDevice && timeDiff < 300 && distance < DRAG_THRESHOLD) {
                                   isDragging = false;
                                 }
-                                
+
                                 pointerDown = false;
                               });
 
@@ -3505,7 +3511,7 @@
                             // Use event delegation to stop propagation for interactive elements
                             // This works for both existing and dynamically created elements
                             const eventTypes = ["click", "pointerdown", "pointermove", "pointerup", "touchstart", "touchmove", "touchend", "mousedown", "mousemove", "mouseup"];
-                            
+
                             eventTypes.forEach(eventType => {
                               document.addEventListener(eventType, (e) => {
                                 // Check if the event target is an interactive element inside additionalContent
@@ -3558,9 +3564,12 @@
                           height: 521.718px;
                           gap: 20px;
                           transition: transform 0.3s ease-in-out;
-                          pointer-events: auto; /* Allow clicks but prevent drag */
-                          user-select: none; /* Prevent text selection during click */
-                          -webkit-user-drag: none; /* Prevent dragging on webkit browsers */
+                          pointer-events: auto;
+                          /* Allow clicks but prevent drag */
+                          user-select: none;
+                          /* Prevent text selection during click */
+                          -webkit-user-drag: none;
+                          /* Prevent dragging on webkit browsers */
                         }
 
                         .all-white.cards .col-md-6 {
@@ -3659,12 +3668,12 @@
                             if (e.target.closest("#slider-section, .additionalContent.open")) return;
                             const currentPosition = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
                             const diff = currentPosition - startPosition;
-                            
+
                             // Only start moving if dragged more than threshold (prevents accidental movement on tap)
                             const isTouchDevice = e.type.includes("touch");
                             const minDrag = isTouchDevice ? 20 : 10;
                             if (Math.abs(diff) < minDrag) return;
-                            
+
                             currentTranslate = previousTranslate + diff;
                             carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
                           }
@@ -3675,12 +3684,12 @@
                               return;
                             }
                             if (!isDragging) return;
-                            
+
                             const endTime = Date.now();
                             const elapsedTime = endTime - startTime;
                             const endPosition = e.type.includes("mouse") ? e.pageX : e.changedTouches[0].clientX;
                             const movedBy = endPosition - startPosition;
-                            
+
                             // If it was a quick tap (< 300ms) with minimal movement, don't change position
                             const isTouchDevice = e.type.includes("touch");
                             const minDrag = isTouchDevice ? 20 : 10;
@@ -3691,7 +3700,7 @@
                               carouselTrack.style.transform = `translateX(${previousTranslate}px)`;
                               return;
                             }
-                            
+
                             isDragging = false;
                             const slideWidth = getSlideWidth();
                             const velocity = (movedBy / elapsedTime) * 1000; // pixels per second
@@ -5675,9 +5684,12 @@
                           height: 521.718px;
                           gap: 20px;
                           transition: transform 0.3s ease-in-out;
-                          pointer-events: auto; /* Allow clicks but prevent drag */
-                          user-select: none; /* Prevent text selection during click */
-                          -webkit-user-drag: none; /* Prevent dragging on webkit browsers */
+                          pointer-events: auto;
+                          /* Allow clicks but prevent drag */
+                          user-select: none;
+                          /* Prevent text selection during click */
+                          -webkit-user-drag: none;
+                          /* Prevent dragging on webkit browsers */
                         }
 
                         .all-black.cards .col-md-6 {
@@ -5753,12 +5765,12 @@
                             if (e.target.closest("#slider-section, .additionalContent.open")) return;
                             const currentPosition = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
                             const diff = currentPosition - startPosition;
-                            
+
                             // Only start moving if dragged more than threshold (prevents accidental movement on tap)
                             const isTouchDevice = e.type.includes("touch");
                             const minDrag = isTouchDevice ? 20 : 10;
                             if (Math.abs(diff) < minDrag) return;
-                            
+
                             currentTranslate = previousTranslate + diff;
                             carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
                           }
@@ -5769,12 +5781,12 @@
                               return;
                             }
                             if (!isDragging) return;
-                            
+
                             const endTime = Date.now();
                             const elapsedTime = endTime - startTime;
                             const endPosition = e.type.includes("mouse") ? e.pageX : e.changedTouches[0].clientX;
                             const movedBy = endPosition - startPosition;
-                            
+
                             // If it was a quick tap (< 300ms) with minimal movement, don't change position
                             const isTouchDevice = e.type.includes("touch");
                             const minDrag = isTouchDevice ? 20 : 10;
@@ -5785,7 +5797,7 @@
                               carouselTrack.style.transform = `translateX(${previousTranslate}px)`;
                               return;
                             }
-                            
+
                             isDragging = false;
                             const slideWidth = getSlideWidth();
                             const velocity = (movedBy / elapsedTime) * 1000; // pixels per second

@@ -457,16 +457,14 @@ header {
 
 .feature-line::after,
 .section-divider::after {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: -100% !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, transparent 100%) !important;
-    animation: lineShine 2s linear infinite !important;
-    pointer-events: none !important;
-    z-index: 10 !important;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: lineShine 2s ease-in-out infinite;
 }
 
 @keyframes lineShine {
