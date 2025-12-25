@@ -199,6 +199,9 @@ header {
     transform: translateY(3px);
     box-shadow: 0 2px 0 #0a3040, inset 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+.nav-link:focus{
+    color:#ffff;
+}
 
 /* Main Content Card */
 .content-card,
@@ -685,11 +688,6 @@ header {
     line-height: 1;
 }
 
-@keyframes footerGlow {
-    0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
-    100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.5); }
-}
-
 .footer_link {
     font-family: 'Press Start 2P', cursive;
     width:fit-content;
@@ -926,5 +924,37 @@ header {
     
     .footer_heading {
         font-size: 7px !important;
+    }
+}
+
+/* Audio Button Ripple Animation */
+.audio-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(91, 200, 200, 0.5) 0%, rgba(91, 200, 200, 0.3) 30%, transparent 60%);
+    border: 3px solid rgba(91, 200, 200, 0.7);
+    pointer-events: none;
+    animation: audioRippleExpand 1.2s ease-out;
+    box-shadow: 0 0 20px rgba(91, 200, 200, 0.5);
+}
+
+@keyframes audioRippleExpand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    30% {
+        opacity: 0.8;
+    }
+    70% {
+        opacity: 0.4;
+    }
+    100% {
+        width: 600px;
+        height: 600px;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
     }
 }
