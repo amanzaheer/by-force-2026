@@ -175,7 +175,7 @@
               <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <!-- Professional Home Page Layout -->
 
-                <div class="d-flex md:flex-row flex-column" style="
+                <div class="d-flex flex-column flex-md-row" style="
                 margin-top: 0px;
                 margin-right: 0px;
                 margin-left: 0px;
@@ -11163,134 +11163,7 @@ bottom: 199px;
     });
   </script>
 
-  <!-- Image Star/Bubble Effect Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const images = document.querySelectorAll('.section-icon');
-
-      images.forEach(function (image) {
-        let starCount = 0;
-        const maxStars = 15;
-
-        image.addEventListener('mousemove', function (e) {
-          if (starCount >= maxStars) return;
-
-          const rect = image.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          // Create star/bubble
-          const star = document.createElement('div');
-          star.className = 'image-star';
-          star.style.left = x + 'px';
-          star.style.top = y + 'px';
-
-          const size = Math.random() * 6 + 3;
-          star.style.width = size + 'px';
-          star.style.height = size + 'px';
-
-          // Random star shape (some as circles, some as stars)
-          const isStar = Math.random() > 0.5;
-          if (isStar) {
-            star.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
-          }
-
-          image.style.position = 'relative';
-          image.appendChild(star);
-          starCount++;
-
-          // Animate star
-          const angle = Math.random() * Math.PI * 2;
-          const distance = Math.random() * 40 + 25;
-          const endX = x + Math.cos(angle) * distance;
-          const endY = y + Math.sin(angle) * distance;
-          const rotation = Math.random() * 360;
-
-          star.animate([
-            {
-              opacity: 1,
-              transform: 'translate(0, 0) scale(1) rotate(0deg)'
-            },
-            {
-              opacity: 0.9,
-              transform: `translate(${endX - x}px, ${endY - y}px) scale(1.8) rotate(${rotation}deg)`
-            },
-            {
-              opacity: 0,
-              transform: `translate(${endX - x}px, ${endY - y}px) scale(0) rotate(${rotation * 2}deg)`
-            }
-          ], {
-            duration: 800,
-            easing: 'ease-out'
-          }).onfinish = () => {
-            star.remove();
-            starCount--;
-          };
-        });
-
-        // Sparkle effect on hover (mouseenter)
-        image.addEventListener('mouseenter', function () {
-          // Create multiple sparkles around the icon
-          for (let i = 0; i < 5; i++) {
-            setTimeout(() => createIconSparkle(this), i * 100);
-          }
-        });
-      });
-
-      // Function to create sparkle effect (from reference)
-      function createIconSparkle(element) {
-        const rect = element.getBoundingClientRect();
-        const sparkle = document.createElement('div');
-
-        sparkle.textContent = '👟';
-        sparkle.style.cssText = `
-              position: fixed;
-              left: ${rect.left + Math.random() * rect.width}px;
-              top: ${rect.top + Math.random() * rect.height}px;
-              font-size: ${Math.random() * 10 + 10}px;
-              pointer-events: none;
-              z-index: 9999;
-              animation: sparkle 0.8s ease-out forwards;
-            `;
-
-        document.body.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 800);
-      }
-
-      // Add CSS for star bubbles and sparkle animations
-      const starStyle = document.createElement('style');
-      starStyle.textContent = `
-            .image-star {
-              position: absolute;
-              border-radius: 50%;
-              background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 40%, rgba(54, 193, 245, 0.6) 70%, transparent 100%);
-              pointer-events: none;
-              z-index: 100;
-              box-shadow: 
-                0 0 8px rgba(255, 255, 255, 1),
-                0 0 16px rgba(255, 255, 255, 0.8),
-                0 0 24px rgba(54, 193, 245, 0.6),
-                0 0 32px rgba(54, 193, 245, 0.4);
-            }
-            
-            @keyframes sparkle {
-              0% {
-                transform: scale(0) rotate(0deg);
-                opacity: 1;
-              }
-              50% {
-                transform: scale(1.2) rotate(180deg);
-                opacity: 1;
-              }
-              100% {
-                transform: scale(1.5) rotate(360deg);
-                opacity: 0;
-              }
-            }
-          `;
-      document.head.appendChild(starStyle);
-    });
-  </script>
+ 
 
   <!-- Banner Image Star/Bubble Effect Script -->
   <script>
