@@ -485,3 +485,89 @@ function createAudioRipple(button) {
     ripple.remove();
   }, 1500);
 }
+
+// Swipe/Drag functionality for card carousels
+document.addEventListener("DOMContentLoaded", function () {
+  initCardSwipe();
+});
+
+function initCardSwipe() {
+  const cardContainers = document.querySelectorAll('.all-white.cards, .all-black.cards');
+
+  cardContainers.forEach(container => {
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    // Get the nav buttons for this section
+    const section = container.classList.contains('all-white') ? 'all-white' : 'all-black';
+    const prevBtn = document.querySelector(`.nav-btn-prev[data-section="${section}"]`);
+    const nextBtn = document.querySelector(`.nav-btn-next[data-section="${section}"]`);
+
+    // Touch events
+    container.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      currentX = e.touches[0].clientX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false;
+
+      const diff = startX - currentX;
+      const threshold = 50; // minimum swipe distance
+
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0 && nextBtn) {
+          // Swipe left - go next
+          nextBtn.click();
+        } else if (diff < 0 && prevBtn) {
+          // Swipe right - go previous
+          prevBtn.click();
+        }
+      }
+    });
+
+    // Mouse drag events for desktop
+    container.addEventListener('mousedown', (e) => {
+      startX = e.clientX;
+      isDragging = true;
+      container.style.cursor = 'grabbing';
+    });
+
+    container.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      currentX = e.clientX;
+    });
+
+    container.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      container.style.cursor = 'grab';
+
+      const diff = startX - currentX;
+      const threshold = 50;
+
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0 && nextBtn) {
+          nextBtn.click();
+        } else if (diff < 0 && prevBtn) {
+          prevBtn.click();
+        }
+      }
+    });
+
+    container.addEventListener('mouseleave', () => {
+      isDragging = false;
+      container.style.cursor = 'grab';
+    });
+
+    // Set initial cursor
+    container.style.cursor = 'grab';
+  });
+}

@@ -35,7 +35,7 @@ body::before {
     background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px, 200px 200px;
     animation: particleFloat 20s linear infinite;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
 
 @keyframes particleFloat {
@@ -226,7 +226,7 @@ header {
     position: relative;
     z-index: 1;
     animation: cardEntry 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     flex-direction: row;
     gap: 40px;
@@ -633,6 +633,7 @@ header {
     -webkit-user-drag: none;
     position: relative;
     transform: translateX(0px);
+    z-index: 5;
 }
 
 .all-white.cards .col-md-6 {
@@ -674,6 +675,7 @@ header {
     -webkit-user-drag: none;
     position: relative;
     transform: translateX(0px);
+    z-index: 5;
 }
 
 .all-black.cards .col-md-6 {
@@ -951,6 +953,76 @@ h5.cardimage_heading {
     .nav-btn {
         font-size: 9px;
         padding: 10px 14px;
+    }
+    
+    /* Mobile: scrollable cards */
+    .all-white.cards,
+    .all-black.cards {
+        display: grid !important;
+        grid-template-columns: repeat(4, 100%) !important;
+        grid-auto-flow: column !important;
+        overflow-x: scroll !important;
+        overflow-y: visible !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        transform: none !important;
+        position: relative;
+        z-index: 100 !important;
+    }
+    
+    .all-white.cards > *,
+    .all-black.cards > * {
+        min-width: 100% !important;
+        width: 100% !important;
+        scroll-snap-align: start;
+        position: relative;
+        z-index: 10;
+    }
+    
+    /* Ensure parent containers don't clip cards on mobile */
+    .carousel-container,
+    .products.and.order,
+    .home-container,
+    .tab-content,
+    .tab-pane,
+    .container,
+    #services,
+    .deals-section-container {
+        overflow: visible !important;
+        overflow-x: visible !important;
+        overflow-y: visible !important;
+    }
+    
+    /* Cards stay above background */
+    .all-white.cards,
+    .all-black.cards {
+        z-index: 100 !important;
+        position: relative !important;
+        isolation: isolate;
+    }
+    
+    .all-white.cards .bundle12,
+    .all-white.cards .bundle7,
+    .all-white.cards .bundle3,
+    .all-white.cards .bundle1,
+    .all-black.cards .bundle12,
+    .all-black.cards .bundle7,
+    .all-black.cards .bundle3,
+    .all-black.cards .bundle1 {
+        z-index: 100 !important;
+        position: relative !important;
+    }
+    
+    .all-white.cards .card,
+    .all-black.cards .card {
+        z-index: 100 !important;
+        position: relative !important;
+        background: #5BC8C8 !important;
+    }
+    
+    /* Force parent to not clip */
+    .paynowButtons {
+        overflow: visible !important;
     }
     
     .main-headline,
