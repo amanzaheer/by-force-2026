@@ -6229,9 +6229,11 @@
 
                       </div>
                       <!-- Beautiful Code Verification Form - SHOP Page Style -->
-                      <div id="codeForm" class="capture-stage d-flex flex-column align-items-center"
-                        style="display: none;">
-                        <p class="code-instruction">We've sent a 6-digit code to your email</p>
+                      <div id="codeForm" class="capture-stage"
+                        style="display: none; background: linear-gradient(135deg, rgba(54, 193, 245, 0.1) 0%, rgba(4, 112, 152, 0.1) 100%); border: 2px solid rgba(54, 193, 245, 0.3); border-radius: 20px; padding: 40px; margin: 20px 0; backdrop-filter: blur(10px); text-align: center;">
+                        <p class="code-instruction"
+                          style="font-family: 'Press Start 2P', system-ui; font-size: 12px; color: white; margin-bottom: 20px; line-height: 20px;">
+                          We've sent a 6-digit code to your email</p>
                         <div class="code-input-container">
                           <input type="text" maxlength="1" class="code-digit" data-index="0">
                           <input type="text" maxlength="1" class="code-digit" data-index="1">
@@ -6997,8 +6999,20 @@
                         .then((data) => {
                           if (data.status === 'success') {
                             alert(data.message);
-                            document.getElementById('emailForm').style.display = 'none';
-                            document.getElementById('codeForm').style.display = 'block';
+                            // Hide the entire login container
+                            document.querySelector('.login-container').style.display = 'none';
+                            // Hide the rewards info sections
+                            document.querySelector('.rewards-subline').style.display = 'none';
+                            document.querySelector('.rewards-benefits').style.display = 'none';
+                            // Show the code verification form with animation
+                            const codeForm = document.getElementById('codeForm');
+                            codeForm.style.display = 'block';
+                            codeForm.style.animation = 'slideUp 0.6s ease-out';
+                            // Focus on the first code input
+                            setTimeout(() => {
+                              const firstCodeInput = document.querySelector('.code-digit[data-index="0"]');
+                              if (firstCodeInput) firstCodeInput.focus();
+                            }, 100);
                           } else {
                             alert(data.message);
                           }
@@ -7033,13 +7047,18 @@
                         .then((data) => {
                           if (data.status === 'success') {
                             alert(data.message);
+                            // Hide the code form
+                            document.getElementById('codeForm').style.display = 'none';
+                            // Move to next stage
                             currentStage = 3;
                             showStage(currentStage);
                             // Redirect or show the logged-in UI
                             window.fetchUserData(email);
                           } else {
                             alert(data.message);
-                            // Don't clear the code fields on error
+                            // Clear code fields on error for security
+                            document.querySelectorAll('.code-digit').forEach(input => input.value = '');
+                            document.querySelector('.code-digit[data-index="0"]').focus();
                           }
                         })
                         .catch((error) => {
