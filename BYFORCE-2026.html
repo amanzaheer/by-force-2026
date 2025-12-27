@@ -306,7 +306,6 @@
                       <img
                         src="https://images.squarespace-cdn.com/content/647e1982c1836a5f267634f1/737da395-5fc9-467a-b4c3-ed1d126bbdd4/bitmap_g1120.png?content-type=image%2Fpng"
                         alt="All-White AF1s Sneakers" class="responsive-image">
-                      <div class="image-overlay"></div>
                     </div>
 
 
@@ -6065,7 +6064,8 @@
                             <div class="email-input-container">
                               <input type="email" id="emailInput" class="capture-email-input"
                                 placeholder="Enter your email address" required="">
-                              <button type="submit" class="nav-link" style="max-width: 500px !important;">Access
+                              <button type="submit" class="nav-link"
+                                style="max-width: 500px !important; border: 3px solid #2A9898 !important; background: #63d1d0 !important;">Access
                                 Dashboard</button>
                             </div>
                           </form>
@@ -6230,9 +6230,11 @@
 
                       </div>
                       <!-- Beautiful Code Verification Form - SHOP Page Style -->
-                      <div id="codeForm" class="capture-stage d-flex flex-column align-items-center"
-                        style="display: none;">
-                        <p class="code-instruction">We've sent a 6-digit code to your email</p>
+                      <div id="codeForm" class="capture-stage"
+                        style="display: none; background: linear-gradient(135deg, rgba(54, 193, 245, 0.1) 0%, rgba(4, 112, 152, 0.1) 100%); border: 2px solid rgba(54, 193, 245, 0.3); border-radius: 20px; padding: 40px; margin: 20px 0; backdrop-filter: blur(10px); text-align: center;">
+                        <p class="code-instruction"
+                          style="font-family: 'Press Start 2P', system-ui; font-size: 12px; color: white; margin-bottom: 20px; line-height: 20px;">
+                          We've sent a 6-digit code to your email</p>
                         <div class="code-input-container">
                           <input type="text" maxlength="1" class="code-digit" data-index="0">
                           <input type="text" maxlength="1" class="code-digit" data-index="1">
@@ -6832,6 +6834,18 @@
                           }
                         }
 
+                        @keyframes bounce {
+
+                          0%,
+                          100% {
+                            transform: translateY(0);
+                          }
+
+                          50% {
+                            transform: translateY(-10px);
+                          }
+                        }
+
                         /* Responsive Design */
                         @media (max-width: 768px) {
 
@@ -6998,8 +7012,20 @@
                         .then((data) => {
                           if (data.status === 'success') {
                             alert(data.message);
-                            document.getElementById('emailForm').style.display = 'none';
-                            document.getElementById('codeForm').style.display = 'block';
+                            // Hide the entire login container
+                            document.querySelector('.login-container').style.display = 'none';
+                            // Hide the rewards info sections
+                            document.querySelector('.rewards-subline').style.display = 'none';
+                            document.querySelector('.rewards-benefits').style.display = 'none';
+                            // Show the code verification form with animation
+                            const codeForm = document.getElementById('codeForm');
+                            codeForm.style.display = 'block';
+                            codeForm.style.animation = 'slideUp 0.6s ease-out';
+                            // Focus on the first code input
+                            setTimeout(() => {
+                              const firstCodeInput = document.querySelector('.code-digit[data-index="0"]');
+                              if (firstCodeInput) firstCodeInput.focus();
+                            }, 100);
                           } else {
                             alert(data.message);
                           }
@@ -7034,13 +7060,18 @@
                         .then((data) => {
                           if (data.status === 'success') {
                             alert(data.message);
+                            // Hide the code form
+                            document.getElementById('codeForm').style.display = 'none';
+                            // Move to next stage
                             currentStage = 3;
                             showStage(currentStage);
                             // Redirect or show the logged-in UI
                             window.fetchUserData(email);
                           } else {
                             alert(data.message);
-                            // Don't clear the code fields on error
+                            // Clear code fields on error for security
+                            document.querySelectorAll('.code-digit').forEach(input => input.value = '');
+                            document.querySelector('.code-digit[data-index="0"]').focus();
                           }
                         })
                         .catch((error) => {
@@ -7100,9 +7131,10 @@
                           </h2>
                           <p class="welcome-subtitle">Your gaming dashboard is ready</p>
                         </div>
-                        <button id="logoutBtn" class="logout-button">
-                          <span class="logout-icon">🚪</span>
-                          <span class="logout-text">Log Out</span>
+                        <button id="logoutBtn" class="nav-link"
+                          style=" border: 3px solid #2A9898 !important; background: #63d1d0 !important;"">
+                          <span class=" logout-icon">🚪</span>
+                          <span class="logout-text " style="color:red !important;">Log Out</span>
                         </button>
                       </div>
                     </div>
@@ -7130,22 +7162,28 @@
 
                     <div class="action_buttons">
                       <div class="share_section">
-
                         <div>
-                          <button class="open-share-section" type="button">GET REFERRALS</button>
+                          <button class="btn btn-light btn_class home-cta-btn open-share-section"
+                            style=" color: #000000; cursor: pointer; padding: 13px;" type="button"
+                            id="getReferralsBtn">GET
+                            REFERRALS</button>
                         </div>
                         <div class="dropdown" id="dropdown">
                           <!-- The draggable track -->
-                          <div class="share-carousel-track" id="carouselTrack">
-                            <a id="smsLink" class="btn-social btn-sms" href="#"><button>sms</button></a>
-                            <a id="snapchatLink" class="btn-social btn-snapchat" href="#"><button
-                                style="background-color: 	#fffc00 !important; color:	#020202;">snapchat</button></a>
-                            <a id="whatsappLink" class="btn-social btn-whatsapp" href="#"><button
-                                style="background-color: #25D366 !important;">whatsapp</button></a>
-                            <a id="facebookLink" class="btn-social btn-facebook" href="#"><button
-                                style="background-color: 	#1877F2 !important;">facebook</button></a>
-                            <a id="copyLink" class="btn-social copy-link" href="#" onclick="copyReferralLink()">
-                              <button>copy</button>
+                          <div class="share-carousel-track" id="carouselTrack"
+                            style="min-height: 90px !important; align-items: center !important;">
+                            <a id="smsLink" class="" href="#"><button class="nav-link" style="">sms</button></a>
+                            <a id="snapchatLink" class="" href="#"><button
+                                style="background:	#fffc00 !important; color:	#020202; border: 3px solid #ffd700 !important;"
+                                class="nav-link">snapchat</button></a>
+                            <a id="whatsappLink" class="" href="#"><button
+                                style="background: #25D366 !important; border: 3px solid #19ab4f !important;"
+                                class="nav-link">whatsapp</button></a>
+                            <a id="facebookLink" class="" href="#"><button
+                                style="background:	#1877F2 !important; border: 3px solid #105dc1 !important;"
+                                class="nav-link">facebook</button></a>
+                            <a id="copyLink" class="" href="#" onclick="copyReferralLink()">
+                              <button class="nav-link">copy</button>
                             </a>
                           </div>
                         </div>
@@ -7153,8 +7191,11 @@
                         <style>
                           /* Enhanced Dashboard Styles */
                           .dashboard-header {
-                            background: linear-gradient(135deg, rgba(54, 193, 245, 0.1) 0%, rgba(4, 112, 152, 0.1) 100%);
-                            border: 2px solid rgba(54, 193, 245, 0.3);
+                            background: linear-gradient(180deg,
+                                rgba(200, 240, 240, 0.95) 0%,
+                                rgba(180, 235, 220, 0.92) 50%,
+                                rgba(160, 230, 200, 0.88) 100%);
+                            border: 3px solid #7ED5BD;
                             border-radius: 20px;
                             padding: 30px;
                             margin-bottom: 30px;
@@ -7293,8 +7334,11 @@
                           }
 
                           .stat-card {
-                            background: linear-gradient(135deg, rgba(54, 193, 245, 0.1) 0%, rgba(4, 112, 152, 0.1) 100%);
-                            border: 2px solid rgba(54, 193, 245, 0.3);
+                            background: linear-gradient(180deg,
+                                rgba(200, 240, 240, 0.95) 0%,
+                                rgba(180, 235, 220, 0.92) 50%,
+                                rgba(160, 230, 200, 0.88) 100%);
+                            border: 3px solid #7ED5BD;
                             border-radius: 16px;
                             padding: 25px;
                             backdrop-filter: blur(10px);
@@ -7306,13 +7350,13 @@
 
                           .stat-card:hover {
                             transform: translateY(-3px);
-                            border-color: rgba(54, 193, 245, 0.6);
-                            box-shadow: 0 8px 25px rgba(54, 193, 245, 0.2);
+                            border-color: #7ED5BD;
+                            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
                           }
 
                           .stat-icon {
                             font-size: 36px;
-                            animation: pulse 2s infinite;
+                            animation: bounce 1s ease-in-out infinite;
                           }
 
                           .stat-content {
@@ -7338,21 +7382,29 @@
                           }
 
                           .referrals-card {
-                            border-color: rgba(46, 213, 115, 0.3);
+                            background: linear-gradient(180deg,
+                                rgba(200, 240, 240, 0.95) 0%,
+                                rgba(180, 235, 220, 0.92) 50%,
+                                rgba(160, 230, 200, 0.88) 100%);
+                            border: 3px solid #7ed5bd;
                           }
 
                           .referrals-card:hover {
-                            border-color: rgba(46, 213, 115, 0.6);
-                            box-shadow: 0 8px 25px rgba(46, 213, 115, 0.2);
+                            border-color: #59a791;
+                            box-shadow: 0 8px 25px rgba(26, 213, 189, 0.3);
                           }
 
                           .balance-card {
-                            border-color: rgba(255, 215, 0, 0.3);
+                            background: linear-gradient(180deg,
+                                rgba(200, 240, 240, 0.95) 0%,
+                                rgba(180, 235, 220, 0.92) 50%,
+                                rgba(160, 230, 200, 0.88) 100%);
+                            border: 3px solid #7ed5bd;
                           }
 
                           .balance-card:hover {
-                            border-color: rgba(255, 215, 0, 0.6);
-                            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+                            border-color: #59a791;
+                            box-shadow: 0 8px 25px rgba(26, 213, 189, 0.3);
                           }
 
                           /* Responsive Dashboard */
@@ -7390,6 +7442,145 @@
 
                             .stat-value {
                               font-size: 14px;
+                            }
+
+                            /* Action Buttons Responsive */
+                            .action_buttons {
+                              width: 100%;
+                              padding: 0 10px;
+                            }
+
+                            .share_section {
+                              width: 100%;
+                            }
+
+                            .open-share-section {
+                              width: 100% !important;
+                              font-size: 9px !important;
+                              padding: 12px 20px !important;
+                              white-space: normal;
+                              word-wrap: break-word;
+                            }
+
+                            .share-carousel-track {
+                              flex-wrap: wrap;
+                              justify-content: center;
+                              gap: 10px !important;
+                              padding: 10px 5px;
+                            }
+
+                            .share-carousel-track .nav-link {
+                              font-size: 8px !important;
+                              padding: 10px 14px !important;
+                              min-width: 44px;
+                              min-height: 44px;
+                              flex: 0 0 auto;
+                              width: auto;
+                            }
+
+                            .share-carousel-track a {
+                              flex: 0 0 auto;
+                            }
+
+                            .dropdown {
+                              width: 100%;
+                              overflow-x: auto;
+                              -webkit-overflow-scrolling: touch;
+                            }
+
+                            .dropdown.show {
+                              max-height: 200px;
+                            }
+                          }
+
+                          @media (max-width: 576px) {
+                            .dashboard-header {
+                              padding: 20px 15px;
+                            }
+
+                            .welcome-title {
+                              font-size: 14px;
+                            }
+
+                            .welcome-subtitle {
+                              font-size: 8px;
+                            }
+
+                            .logout-button {
+                              padding: 10px 16px;
+                              font-size: 8px;
+                            }
+
+                            .logout-text {
+                              font-size: 8px;
+                            }
+
+                            .stat-card {
+                              padding: 15px;
+                              flex-direction: column;
+                              text-align: center;
+                              gap: 10px;
+                            }
+
+                            .stat-icon {
+                              font-size: 28px;
+                            }
+
+                            .stat-title {
+                              font-size: 8px;
+                            }
+
+                            .stat-value {
+                              font-size: 12px;
+                            }
+
+                            /* Action Buttons Responsive - Small Mobile */
+                            .action_buttons {
+                              padding: 0 5px;
+                            }
+
+                            .open-share-section {
+                              font-size: 8px !important;
+                              padding: 10px 15px !important;
+                            }
+
+                            .share-carousel-track {
+                              gap: 8px !important;
+                              padding: 8px 3px;
+                            }
+
+                            .share-carousel-track .nav-link {
+                              font-size: 7px !important;
+                              padding: 8px 10px !important;
+                              min-width: 40px;
+                              min-height: 40px;
+                            }
+
+                            .open-share-section {
+                              min-height: 44px;
+                            }
+
+                            .dropdown.show {
+                              max-height: 180px;
+                            }
+                          }
+
+                          @media (max-width: 400px) {
+                            .share-carousel-track {
+                              gap: 6px !important;
+                            }
+
+                            .share-carousel-track .nav-link {
+                              font-size: 6px !important;
+                              padding: 8px 8px !important;
+                              min-width: 38px;
+                              min-height: 38px;
+                            }
+
+                            .open-share-section {
+                              font-size: 7px !important;
+                              padding: 10px 12px !important;
+                              min-height: 44px;
                             }
                           }
 
@@ -7435,6 +7626,41 @@
                           .share-carousel-track button {
                             cursor: pointer;
                             padding: 8px 16px;
+                            border-bottom: none !important;
+                            text-decoration: none !important;
+                            min-height: 44px;
+                            min-width: 44px;
+                            touch-action: manipulation;
+                            -webkit-tap-highlight-color: rgba(54, 193, 245, 0.3);
+                          }
+
+                          .share-carousel-track .nav-link {
+                            border-bottom: none !important;
+                            text-decoration: none !important;
+                            min-height: 44px;
+                            min-width: 44px;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            touch-action: manipulation;
+                            -webkit-tap-highlight-color: rgba(54, 193, 245, 0.3);
+                          }
+
+                          .share-carousel-track .nav-link::after,
+                          .share-carousel-track .nav-link::before {
+                            border-bottom: none !important;
+                          }
+
+                          .share-carousel-track a {
+                            display: inline-block;
+                            touch-action: manipulation;
+                            -webkit-tap-highlight-color: rgba(54, 193, 245, 0.3);
+                          }
+
+                          .open-share-section {
+                            min-height: 44px;
+                            touch-action: manipulation;
+                            -webkit-tap-highlight-color: rgba(54, 193, 245, 0.3);
                           }
                         </style>
 
@@ -7638,7 +7864,10 @@
                         <div>
 
                           <div class="redeem-button-div">
-                            <button class="redeem-button" type="button">GET CASH</button>
+                            <button class="nav-link"
+                              style=" border: 3px solid #2A9898 !important; background: #63d1d0 !important;""
+                              type=" button">GET
+                              CASH</button>
 
                             <div class="r_dropdown" id="r_dropdown">
 
@@ -7803,6 +8032,21 @@
                       if (emailForm && codeForm) {
                         emailForm.style.display = 'block';
                         codeForm.style.display = 'none';
+                      }
+
+                      // Restore visibility of login container and bottom text sections
+                      const loginContainer = document.querySelector('.login-container');
+                      const rewardsSubline = document.querySelector('.rewards-subline');
+                      const rewardsBenefits = document.querySelector('.rewards-benefits');
+
+                      if (loginContainer) {
+                        loginContainer.style.display = 'block';
+                      }
+                      if (rewardsSubline) {
+                        rewardsSubline.style.display = 'block';
+                      }
+                      if (rewardsBenefits) {
+                        rewardsBenefits.style.display = 'block';
                       }
 
                       // Optionally, clear any pre-filled email/code data if needed:
@@ -8151,7 +8395,7 @@
                   </audio>
 
                   <!-- TTS Button -->
-                  <div><button id="tts-toggle" class="audio-button">🔊
+                  <div><button id="tts-toggle" style=" width:100%;" class="audio-button">🔊
                       Play Audio</button>
 
                   </div>
@@ -10233,6 +10477,119 @@ bottom: 199px;
             }
           `;
       document.head.appendChild(style);
+    });
+  </script>
+
+  <!-- GET REFERRALS Button Bubble Effect Script with Ripple and Burst Particles -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const button = document.getElementById('getReferralsBtn');
+      if (!button) return;
+
+      let bubbleCount = 0;
+      const maxBubbles = 20;
+
+      // Bubble effect on mousemove
+      button.addEventListener('mousemove', function (e) {
+        if (bubbleCount >= maxBubbles) return;
+
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Create bubble
+        const bubble = document.createElement('div');
+        bubble.className = 'button-bubble';
+        bubble.style.left = x + 'px';
+        bubble.style.top = y + 'px';
+
+        const size = Math.random() * 8 + 4;
+        bubble.style.width = size + 'px';
+        bubble.style.height = size + 'px';
+
+        button.appendChild(bubble);
+        bubbleCount++;
+
+        // Animate bubble
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 30 + 20;
+        const endX = x + Math.cos(angle) * distance;
+        const endY = y + Math.sin(angle) * distance;
+
+        bubble.animate([
+          {
+            opacity: 1,
+            transform: 'translate(0, 0) scale(1)'
+          },
+          {
+            opacity: 0.8,
+            transform: `translate(${endX - x}px, ${endY - y}px) scale(1.5)`
+          },
+          {
+            opacity: 0,
+            transform: `translate(${endX - x}px, ${endY - y}px) scale(0)`
+          }
+        ], {
+          duration: 600,
+          easing: 'ease-out'
+        }).onfinish = () => {
+          bubble.remove();
+          bubbleCount--;
+        };
+      });
+
+      // Ripple effect on click
+      button.addEventListener('click', function (e) {
+        const ripple = document.createElement('span');
+        ripple.style.cssText = `
+              position: absolute;
+              background: rgba(255, 255, 255, 0.5);
+              border-radius: 50%;
+              transform: scale(0);
+              animation: ripple 0.6s linear;
+              pointer-events: none;
+            `;
+
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+
+        button.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+
+        // Burst particles (sparks) on click
+        for (let i = 0; i < 12; i++) {
+          createBurstParticle(e.clientX, e.clientY);
+        }
+      });
+
+      // Function to create burst particles (sparks)
+      function createBurstParticle(x, y) {
+        const particle = document.createElement('div');
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 100 + 50;
+        const size = Math.random() * 10 + 5;
+
+        particle.style.cssText = `
+              position: fixed;
+              width: ${size}px;
+              height: ${size}px;
+              background: linear-gradient(135deg, #5BC8C8, #f1c40f);
+              border-radius: 50%;
+              left: ${x}px;
+              top: ${y}px;
+              pointer-events: none;
+              z-index: 9999;
+              animation: burst 0.8s ease-out forwards;
+              --tx: ${Math.cos(angle) * velocity}px;
+              --ty: ${Math.sin(angle) * velocity}px;
+            `;
+
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 800);
+      }
     });
   </script>
 

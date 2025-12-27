@@ -57,9 +57,8 @@ body::before {
 /* Help Button - renamed to .audio-button to match HTML */
 .audio-button {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 50px;
+    min-width: full !important;
+    width: 100% !important;
     height: 50px;
     background: linear-gradient(135deg, rgba(100, 180, 220, 0.8) 0%, rgba(80, 160, 200, 0.9) 100%);
     border-radius: 50%;
@@ -84,13 +83,14 @@ body::before {
     50% { box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2), 0 0 50px rgba(100, 180, 220, 0.6); }
 }
 
-.audio-button:hover {
+/* Hover animation removed as requested */
+/* .audio-button:hover {
     background: linear-gradient(135deg, rgba(120, 200, 240, 0.9) 0%, rgba(100, 180, 220, 1) 100%);
     transform: scale(1.2) rotate(15deg);
     box-shadow: 
         0 8px 30px rgba(0, 0, 0, 0.3),
         0 0 50px rgba(100, 180, 220, 0.5);
-}
+} */
 
 /* Header */
 header {
@@ -1331,6 +1331,26 @@ h5.cardimage_heading {
     .nav-buttons-group {
         gap: 6px;
     }
+    
+    /* Center Play Audio button on mobile */
+    #about > div > div {
+        text-align: center;
+    }
+    
+    #tts-toggle.audio-button {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        transform: none !important;
+        font-size: 10px !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 12px 20px !important;
+        border-radius: 8px !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1355,6 +1375,26 @@ h5.cardimage_heading {
     
     .nav-buttons-group {
         gap: 5px;
+    }
+    
+    /* Center Play Audio button on small mobile and make text smaller */
+    #about > div > div {
+        text-align: center;
+    }
+    
+    #tts-toggle.audio-button {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        transform: none !important;
+        font-size: 10px !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 10px 16px !important;
+        border-radius: 8px !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
     }
 }
 
