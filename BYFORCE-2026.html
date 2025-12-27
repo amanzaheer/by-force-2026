@@ -8034,6 +8034,21 @@
                         codeForm.style.display = 'none';
                       }
 
+                      // Restore visibility of login container and bottom text sections
+                      const loginContainer = document.querySelector('.login-container');
+                      const rewardsSubline = document.querySelector('.rewards-subline');
+                      const rewardsBenefits = document.querySelector('.rewards-benefits');
+
+                      if (loginContainer) {
+                        loginContainer.style.display = 'block';
+                      }
+                      if (rewardsSubline) {
+                        rewardsSubline.style.display = 'block';
+                      }
+                      if (rewardsBenefits) {
+                        rewardsBenefits.style.display = 'block';
+                      }
+
                       // Optionally, clear any pre-filled email/code data if needed:
                       document.getElementById('emailInput').value = "";
                       document.getElementById('writer').innerHTML = "";
