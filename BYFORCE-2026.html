@@ -723,8 +723,9 @@
                             top: 20px;
                             left: 50%;
                             transform: translateX(-50%);
-                            background: #2ed573;
-                            color: white;
+                            background: linear-gradient(135deg, #b3ebd4 0%, rgba(255, 255, 255, 0.9) 100%);
+                            border: 2px solid #b3ebd4;
+                            color: #333;
                             padding: 15px 25px;
                             border-radius: 8px;
                             font-family: "Press Start 2P", system-ui;
@@ -901,10 +902,13 @@
                     }
 
                     .code-digit {
-                      width: 29px !important;
-                      height: 36px !important;
+                      width: 35px !important;
+                      height: 42px !important;
                       font-size: 1.1rem !important;
-                      border-radius: 7px !important;
+                      border-radius: 10px !important;
+                      border: 2px solid #b3ebd4 !important;
+                      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(179, 235, 212, 0.3) 100%) !important;
+                      color: #333 !important;
                     }
 
                     .email-capture-close-btn {
@@ -1308,26 +1312,161 @@
                       }
 
                       .code-digit {
-                        width: 45px;
-                        height: 45px;
-                        border: 2px solid white;
-                        border-radius: 8px;
-                        background: rgba(255, 255, 255, 0.1);
-                        color: white;
+                        width: 50px;
+                        height: 50px;
+                        border: 3px solid #b3ebd4;
+                        border-radius: 12px;
+                        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(179, 235, 212, 0.3) 100%);
+                        color: #333;
                         font-family: "Press Start 2P", system-ui;
-                        font-size: 18px;
+                        font-size: 20px;
+                        font-weight: bold;
                         text-align: center;
                         backdrop-filter: blur(10px);
                         -webkit-backdrop-filter: blur(10px);
-                        transition: all 0.3s ease;
+                        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        position: relative;
+                        overflow: hidden;
+                        box-shadow:
+                          0 4px 15px rgba(179, 235, 212, 0.4),
+                          inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                          inset 0 -2px 4px rgba(179, 235, 212, 0.2);
+                        animation: otpPulse 2s ease-in-out infinite;
+                      }
+
+                      .code-digit:nth-child(1) {
+                        animation-delay: 0s;
+                      }
+
+                      .code-digit:nth-child(2) {
+                        animation-delay: 0.2s;
+                      }
+
+                      .code-digit:nth-child(3) {
+                        animation-delay: 0.4s;
+                      }
+
+                      .code-digit:nth-child(4) {
+                        animation-delay: 0.6s;
+                      }
+
+                      .code-digit:nth-child(5) {
+                        animation-delay: 0.8s;
+                      }
+
+                      .code-digit:nth-child(6) {
+                        animation-delay: 1s;
+                      }
+
+                      .code-digit::before {
+                        content: '';
+                        position: absolute;
+                        top: -50%;
+                        left: -50%;
+                        width: 200%;
+                        height: 200%;
+                        background: linear-gradient(45deg,
+                            transparent 30%,
+                            rgba(255, 255, 255, 0.6) 50%,
+                            transparent 70%);
+                        animation: shine 3s infinite;
+                        pointer-events: none;
+                      }
+
+                      .code-digit::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: radial-gradient(circle at center, rgba(179, 235, 212, 0.3) 0%, transparent 70%);
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                        pointer-events: none;
                       }
 
                       .code-digit:focus {
                         outline: none;
-                        border-color: #FFD700;
-                        background: rgba(255, 255, 255, 0.2);
-                        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-                        transform: scale(1.1);
+                        border-color: #b3ebd4;
+                        background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(179, 235, 212, 0.5) 100%);
+                        box-shadow:
+                          0 0 25px rgba(179, 235, 212, 0.8),
+                          0 8px 25px rgba(179, 235, 212, 0.4),
+                          inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                          inset 0 -2px 4px rgba(179, 235, 212, 0.3);
+                        transform: scale(1.15) translateY(-3px);
+                        animation: otpFocusGlow 1.5s ease-in-out infinite;
+                      }
+
+                      .code-digit:focus::before {
+                        animation: shine 1s infinite;
+                      }
+
+                      .code-digit:focus::after {
+                        opacity: 1;
+                      }
+
+                      .code-digit:not(:placeholder-shown) {
+                        border-color: #b3ebd4;
+                        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(179, 235, 212, 0.4) 100%);
+                        box-shadow:
+                          0 6px 20px rgba(179, 235, 212, 0.5),
+                          inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                          inset 0 -2px 4px rgba(179, 235, 212, 0.25);
+                        animation: otpFilled 0.6s ease-out;
+                      }
+
+                      @keyframes otpPulse {
+
+                        0%,
+                        100% {
+                          box-shadow:
+                            0 4px 15px rgba(179, 235, 212, 0.4),
+                            inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.2);
+                        }
+
+                        50% {
+                          box-shadow:
+                            0 6px 20px rgba(179, 235, 212, 0.6),
+                            inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.3);
+                        }
+                      }
+
+                      @keyframes otpFocusGlow {
+
+                        0%,
+                        100% {
+                          box-shadow:
+                            0 0 25px rgba(179, 235, 212, 0.8),
+                            0 8px 25px rgba(179, 235, 212, 0.4),
+                            inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.3);
+                        }
+
+                        50% {
+                          box-shadow:
+                            0 0 35px rgba(179, 235, 212, 1),
+                            0 10px 30px rgba(179, 235, 212, 0.6),
+                            inset 0 2px 4px rgba(255, 255, 255, 1),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.4);
+                        }
+                      }
+
+                      @keyframes otpFilled {
+                        0% {
+                          transform: scale(1);
+                        }
+
+                        50% {
+                          transform: scale(1.1);
+                        }
+
+                        100% {
+                          transform: scale(1);
+                        }
                       }
 
                       .loading-spinner {
@@ -1394,6 +1533,16 @@
 
                         100% {
                           transform: rotate(360deg);
+                        }
+                      }
+
+                      @keyframes shine {
+                        0% {
+                          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                        }
+
+                        100% {
+                          transform: translateX(200%) translateY(200%) rotate(45deg);
                         }
                       }
 
@@ -6546,65 +6695,159 @@
                         }
 
                         .code-digit {
-                          width: 45px;
-                          height: 45px;
-                          border: 3px solid #000000;
-                          /* Black pixel border - 8-bit style */
-                          border-radius: 0;
-                          /* Sharp edges - no rounded corners */
-                          background: #36c1f5;
-                          /* Theme color background */
-                          color: white;
+                          width: 50px;
+                          height: 50px;
+                          border: 3px solid #b3ebd4;
+                          border-radius: 12px;
+                          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(179, 235, 212, 0.3) 100%);
+                          color: #333;
                           font-family: "Press Start 2P", system-ui;
-                          font-size: 18px;
+                          font-size: 20px;
+                          font-weight: bold;
                           text-align: center;
-                          transition: none;
-                          /* No smooth transitions - pure 8-bit */
+                          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                           position: relative;
                           overflow: hidden;
-                          box-shadow: 3px 3px 0px #000000;
-                          /* Pixel shadow */
+                          box-shadow:
+                            0 4px 15px rgba(179, 235, 212, 0.4),
+                            inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.2);
+                          animation: otpPulse 2s ease-in-out infinite;
+                        }
+
+                        .code-digit:nth-child(1) {
+                          animation-delay: 0s;
+                        }
+
+                        .code-digit:nth-child(2) {
+                          animation-delay: 0.2s;
+                        }
+
+                        .code-digit:nth-child(3) {
+                          animation-delay: 0.4s;
+                        }
+
+                        .code-digit:nth-child(4) {
+                          animation-delay: 0.6s;
+                        }
+
+                        .code-digit:nth-child(5) {
+                          animation-delay: 0.8s;
+                        }
+
+                        .code-digit:nth-child(6) {
+                          animation-delay: 1s;
+                        }
+
+                        .code-digit::before {
+                          content: '';
+                          position: absolute;
+                          top: -50%;
+                          left: -50%;
+                          width: 200%;
+                          height: 200%;
+                          background: linear-gradient(45deg,
+                              transparent 30%,
+                              rgba(255, 255, 255, 0.6) 50%,
+                              transparent 70%);
+                          animation: shine 3s infinite;
+                          pointer-events: none;
+                        }
+
+                        .code-digit::after {
+                          content: '';
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          right: 0;
+                          bottom: 0;
+                          background: radial-gradient(circle at center, rgba(179, 235, 212, 0.3) 0%, transparent 70%);
+                          opacity: 0;
+                          transition: opacity 0.3s ease;
+                          pointer-events: none;
                         }
 
                         .code-digit:focus {
                           outline: none;
-                          border-color: #047098;
-                          /* Theme color border on focus */
-                          background: #47d1ff;
-                          /* Brighter theme color */
-                          box-shadow: 5px 5px 0px #000000;
-                          /* Enhanced pixel shadow */
-                          transform: translateY(-2px);
-                          animation: digitGlow 1s ease-in-out infinite;
-                        }
-
-                        /* 8-bit scan line effect for code digits */
-                        .code-digit::before {
-                          content: '';
-                          position: absolute;
-                          top: 0;
-                          left: -100%;
-                          width: 100%;
-                          height: 1px;
-                          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-                          transition: all 0.3s ease;
+                          border-color: #b3ebd4;
+                          background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(179, 235, 212, 0.5) 100%);
+                          box-shadow:
+                            0 0 25px rgba(179, 235, 212, 0.8),
+                            0 8px 25px rgba(179, 235, 212, 0.4),
+                            inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.3);
+                          transform: scale(1.15) translateY(-3px);
+                          animation: otpFocusGlow 1.5s ease-in-out infinite;
                         }
 
                         .code-digit:focus::before {
-                          left: 100%;
-                          animation: digitScan 1s ease-in-out infinite;
+                          animation: shine 1s infinite;
                         }
 
-                        /* 8-bit animations for code digits */
-                        @keyframes digitGlow {
+                        .code-digit:focus::after {
+                          opacity: 1;
+                        }
+
+                        .code-digit:not(:placeholder-shown) {
+                          border-color: #b3ebd4;
+                          background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(179, 235, 212, 0.4) 100%);
+                          box-shadow:
+                            0 6px 20px rgba(179, 235, 212, 0.5),
+                            inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.25);
+                          animation: otpFilled 0.6s ease-out;
+                        }
+
+                        /* Animations for code digits */
+                        @keyframes otpPulse {
 
                           0%,
                           100% {
-                            box-shadow: 5px 5px 0px #000000;
+                            box-shadow:
+                              0 4px 15px rgba(179, 235, 212, 0.4),
+                              inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                              inset 0 -2px 4px rgba(179, 235, 212, 0.2);
                           }
 
                           50% {
-                            box-shadow: 5px 5px 0px #000000, 0 0 10px #36c1f5;
+                            box-shadow:
+                              0 6px 20px rgba(179, 235, 212, 0.6),
+                              inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                              inset 0 -2px 4px rgba(179, 235, 212, 0.3);
+                          }
+                        }
+
+                        @keyframes otpFocusGlow {
+
+                          0%,
+                          100% {
+                            box-shadow:
+                              0 0 25px rgba(179, 235, 212, 0.8),
+                              0 8px 25px rgba(179, 235, 212, 0.4),
+                              inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                              inset 0 -2px 4px rgba(179, 235, 212, 0.3);
+                          }
+
+                          50% {
+                            box-shadow:
+                              0 0 35px rgba(179, 235, 212, 1),
+                              0 10px 30px rgba(179, 235, 212, 0.6),
+                              inset 0 2px 4px rgba(255, 255, 255, 1),
+                              inset 0 -2px 4px rgba(179, 235, 212, 0.4);
+                          }
+                        }
+
+                        @keyframes otpFilled {
+                          0% {
+                            transform: scale(1);
+                          }
+
+                          50% {
+                            transform: scale(1.1);
+                          }
+
+                          100% {
+                            transform: scale(1);
                           }
                         }
 
@@ -6643,6 +6886,16 @@
                           to {
                             opacity: 1;
                             transform: translateY(0) scale(1);
+                          }
+                        }
+
+                        @keyframes shine {
+                          0% {
+                            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                          }
+
+                          100% {
+                            transform: translateX(200%) translateY(200%) rotate(45deg);
                           }
                         }
 
@@ -6723,43 +6976,175 @@
                           height: 60px;
                           font-size: 24px;
                           text-align: center;
-                          background: rgba(255, 255, 255, 0.1);
-                          border: 2px solid rgba(54, 193, 245, 0.5);
+                          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(179, 235, 212, 0.3) 100%);
+                          border: 3px solid #b3ebd4;
                           border-radius: 12px;
-                          color: white;
+                          color: #333;
                           font-family: 'Press Start 2P', monospace;
-                          transition: all 0.3s ease;
+                          font-weight: bold;
+                          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                           backdrop-filter: blur(10px);
+                          position: relative;
+                          overflow: hidden;
+                          box-shadow:
+                            0 4px 15px rgba(179, 235, 212, 0.4),
+                            inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.2);
+                          animation: otpPulse 2s ease-in-out infinite;
+                        }
+
+                        .code-digit:nth-child(1) {
+                          animation-delay: 0s;
+                        }
+
+                        .code-digit:nth-child(2) {
+                          animation-delay: 0.2s;
+                        }
+
+                        .code-digit:nth-child(3) {
+                          animation-delay: 0.4s;
+                        }
+
+                        .code-digit:nth-child(4) {
+                          animation-delay: 0.6s;
+                        }
+
+                        .code-digit:nth-child(5) {
+                          animation-delay: 0.8s;
+                        }
+
+                        .code-digit:nth-child(6) {
+                          animation-delay: 1s;
+                        }
+
+                        .code-digit::before {
+                          content: '';
+                          position: absolute;
+                          top: -50%;
+                          left: -50%;
+                          width: 200%;
+                          height: 200%;
+                          background: linear-gradient(45deg,
+                              transparent 30%,
+                              rgba(255, 255, 255, 0.6) 50%,
+                              transparent 70%);
+                          animation: shine 3s infinite;
+                          pointer-events: none;
+                        }
+
+                        .code-digit::after {
+                          content: '';
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          right: 0;
+                          bottom: 0;
+                          background: radial-gradient(circle at center, rgba(179, 235, 212, 0.3) 0%, transparent 70%);
+                          opacity: 0;
+                          transition: opacity 0.3s ease;
+                          pointer-events: none;
                         }
 
                         .code-digit:focus {
                           outline: none;
-                          border-color: #36c1f5;
-                          background: rgba(255, 255, 255, 0.2);
-                          transform: translateY(-3px) scale(1.05);
-                          box-shadow: 0 8px 25px rgba(54, 193, 245, 0.4);
+                          border-color: #b3ebd4;
+                          background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(179, 235, 212, 0.5) 100%);
+                          transform: translateY(-3px) scale(1.1);
+                          box-shadow:
+                            0 0 25px rgba(179, 235, 212, 0.8),
+                            0 8px 30px rgba(179, 235, 212, 0.4),
+                            inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.3);
+                          animation: otpFocusGlow 1.5s ease-in-out infinite;
                         }
 
-                        .code-digit:valid {
-                          border-color: #2ed573;
-                          background: rgba(46, 213, 115, 0.2);
+                        .code-digit:focus::before {
+                          animation: shine 1s infinite;
+                        }
+
+                        .code-digit:focus::after {
+                          opacity: 1;
+                        }
+
+                        .code-digit:valid,
+                        .code-digit:not(:placeholder-shown) {
+                          border-color: #b3ebd4;
+                          background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(179, 235, 212, 0.4) 100%);
+                          box-shadow:
+                            0 6px 20px rgba(179, 235, 212, 0.5),
+                            inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                            inset 0 -2px 4px rgba(179, 235, 212, 0.25);
+                          animation: otpFilled 0.6s ease-out;
+                        }
+
+                        @keyframes otpPulse {
+
+                          0%,
+                          100% {
+                            box-shadow:
+                              0 4px 15px rgba(179, 235, 212, 0.4),
+                              inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                              inset 0 -2px 4px rgba(179, 235, 212, 0.2);
+                          }
+
+                          50% {
+                            box-shadow:
+                              0 6px 20px rgba(179, 235, 212, 0.6),
+                              inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                              inset 0 -2px 4px rgba(179, 235, 212, 0.3);
+                          }
+                        }
+
+                        @keyframes otpFocusGlow {
+
+                          0%,
+                          100% {
+                            box-shadow:
+                              0 0 25px rgba(179, 235, 212, 0.8),
+                              0 8px 30px rgba(179, 235, 212, 0.4),
+                              inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                              inset 0 -2px 4px rgba(179, 235, 212, 0.3);
+                          }
+
+                          50% {
+                            box-shadow:
+                              0 0 35px rgba(179, 235, 212, 1),
+                              0 10px 30px rgba(179, 235, 212, 0.6),
+                              inset 0 2px 4px rgba(255, 255, 255, 1),
+                              inset 0 -2px 4px rgba(179, 235, 212, 0.4);
+                          }
+                        }
+
+                        @keyframes otpFilled {
+                          0% {
+                            transform: scale(1);
+                          }
+
+                          50% {
+                            transform: scale(1.1);
+                          }
+
+                          100% {
+                            transform: scale(1);
+                          }
                         }
 
                         .verify-btn {
-                          background: linear-gradient(135deg, #2ed573 0%, #1e90ff 100%);
-                          border: none;
+                          background: linear-gradient(135deg, #b3ebd4 0%, rgba(255, 255, 255, 0.9) 100%);
+                          border: 3px solid #b3ebd4;
                           padding: 18px 30px;
                           border-radius: 12px;
-                          color: white;
+                          color: #333;
                           font-family: "Press Start 2P", system-ui;
                           font-size: 12px;
+                          font-weight: bold;
                           cursor: pointer;
                           transition: all 0.3s ease;
                           display: flex;
                           align-items: center;
                           justify-content: center;
                           gap: 10px;
-                          box-shadow: 0 4px 15px rgba(46, 213, 115, 0.3);
+                          box-shadow: 0 4px 15px rgba(179, 235, 212, 0.4);
                           position: relative;
                           overflow: hidden;
                         }
@@ -6781,7 +7166,8 @@
 
                         .verify-btn:hover {
                           transform: translateY(-3px);
-                          box-shadow: 0 8px 25px rgba(46, 213, 115, 0.5);
+                          box-shadow: 0 8px 25px rgba(179, 235, 212, 0.6);
+                          background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, #b3ebd4 100%);
                         }
 
                         .verify-btn:active {
@@ -6798,6 +7184,16 @@
                           to {
                             opacity: 1;
                             transform: translateY(0) scale(1);
+                          }
+                        }
+
+                        @keyframes shine {
+                          0% {
+                            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                          }
+
+                          100% {
+                            transform: translateX(200%) translateY(200%) rotate(45deg);
                           }
                         }
 
@@ -12170,8 +12566,9 @@ bottom: 199px;
     }
 
     .proceed-btn {
-      background: linear-gradient(135deg, #2ed573 0%, #1e90ff 100%);
-      color: white;
+      background: linear-gradient(135deg, #b3ebd4 0%, rgba(255, 255, 255, 0.9) 100%);
+      border: 3px solid #b3ebd4;
+      color: #333;
       border: none;
       padding: 18px 35px;
       border-radius: 10px;
@@ -12373,8 +12770,9 @@ bottom: 199px;
     }
 
     .add-to-cart-btn {
-      background: linear-gradient(135deg, #2ed573 0%, #1e90ff 100%);
-      color: white;
+      background: linear-gradient(135deg, #b3ebd4 0%, rgba(255, 255, 255, 0.9) 100%);
+      border: 3px solid #b3ebd4;
+      color: #333;
       border: none;
       padding: 10px 15px;
       border-radius: 8px;
