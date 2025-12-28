@@ -1525,3 +1525,496 @@ h5.cardimage_heading {
         align-items: center;
     }
 }
+
+/* Retro Gaming Controller Button */
+#gameStartButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    margin: 40px auto;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Force center alignment using flexbox pseudo-elements */
+#gameStartButton::before {
+    content: '';
+    flex: 1;
+    order: 1;
+}
+
+#gameStartButton::after {
+    content: '';
+    flex: 1;
+    order: 3;
+}
+
+#gameStartButton button.controller-button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    line-height: 0;
+    animation: controllerBounce 2s ease-in-out infinite;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    order: 2;
+}
+
+#gameStartButton button.controller-button * {
+    box-sizing: border-box;
+}
+
+/* Controller Body - Black Base */
+.controller-body {
+    width: 320px;
+    height: 180px;
+    background: #1a1a1a;
+    border: 4px solid #0a0a0a;
+    border-radius: 8px;
+    position: relative;
+    box-shadow:
+        0 8px 0 #0a0a0a,
+        0 12px 20px rgba(0, 0, 0, 0.6),
+        inset 0 2px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+/* Controller Top Panel - Teal/Cyan */
+.controller-top {
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(180deg, #2A9898 0%, #0a8888 50%, #1a6070 100%);
+    position: relative;
+    border-bottom: 3px solid #0a4050;
+}
+
+/* Controller Left Side - Joystick Area */
+.controller-left {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 100px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Joystick */
+.joystick {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #5BC8C8 0%, #2A9898 50%, #0a8888 100%);
+    border: 3px solid #0a4050;
+    border-radius: 50%;
+    position: relative;
+    box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 4px 0 #0a3040;
+}
+
+.joystick::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #0a8888;
+    border: 2px solid #0a4050;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Rainbow Stripe - Theme Colors */
+.rainbow-stripe {
+    width: 8px;
+    height: 60px;
+    background: linear-gradient(
+        180deg,
+        #5BC8C8 0%,
+        #65D0C0 20%,
+        #80DDB8 40%,
+        #A0E8B0 60%,
+        #C0F0A8 80%,
+        #5BC8C8 100%
+    );
+    border: 1px solid #0a4050;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    animation: rainbowShift 3s ease-in-out infinite;
+}
+
+@keyframes rainbowShift {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(10deg); }
+}
+
+/* Controller Right Side - Buttons */
+.controller-right {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    width: 140px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.button-group {
+    display: flex;
+    gap: 8px;
+}
+
+/* Large Buttons */
+.button-large {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #5BC8C8 0%, #2A9898 50%, #0a8888 100%);
+    border: 3px solid #0a4050;
+    border-radius: 50%;
+    box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 3px 0 #0a3040;
+    position: relative;
+}
+
+.button-large::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #0a8888;
+    border: 1px solid #0a4050;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Small Buttons */
+.button-small {
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(135deg, #5BC8C8 0%, #2A9898 50%, #0a8888 100%);
+    border: 2px solid #0a4050;
+    border-radius: 50%;
+    box-shadow:
+        inset 0 1px 3px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 3px rgba(0, 0, 0, 0.3),
+        0 2px 0 #0a3040;
+}
+
+/* Button Numbers/Labels */
+.button-1::before { 
+    content: '1';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: #fff;
+    text-shadow: 1px 1px 0 #0a3040;
+    z-index: 2;
+}
+
+.button-2::before { 
+    content: '2';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: #fff;
+    text-shadow: 1px 1px 0 #0a3040;
+    z-index: 2;
+}
+
+.button-3::before { 
+    content: '3';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 6px;
+    color: #fff;
+    text-shadow: 1px 1px 0 #0a3040;
+    z-index: 2;
+}
+
+.button-4::before { 
+    content: '4';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 6px;
+    color: #fff;
+    text-shadow: 1px 1px 0 #0a3040;
+    z-index: 2;
+}
+
+/* Controller Text Area */
+.controller-text {
+    width: 100%;
+    height: 60px;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #5BC8C8;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 
+        0 0 10px rgba(91, 200, 200, 0.8),
+        0 0 20px rgba(91, 200, 200, 0.4);
+    border-top: 2px solid #0a4050;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    0% {
+        color: #5BC8C8;
+        text-shadow: 
+            0 0 10px rgba(91, 200, 200, 0.8),
+            0 0 20px rgba(91, 200, 200, 0.4);
+    }
+    100% {
+        color: #80DDB8;
+        text-shadow: 
+            0 0 15px rgba(128, 221, 184, 1),
+            0 0 30px rgba(128, 221, 184, 0.6);
+    }
+}
+
+/* Bouncing Animation */
+@keyframes controllerBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Hover state */
+#gameStartButton button.controller-button:hover {
+    animation: none;
+    transform: translateY(-8px) scale(1.05);
+}
+
+#gameStartButton button.controller-button:hover .controller-body {
+    box-shadow:
+        0 12px 0 #0a0a0a,
+        0 18px 30px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(91, 200, 200, 0.6),
+        inset 0 2px 0 rgba(255, 255, 255, 0.15);
+}
+
+#gameStartButton button.controller-button:hover .controller-top {
+    background: linear-gradient(180deg, #3a8a9a 0%, #2A9898 50%, #0a8888 100%);
+    filter: brightness(1.15);
+}
+
+#gameStartButton button.controller-button:hover .joystick,
+#gameStartButton button.controller-button:hover .button-large,
+#gameStartButton button.controller-button:hover .button-small {
+    transform: scale(1.1);
+    box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 4px 0 #0a3040,
+        0 0 15px rgba(91, 200, 200, 0.6);
+}
+
+#gameStartButton button.controller-button:hover .controller-text {
+    color: #80DDB8;
+    text-shadow: 
+        0 0 20px rgba(128, 221, 184, 1),
+        0 0 40px rgba(128, 221, 184, 0.6);
+}
+
+/* Active/pressed state */
+#gameStartButton button.controller-button:active {
+    animation: none;
+    transform: translateY(4px) scale(0.98);
+}
+
+#gameStartButton button.controller-button:active .controller-body {
+    box-shadow:
+        0 4px 0 #0a0a0a,
+        0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+#gameStartButton button.controller-button:active .joystick,
+#gameStartButton button.controller-button:active .button-large,
+#gameStartButton button.controller-button:active .button-small {
+    transform: scale(0.95);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.5),
+        0 1px 0 #0a3040;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    #gameStartButton {
+        min-height: 250px;
+        margin: 20px 0;
+    }
+
+    .controller-body {
+        width: 260px;
+        height: 150px;
+    }
+
+    .controller-top {
+        height: 100px;
+    }
+
+    .controller-left {
+        left: 15px;
+        top: 15px;
+        width: 80px;
+        height: 70px;
+    }
+
+    .joystick {
+        width: 40px;
+        height: 40px;
+    }
+
+    .joystick::before {
+        width: 16px;
+        height: 16px;
+    }
+
+    .rainbow-stripe {
+        width: 6px;
+        height: 50px;
+    }
+
+    .controller-right {
+        right: 15px;
+        top: 12px;
+        width: 110px;
+        height: 75px;
+    }
+
+    .button-large {
+        width: 28px;
+        height: 28px;
+    }
+
+    .button-small {
+        width: 20px;
+        height: 20px;
+    }
+
+    .controller-text {
+        height: 50px;
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    #gameStartButton {
+        min-height: 200px;
+        margin: 15px 0;
+    }
+
+    .controller-body {
+        width: 220px;
+        height: 130px;
+    }
+
+    .controller-top {
+        height: 85px;
+    }
+
+    .controller-left {
+        left: 12px;
+        top: 12px;
+        width: 65px;
+        height: 60px;
+        gap: 6px;
+    }
+
+    .joystick {
+        width: 35px;
+        height: 35px;
+    }
+
+    .joystick::before {
+        width: 14px;
+        height: 14px;
+    }
+
+    .rainbow-stripe {
+        width: 5px;
+        height: 45px;
+    }
+
+    .controller-right {
+        right: 12px;
+        top: 10px;
+        width: 90px;
+        height: 65px;
+        gap: 6px;
+    }
+
+    .button-group {
+        gap: 6px;
+    }
+
+    .button-large {
+        width: 24px;
+        height: 24px;
+    }
+
+    .button-large::after {
+        width: 10px;
+        height: 10px;
+    }
+
+    .button-small {
+        width: 18px;
+        height: 18px;
+    }
+
+    .controller-text {
+        height: 45px;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+}
