@@ -421,6 +421,7 @@
                       this.sendCodeBtn = document.getElementById('sendCodeBtn');
                       this.verifyCodeBtn = document.getElementById('verifyCodeBtn');
                       this.resendCodeBtn = document.getElementById('resendCodeBtn');
+                      this.backToEmailBtn = document.getElementById('backToEmailBtn');
                       this.codeInputs = document.querySelectorAll('.code-digit');
 
                       this.emailStage = document.getElementById('emailStage');
@@ -468,6 +469,11 @@
 
                       // Resend code button
                       this.resendCodeBtn.addEventListener('click', () => this.resendCode());
+
+                      // Back to email button
+                      if (this.backToEmailBtn) {
+                        this.backToEmailBtn.addEventListener('click', () => this.backToEmail());
+                      }
 
                       // Close button
                       const closeBtn = document.getElementById('closeEmailCaptureBtn');
@@ -630,6 +636,15 @@
                         this.showError('Network error. Please try again.');
                         console.error('Error resending code:', error);
                       }
+                    }
+
+                    backToEmail() {
+                      // Clear code inputs
+                      this.codeInputs.forEach(input => {
+                        input.value = '';
+                      });
+                      // Return to email stage
+                      this.showEmailStage();
                     }
 
                     showEmailStage() {
@@ -1086,6 +1101,70 @@
                           width: 30px;
                           height: 30px;
                           font-size: 18px;
+                        }
+                      }
+
+                      /* Back Button Styles */
+                      .back-to-email-btn {
+                        position: absolute;
+                        top: 15px;
+                        left: 20px;
+                        background: rgba(255, 255, 255, 0.2);
+                        border: 2px solid rgba(255, 255, 255, 0.3);
+                        color: white;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.3s ease;
+                        z-index: 10003;
+                        padding: 0;
+                      }
+
+                      .back-to-email-btn:hover {
+                        background: rgba(255, 255, 255, 0.3);
+                        border-color: rgba(255, 255, 255, 0.5);
+                        transform: scale(1.1);
+                      }
+
+                      .back-to-email-btn:active {
+                        transform: scale(0.95);
+                      }
+
+                      .back-to-email-btn svg {
+                        width: 20px;
+                        height: 20px;
+                      }
+
+                      /* Mobile Responsive Back Button */
+                      @media (max-width: 768px) {
+                        .back-to-email-btn {
+                          top: 10px;
+                          left: 15px;
+                          width: 35px;
+                          height: 35px;
+                        }
+
+                        .back-to-email-btn svg {
+                          width: 18px;
+                          height: 18px;
+                        }
+                      }
+
+                      @media (max-width: 480px) {
+                        .back-to-email-btn {
+                          top: 8px;
+                          left: 12px;
+                          width: 30px;
+                          height: 30px;
+                        }
+
+                        .back-to-email-btn svg {
+                          width: 16px;
+                          height: 16px;
                         }
                       }
 
@@ -13304,6 +13383,13 @@ bottom: 199px;
 
   <div class="email-capture-modal">
     <!-- Close Button -->
+    <!-- Back Button -->
+    <button id="backToEmailBtn" class="back-to-email-btn" title="Back to email entry">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+    </button>
     <button id="closeEmailCaptureBtn" class="email-capture-close-btn" title="Close">×</button>
 
     <div class="padlock-container">
@@ -13324,6 +13410,8 @@ bottom: 199px;
 
     <!-- Code Input Stage -->
     <div id="codeStage" class="capture-stage" style="display: none;">
+
+
       <p class="capture-subtitle">We've sent a 6-digit code to your email</p>
       <div class="code-input-container">
         <input type="text" maxlength="1" class="code-digit" data-index="0">
