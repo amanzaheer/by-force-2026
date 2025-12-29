@@ -1377,6 +1377,8 @@ h5.cardimage_heading {
     .section-nav-controls {
         gap: 10px;
         padding: 8px 0;
+        position: relative;
+        z-index: 200; /* Ensure buttons are above cards on mobile */
     }
     
     .section-heading {
@@ -1388,10 +1390,22 @@ h5.cardimage_heading {
         width: 36px;
         height: 36px;
         font-size: 10px;
+        position: relative;
+        z-index: 200; /* Ensure buttons are clickable on mobile */
+        touch-action: manipulation; /* Optimize for touch */
+        -webkit-tap-highlight-color: rgba(74, 154, 170, 0.3); /* Add tap feedback */
+    }
+    
+    /* Add active state for better mobile feedback */
+    .nav-btn:active {
+        transform: translateY(1px) scale(0.95);
+        box-shadow: 0 1px 0 #0a4050;
+        background: linear-gradient(180deg, #2a7080 0%, #1a5060 100%);
     }
     
     .nav-buttons-group {
         gap: 6px;
+        z-index: 200;
     }
     
     /* Center Play Audio button on mobile */
@@ -1419,6 +1433,8 @@ h5.cardimage_heading {
     .section-nav-controls {
         gap: 8px;
         padding: 6px 0;
+        position: relative;
+        z-index: 200; /* Ensure buttons are above cards on mobile */
     }
     
     .section-heading {
@@ -1433,10 +1449,22 @@ h5.cardimage_heading {
         font-size: 9px;
         border-width: 2px;
         border-radius: 6px;
+        position: relative;
+        z-index: 200; /* Ensure buttons are clickable on mobile */
+        touch-action: manipulation; /* Optimize for touch */
+        -webkit-tap-highlight-color: rgba(74, 154, 170, 0.3); /* Add tap feedback */
+    }
+    
+    /* Add active state for better mobile feedback */
+    .nav-btn:active {
+        transform: translateY(1px) scale(0.95);
+        box-shadow: 0 1px 0 #0a4050;
+        background: linear-gradient(180deg, #2a7080 0%, #1a5060 100%);
     }
     
     .nav-buttons-group {
         gap: 5px;
+        z-index: 200;
     }
     
     /* Center Play Audio button on small mobile and make text smaller */

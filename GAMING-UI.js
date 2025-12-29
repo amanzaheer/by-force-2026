@@ -498,6 +498,7 @@ function initCardSwipe() {
     let startX = 0;
     let currentX = 0;
     let isDragging = false;
+    let dragStartTime = 0;
 
     // Get the nav buttons for this section
     const section = container.classList.contains('all-white') ? 'all-white' : 'all-black';
@@ -506,7 +507,13 @@ function initCardSwipe() {
 
     // Touch events
     container.addEventListener('touchstart', (e) => {
+      // Don't start swipe if clicking on a card
+      if (e.target.closest('.card, .col-md-6')) {
+        console.log('Touch on card - swipe disabled');
+        return;
+      }
       startX = e.touches[0].clientX;
+      dragStartTime = Date.now();
       isDragging = true;
     }, { passive: true });
 
@@ -521,8 +528,10 @@ function initCardSwipe() {
 
       const diff = startX - currentX;
       const threshold = 50; // minimum swipe distance
+      const timeDiff = Date.now() - dragStartTime;
 
-      if (Math.abs(diff) > threshold) {
+      // Only trigger slide if it's a genuine swipe (not a quick tap)
+      if (Math.abs(diff) > threshold && timeDiff > 100) {
         if (diff > 0 && nextBtn) {
           // Swipe left - go next
           nextBtn.click();
@@ -535,7 +544,13 @@ function initCardSwipe() {
 
     // Mouse drag events for desktop
     container.addEventListener('mousedown', (e) => {
+      // Don't start drag if clicking on a card
+      if (e.target.closest('.card, .col-md-6')) {
+        console.log('Click on card - drag disabled');
+        return;
+      }
       startX = e.clientX;
+      dragStartTime = Date.now();
       isDragging = true;
       container.style.cursor = 'grabbing';
     });
@@ -545,15 +560,17 @@ function initCardSwipe() {
       currentX = e.clientX;
     });
 
-    container.addEventListener('mouseup', () => {
+    container.addEventListener('mouseup', (e) => {
       if (!isDragging) return;
       isDragging = false;
       container.style.cursor = 'grab';
 
       const diff = startX - currentX;
       const threshold = 50;
+      const timeDiff = Date.now() - dragStartTime;
 
-      if (Math.abs(diff) > threshold) {
+      // Only trigger slide if it's a genuine drag (not a quick click)
+      if (Math.abs(diff) > threshold && timeDiff > 100) {
         if (diff > 0 && nextBtn) {
           nextBtn.click();
         } else if (diff < 0 && prevBtn) {
@@ -567,7 +584,13 @@ function initCardSwipe() {
       container.style.cursor = 'grab';
     });
 
-    // Set initial cursor
+    // Set initial cursor - but not on cards themselves
     container.style.cursor = 'grab';
+    
+    // Remove grab cursor from cards so clicking feels natural
+    const allCards = container.querySelectorAll('.card, .col-md-6');
+    allCards.forEach(card => {
+      card.style.cursor = 'pointer';
+    });
   });
 }
