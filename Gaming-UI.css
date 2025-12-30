@@ -760,6 +760,11 @@ h5.cardimage_heading {
     padding: 20px 0;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-items: center;
+    align-content: space-around;
+    justify-content: center;
+    flex-direction: row;
 }
 
 /* Footer Bubble Animation */
@@ -809,17 +814,16 @@ h5.cardimage_heading {
 }
 
 .footer_main > .row {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     background: linear-gradient(90deg, #5BC8C8 0%, #70D8B8 50%, #90E8A8 100%);
     padding: 18px;
     padding-left: calc((100vw - min(90vw, 1200px)) / 2);
     padding-right: calc((100vw - min(90vw, 1200px)) / 2);
-    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
     border-top: 3px solid rgba(255, 255, 255, 0.4);
     z-index: 100;
+    border-radius: 20px;
+    width: 100%;
+max-width: 1200px !important;
     margin: 0;
     display: flex !important;
     flex-direction: row !important;
@@ -1157,7 +1161,7 @@ h5.cardimage_heading {
     .content-card,
     .home-container {
         padding: 18px;
-        margin-bottom: 100px !important;
+        /* margin-bottom: 100px !important; */
         border-radius: 20px;
     }
     
