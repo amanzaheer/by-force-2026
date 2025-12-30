@@ -421,6 +421,7 @@
                       this.sendCodeBtn = document.getElementById('sendCodeBtn');
                       this.verifyCodeBtn = document.getElementById('verifyCodeBtn');
                       this.resendCodeBtn = document.getElementById('resendCodeBtn');
+                      this.backToEmailBtn = document.getElementById('backToEmailBtn');
                       this.codeInputs = document.querySelectorAll('.code-digit');
 
                       this.emailStage = document.getElementById('emailStage');
@@ -442,6 +443,11 @@
 
                       this.setupEventListeners();
                       this.setupCodeInputs();
+
+                      // Initially hide back button (email stage is shown first)
+                      if (this.backToEmailBtn) {
+                        this.backToEmailBtn.style.display = 'none';
+                      }
 
                       // Only show overlay if we're on the SHOP tab
                       const servicesTab = document.getElementById('services');
@@ -468,6 +474,11 @@
 
                       // Resend code button
                       this.resendCodeBtn.addEventListener('click', () => this.resendCode());
+
+                      // Back to email button
+                      if (this.backToEmailBtn) {
+                        this.backToEmailBtn.addEventListener('click', () => this.backToEmail());
+                      }
 
                       // Close button
                       const closeBtn = document.getElementById('closeEmailCaptureBtn');
@@ -632,14 +643,31 @@
                       }
                     }
 
+                    backToEmail() {
+                      // Clear code inputs
+                      this.codeInputs.forEach(input => {
+                        input.value = '';
+                      });
+                      // Return to email stage
+                      this.showEmailStage();
+                    }
+
                     showEmailStage() {
                       this.hideAllStages();
                       this.emailStage.style.display = 'block';
+                      // Hide back button when on email stage
+                      if (this.backToEmailBtn) {
+                        this.backToEmailBtn.style.display = 'none';
+                      }
                     }
 
                     showCodeStage() {
                       this.hideAllStages();
                       this.codeStage.style.display = 'block';
+                      // Show back button when on code stage
+                      if (this.backToEmailBtn) {
+                        this.backToEmailBtn.style.display = 'flex';
+                      }
                       // Focus first code input
                       setTimeout(() => {
                         this.codeInputs[0].focus();
@@ -1086,6 +1114,70 @@
                           width: 30px;
                           height: 30px;
                           font-size: 18px;
+                        }
+                      }
+
+                      /* Back Button Styles */
+                      .back-to-email-btn {
+                        position: absolute;
+                        top: 15px;
+                        left: 20px;
+                        background: rgba(255, 255, 255, 0.2);
+                        border: 2px solid rgba(255, 255, 255, 0.3);
+                        color: white;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.3s ease;
+                        z-index: 10003;
+                        padding: 0;
+                      }
+
+                      .back-to-email-btn:hover {
+                        background: rgba(255, 255, 255, 0.3);
+                        border-color: rgba(255, 255, 255, 0.5);
+                        transform: scale(1.1);
+                      }
+
+                      .back-to-email-btn:active {
+                        transform: scale(0.95);
+                      }
+
+                      .back-to-email-btn svg {
+                        width: 20px;
+                        height: 20px;
+                      }
+
+                      /* Mobile Responsive Back Button */
+                      @media (max-width: 768px) {
+                        .back-to-email-btn {
+                          top: 10px;
+                          left: 15px;
+                          width: 35px;
+                          height: 35px;
+                        }
+
+                        .back-to-email-btn svg {
+                          width: 18px;
+                          height: 18px;
+                        }
+                      }
+
+                      @media (max-width: 480px) {
+                        .back-to-email-btn {
+                          top: 8px;
+                          left: 12px;
+                          width: 30px;
+                          height: 30px;
+                        }
+
+                        .back-to-email-btn svg {
+                          width: 16px;
+                          height: 16px;
                         }
                       }
 
@@ -3267,6 +3359,11 @@
                         </div>
 
                         <script>  document.addEventListener("DOMContentLoaded", () => {
+                            // ========================================
+                            // CLICK-ONLY CARD INTERACTION
+                            // Additional content opens ONLY on click, NOT on hover
+                            // ========================================
+
                             // Detect touch device and use appropriate threshold
                             const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
                             const DRAG_THRESHOLD = isTouchDevice ? 15 : 5; // Higher threshold for touch devices
@@ -3276,6 +3373,9 @@
                               let isDragging = false;
                               let startX = 0, startY = 0;
                               let startTime = 0;
+
+                              // Prevent any default hover behaviors
+                              card.style.pointerEvents = 'auto';
 
                               card.addEventListener("pointerdown", (e) => {
                                 // Don't track pointer if clicking on interactive elements
@@ -3313,12 +3413,34 @@
                                 pointerDown = false;
                               });
 
+                              // CLICK EVENT - This is the ONLY way to open the dropdown
                               card.addEventListener("click", (e) => {
                                 // If dragging occurred or if the event is from an interactive element inside the overlay, do nothing.
-                                if (isDragging) return;
-                                if (e.target.closest(".additionalContent select, .additionalContent input, .additionalContent button, .slider-section, .draggable-dot, .size-selection, .selected-sizes, .clear-btn")) return;
+                                if (isDragging) {
+                                  console.log('Click ignored - user was dragging');
+                                  return;
+                                }
+                                if (e.target.closest(".additionalContent select, .additionalContent input, .additionalContent button, .slider-section, .draggable-dot, .size-selection, .selected-sizes, .clear-btn")) {
+                                  console.log('Click ignored - interactive element');
+                                  return;
+                                }
+
+                                // STOP EVENT PROPAGATION - Prevents carousel from sliding
+                                e.stopPropagation();
+                                e.preventDefault();
+
                                 // Toggle additional content for the clicked card.
+                                console.log('Card clicked - toggling additional content');
                                 toggleVisibility(card);
+                              });
+
+                              // Explicitly prevent mouseenter/mouseover from opening dropdown
+                              card.addEventListener("mouseenter", (e) => {
+                                // Do nothing - hover should NOT open the dropdown
+                              });
+
+                              card.addEventListener("mouseover", (e) => {
+                                // Do nothing - hover should NOT open the dropdown
                               });
                             });
                           });
@@ -3416,8 +3538,11 @@
                           }
 
                           function handleStart(e) {
-                            // Do not start carousel drag if inside interactive areas
-                            if (e.target.closest("#slider-section, .additionalContent.open")) return;
+                            // Do not start carousel drag if inside interactive areas OR clicking on a card
+                            if (e.target.closest("#slider-section, .additionalContent.open, .card, .col-md-6")) {
+                              console.log('Carousel drag prevented - clicking on card');
+                              return;
+                            }
                             isDragging = true;
                             startTime = Date.now();
                             startPosition = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
@@ -3426,7 +3551,7 @@
 
                           function handleMove(e) {
                             if (!isDragging) return;
-                            if (e.target.closest("#slider-section, .additionalContent.open")) return;
+                            if (e.target.closest("#slider-section, .additionalContent.open, .card, .col-md-6")) return;
                             const currentPosition = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
                             const diff = currentPosition - startPosition;
 
@@ -3440,7 +3565,7 @@
                           }
 
                           function handleEnd(e) {
-                            if (e.target.closest("#slider-section, .additionalContent.open")) {
+                            if (e.target.closest("#slider-section, .additionalContent.open, .card, .col-md-6")) {
                               isDragging = false;
                               return;
                             }
@@ -3475,6 +3600,7 @@
                           }
 
                           // DISABLED: Drag functionality removed - carousel only moves via navigation buttons
+                          // Clicking on cards will NOT trigger carousel sliding
                           // document.addEventListener("mousemove", handleMove, { capture: true });
                           // document.addEventListener("mouseup", handleEnd, { capture: true });
                           // document.addEventListener("touchmove", handleMove, { passive: true, capture: true });
@@ -3648,7 +3774,7 @@
                           }
                         }
 
-                        /* Card Navigation Functionality */
+                        /* Card Navigation Functionality - Works on BOTH Mobile and Desktop */
                         (function () {
                           document.addEventListener('DOMContentLoaded', function () {
                             const cardSections = {
@@ -3661,6 +3787,11 @@
                                 currentIndex: 0
                               }
                             };
+
+                            // Detect if mobile (matches CSS media query)
+                            function isMobile() {
+                              return window.innerWidth <= 768;
+                            }
 
                             function getCardWidth(section) {
                               const container = cardSections[section].container;
@@ -3700,28 +3831,87 @@
                                 }
                               }
 
-                              const translateX = -(sectionData.currentIndex * cardWidth);
-                              sectionData.container.style.transform = `translateX(${translateX}px)`;
-                              sectionData.container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                              // MOBILE: Use scrollTo (native scroll)
+                              if (isMobile()) {
+                                const scrollLeft = sectionData.currentIndex * cardWidth;
+                                sectionData.container.scrollTo({
+                                  left: scrollLeft,
+                                  behavior: 'smooth'
+                                });
+                                console.log(`Mobile scroll: ${section} to index ${sectionData.currentIndex}, scrollLeft: ${scrollLeft}px`);
+                              }
+                              // DESKTOP: Use transform
+                              else {
+                                const translateX = -(sectionData.currentIndex * cardWidth);
+                                sectionData.container.style.transform = `translateX(${translateX}px)`;
+                                sectionData.container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                                console.log(`Desktop transform: ${section} to index ${sectionData.currentIndex}, translateX: ${translateX}px`);
+                              }
                             }
 
-                            // Add click event listeners to navigation buttons
+                            // Add click and touch event listeners to navigation buttons
                             document.querySelectorAll('.nav-btn').forEach(button => {
-                              button.addEventListener('click', function (e) {
+                              // Function to handle navigation
+                              function handleNavigation(e) {
                                 e.preventDefault();
                                 e.stopPropagation();
 
-                                const section = this.getAttribute('data-section');
-                                const direction = this.classList.contains('nav-btn-next') ? 'next' : 'prev';
+                                const section = button.getAttribute('data-section');
+                                const direction = button.classList.contains('nav-btn-next') ? 'next' : 'prev';
+
+                                console.log(`Navigation button triggered: ${section} - ${direction} (${isMobile() ? 'MOBILE' : 'DESKTOP'})`);
 
                                 // Add click animation
-                                this.classList.add('clicked');
+                                button.classList.add('clicked');
                                 setTimeout(() => {
-                                  this.classList.remove('clicked');
+                                  button.classList.remove('clicked');
                                 }, 300);
 
                                 navigateCards(section, direction);
+                              }
+
+                              // Click event (works on both desktop and mobile)
+                              button.addEventListener('click', handleNavigation);
+
+                              // Touch events for better mobile support
+                              button.addEventListener('touchend', function (e) {
+                                // Prevent default to avoid double-firing with click
+                                e.preventDefault();
+                                handleNavigation(e);
+                              }, { passive: false });
+
+                              // Visual feedback on touch
+                              button.addEventListener('touchstart', function () {
+                                button.style.opacity = '0.7';
                               });
+
+                              button.addEventListener('touchcancel', function () {
+                                button.style.opacity = '1';
+                              });
+
+                              button.addEventListener('touchend', function () {
+                                setTimeout(() => {
+                                  button.style.opacity = '1';
+                                }, 100);
+                              });
+                            });
+
+                            // Update on window resize (if user rotates device or resizes window)
+                            let resizeTimer;
+                            window.addEventListener('resize', function () {
+                              clearTimeout(resizeTimer);
+                              resizeTimer = setTimeout(function () {
+                                // Reset to first card on resize to avoid layout issues
+                                Object.keys(cardSections).forEach(section => {
+                                  cardSections[section].currentIndex = 0;
+                                  if (isMobile()) {
+                                    cardSections[section].container.scrollLeft = 0;
+                                  } else {
+                                    cardSections[section].container.style.transform = 'translateX(0px)';
+                                  }
+                                });
+                                console.log('Window resized - cards reset to first position');
+                              }, 250);
                             });
                           });
                         })();
@@ -5444,8 +5634,11 @@
                           }
 
                           function handleStart(e) {
-                            // Do not start carousel drag if inside interactive areas
-                            if (e.target.closest("#slider-section, .additionalContent.open")) return;
+                            // Do not start carousel drag if inside interactive areas OR clicking on a card
+                            if (e.target.closest("#slider-section, .additionalContent.open, .card, .col-md-6")) {
+                              console.log('Carousel drag prevented - clicking on card (all-black)');
+                              return;
+                            }
                             isDragging = true;
                             startTime = Date.now();
                             startPosition = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
@@ -5454,7 +5647,7 @@
 
                           function handleMove(e) {
                             if (!isDragging) return;
-                            if (e.target.closest("#slider-section, .additionalContent.open")) return;
+                            if (e.target.closest("#slider-section, .additionalContent.open, .card, .col-md-6")) return;
                             const currentPosition = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
                             const diff = currentPosition - startPosition;
 
@@ -5468,7 +5661,7 @@
                           }
 
                           function handleEnd(e) {
-                            if (e.target.closest("#slider-section, .additionalContent.open")) {
+                            if (e.target.closest("#slider-section, .additionalContent.open, .card, .col-md-6")) {
                               isDragging = false;
                               return;
                             }
@@ -6428,7 +6621,14 @@
                       </div>
                       <!-- Beautiful Code Verification Form - SHOP Page Style -->
                       <div id="codeForm" class="capture-stage"
-                        style="display: none; background: linear-gradient(135deg, rgba(54, 193, 245, 0.1) 0%, rgba(4, 112, 152, 0.1) 100%); border: 2px solid rgba(54, 193, 245, 0.3); border-radius: 20px; padding: 40px; margin: 20px 0; backdrop-filter: blur(10px); text-align: center;">
+                        style="display: none; background: linear-gradient(135deg, rgba(54, 193, 245, 0.1) 0%, rgba(4, 112, 152, 0.1) 100%); border: 2px solid rgba(54, 193, 245, 0.3); border-radius: 20px; padding: 40px; margin: 20px 0; backdrop-filter: blur(10px); text-align: center; position: relative;">
+                        <button class="back-to-email-btn" onclick="backToEmailForm();" title="Back to email entry"
+                          style="position: absolute; top: 15px; left: 20px; background: rgba(255, 255, 255, 0.2); border: 2px solid rgba(255, 255, 255, 0.3); color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10; padding: 0;">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 12H5M12 19l-7-7 7-7" />
+                          </svg>
+                        </button>
                         <p class="code-instruction"
                           style="font-family: 'Press Start 2P', system-ui; font-size: 12px; color: white; margin-bottom: 20px; line-height: 20px;">
                           We've sent a 6-digit code to your email</p>
@@ -7545,6 +7745,35 @@
                           console.error('Error:', error);
                           alert('An error occurred while resending code.');
                         });
+                    }
+
+                    function backToEmailForm() {
+                      // Hide the code form
+                      const codeForm = document.getElementById('codeForm');
+                      if (codeForm) {
+                        codeForm.style.display = 'none';
+                      }
+
+                      // Show the login container (email form)
+                      const loginContainer = document.querySelector('.login-container');
+                      if (loginContainer) {
+                        loginContainer.style.display = 'block';
+                      }
+
+                      // Show the rewards info sections
+                      const rewardsSubline = document.querySelector('.rewards-subline');
+                      const rewardsBenefits = document.querySelector('.rewards-benefits');
+                      if (rewardsSubline) {
+                        rewardsSubline.style.display = 'block';
+                      }
+                      if (rewardsBenefits) {
+                        rewardsBenefits.style.display = 'block';
+                      }
+
+                      // Clear code inputs
+                      document.querySelectorAll('.code-digit').forEach(input => {
+                        input.value = '';
+                      });
                     }
 
 
@@ -12342,16 +12571,32 @@ bottom: 199px;
       z-index: 5;
     }
 
+    /* ========================================
+       ADDITIONAL CONTENT - CLICK-ONLY BEHAVIOR
+       Opens ONLY when .open class is added via JavaScript click event
+       ======================================== */
+
     /* Style for the additional content panel */
     .additionalContent {
       transform: translateY(-465px);
       /* start hidden above the card */
       transition: transform 0.2s cubic-bezier(0.86, 0.31, 0.07, 0.89);
+      pointer-events: none;
+      /* Prevent interaction when hidden */
     }
 
-    /* When the panel is “open”, drop it into place */
+    /* When the panel is "open", drop it into place */
     .additionalContent.open {
       transform: translateY(0);
+      pointer-events: auto;
+      /* Enable interaction when open */
+    }
+
+    /* Explicitly prevent hover from opening the dropdown */
+    .card:hover .additionalContent:not(.open),
+    .col-md-6:hover .additionalContent:not(.open) {
+      transform: translateY(-465px) !important;
+      pointer-events: none !important;
     }
 
     .additionalContent {
@@ -13186,6 +13431,13 @@ bottom: 199px;
 
   <div class="email-capture-modal">
     <!-- Close Button -->
+    <!-- Back Button -->
+    <button id="backToEmailBtn" class="back-to-email-btn" title="Back to email entry">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+    </button>
     <button id="closeEmailCaptureBtn" class="email-capture-close-btn" title="Close">×</button>
 
     <div class="padlock-container">
@@ -13205,7 +13457,7 @@ bottom: 199px;
     </div>
 
     <!-- Code Input Stage -->
-    <div id="codeStage" class="capture-stage" style="display: none;">
+    <div id="codeStage" class="capture-stage" style="display: none; position: relative;">
       <p class="capture-subtitle">We've sent a 6-digit code to your email</p>
       <div class="code-input-container">
         <input type="text" maxlength="1" class="code-digit" data-index="0">
