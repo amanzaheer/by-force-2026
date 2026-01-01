@@ -179,8 +179,7 @@
                 margin-top: 0px;
                 margin-right: 0px;
                 margin-left: 0px;
-                width: 100%;
-            ">
+                width: 100%;">
                   <!-- Left Content Section -->
                   <div class="home-content">
                     <div class="content-section">
@@ -196,7 +195,6 @@
                         </div>
                       </div>
                     </div>
-
                     <div class="pricing-section">
                       <div class="section-content">
                         <div class="section-text">
@@ -3786,6 +3784,10 @@
                               'all-black': {
                                 container: document.getElementById('all-black-cards'),
                                 currentIndex: 0
+                              },
+                              'all-iphone': {
+                                container: document.getElementById('all-iphone-cards'),
+                                currentIndex: 0
                               }
                             };
 
@@ -5825,6 +5827,535 @@
 
                     </div>
 
+                    <!-- Navigation Buttons for IPHONES -->
+                    <div class="section-nav-controls">
+                      <p class="section-heading iphones-heading">APPLE IPHONES.</p>
+                      <div class="nav-buttons-group">
+                        <button class="nav-btn nav-btn-prev" data-section="all-iphone" aria-label="Previous">
+                          <span class="nav-btn-icon">◄</span>
+                        </button>
+                        <button class="nav-btn nav-btn-next" data-section="all-iphone" aria-label="Next">
+                          <span class="nav-btn-icon">►</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="all-iphone product cards" id="all-iphone-cards">
+
+                      <!-- iPhone 16 -->
+                      <div class="iphone-card">
+                        <div class="col-md-6">
+                          <div class="card" role="button">
+                            <div class="card-body text-center"
+                              style="justify-content: flex-start; flex-direction: row; position: relative; display: block;">
+                              <h5 class="cardimage_heading ai-style-change-1"
+                                style="/* -webkit-text-stroke: 5px black; */">iPhone 16</h5>
+                              <img class="product card_image_class" id="iphone-16-image"
+                                src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop"
+                                alt="iPhone 16">
+                              <div class="price"
+                                style="display: flex;flex-Direction: column;justify-Content: center;align-Items: center;position: relative;height: auto;width: 100%;bottom: 75px;">
+                                <h5 class="card-title"
+                                  style="position: absolute;-webkit-text-stroke: 9px black;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 23rem);">
+                                  £899.99
+                                </h5>
+                                <h5 class="card-title"
+                                  style="position: absolute;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 13rem);">
+                                  £899.99</h5>
+                              </div>
+                            </div>
+                            <!-- Additional Content -->
+                            <div class="additionalContent">
+                              <h5 class="additionalContenth5">iPhone 16</h5>
+                              <h5 class="additionalContenth5">£899.99</h5>
+                              <div class="iphone-selection slider-section" id="iphone-16-selection">
+                                <h1>"CUSTOMIZE YOUR IPHONE"</h1>
+                                <!-- Storage Selection -->
+                                <div class="size-selection">
+                                  <label for="iphone-16-storage">Storage:</label>
+                                  <select id="iphone-16-storage">
+                                    <option value="">Select Storage</option>
+                                    <option value="128GB">128GB</option>
+                                    <option value="256GB">256GB</option>
+                                    <option value="512GB">512GB</option>
+                                    <option value="1TB">1TB</option>
+                                  </select>
+                                </div>
+                                <!-- Color Selection -->
+                                <div class="size-selection">
+                                  <label for="iphone-16-color">Color:</label>
+                                  <select id="iphone-16-color">
+                                    <option value="">Select Color</option>
+                                    <option value="Black">Black</option>
+                                    <option value="White">White</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Blue">Blue</option>
+                                  </select>
+                                </div>
+                                <!-- Model Selection -->
+                                <div class="size-selection">
+                                  <label for="iphone-16-model">Model:</label>
+                                  <select id="iphone-16-model">
+                                    <option value="">Select Model</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Pro">Pro</option>
+                                    <option value="Pro Max">Pro Max</option>
+                                  </select>
+                                </div>
+                                <div id="buttonContainer">
+                                  <button class="buynow" id="iphone-16-addtocart">Add To Cart</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- iPhone 15 -->
+                      <div class="iphone-card">
+                        <div class="col-md-6">
+                          <div class="card" role="button">
+                            <div class="card-body text-center"
+                              style="justify-content: flex-start; flex-direction: row; position: relative; display: block;">
+                              <h5 class="cardimage_heading ai-style-change-1">iPhone 15</h5>
+                              <img class="product card_image_class" id="iphone-15-image"
+                                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop"
+                                alt="iPhone 15">
+                              <div class="price"
+                                style="display: flex;flex-Direction: column;justify-Content: center;align-Items: center;position: relative;height: auto;width: 100%;bottom: 75px;">
+                                <h5 class="card-title"
+                                  style="position: absolute;-webkit-text-stroke: 9px black;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 23rem);">
+                                  £799.99
+                                </h5>
+                                <h5 class="card-title"
+                                  style="position: absolute;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 13rem);">
+                                  £799.99</h5>
+                              </div>
+                            </div>
+                            <div class="additionalContent">
+                              <h5 class="additionalContenth5">iPhone 15</h5>
+                              <h5 class="additionalContenth5">£799.99</h5>
+                              <div class="iphone-selection" id="iphone-15-selection">
+                                <h1>"CUSTOMIZE YOUR IPHONE"</h1>
+                                <div class="size-selection">
+                                  <label for="iphone-15-storage">Storage:</label>
+                                  <select id="iphone-15-storage">
+                                    <option value="">Select Storage</option>
+                                    <option value="128GB">128GB</option>
+                                    <option value="256GB">256GB</option>
+                                    <option value="512GB">512GB</option>
+                                    <option value="1TB">1TB</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-15-color">Color:</label>
+                                  <select id="iphone-15-color">
+                                    <option value="">Select Color</option>
+                                    <option value="Black">Black</option>
+                                    <option value="White">White</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Blue">Blue</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-15-model">Model:</label>
+                                  <select id="iphone-15-model">
+                                    <option value="">Select Model</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Pro">Pro</option>
+                                    <option value="Pro Max">Pro Max</option>
+                                  </select>
+                                </div>
+                                <div id="buttonContainer">
+                                  <button class="buynow" id="iphone-15-addtocart">Add To Cart</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- iPhone 14 -->
+                      <div class="iphone-card">
+                        <div class="col-md-6">
+                          <div class="card" role="button">
+                            <div class="card-body text-center"
+                              style="justify-content: flex-start; flex-direction: row; position: relative; display: block;">
+                              <h5 class="cardimage_heading ai-style-change-1">iPhone 14</h5>
+                              <img class="product card_image_class" id="iphone-14-image"
+                                src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop"
+                                alt="iPhone 14">
+                              <div class="price"
+                                style="display: flex;flex-Direction: column;justify-Content: center;align-Items: center;position: relative;height: auto;width: 100%;bottom: 75px;">
+                                <h5 class="card-title"
+                                  style="position: absolute;-webkit-text-stroke: 9px black;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 23rem);">
+                                  £699.99
+                                </h5>
+                                <h5 class="card-title"
+                                  style="position: absolute;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 13rem);">
+                                  £699.99</h5>
+                              </div>
+                            </div>
+                            <div class="additionalContent">
+                              <h5 class="additionalContenth5">iPhone 14</h5>
+                              <h5 class="additionalContenth5">£699.99</h5>
+                              <div class="iphone-selection" id="iphone-14-selection">
+                                <h1>"CUSTOMIZE YOUR IPHONE"</h1>
+                                <div class="size-selection">
+                                  <label for="iphone-14-storage">Storage:</label>
+                                  <select id="iphone-14-storage">
+                                    <option value="">Select Storage</option>
+                                    <option value="128GB">128GB</option>
+                                    <option value="256GB">256GB</option>
+                                    <option value="512GB">512GB</option>
+                                    <option value="1TB">1TB</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-14-color">Color:</label>
+                                  <select id="iphone-14-color">
+                                    <option value="">Select Color</option>
+                                    <option value="Black">Black</option>
+                                    <option value="White">White</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Blue">Blue</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-14-model">Model:</label>
+                                  <select id="iphone-14-model">
+                                    <option value="">Select Model</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Pro">Pro</option>
+                                    <option value="Pro Max">Pro Max</option>
+                                  </select>
+                                </div>
+                                <div id="buttonContainer">
+                                  <button class="buynow" id="iphone-14-addtocart">Add To Cart</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- iPhone 13 -->
+                      <div class="iphone-card">
+                        <div class="col-md-6">
+                          <div class="card" role="button">
+                            <div class="card-body text-center"
+                              style="justify-content: flex-start; flex-direction: row; position: relative; display: block;">
+                              <h5 class="cardimage_heading ai-style-change-1">iPhone 13</h5>
+                              <img class="product card_image_class" id="iphone-13-image"
+                                src="https://images.unsplash.com/photo-1632661674596-618e45e56a53?w=400&h=400&fit=crop"
+                                alt="iPhone 13">
+                              <div class="price"
+                                style="display: flex;flex-Direction: column;justify-Content: center;align-Items: center;position: relative;height: auto;width: 100%;bottom: 75px;">
+                                <h5 class="card-title"
+                                  style="position: absolute;-webkit-text-stroke: 9px black;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 23rem);">
+                                  £599.99
+                                </h5>
+                                <h5 class="card-title"
+                                  style="position: absolute;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 13rem);">
+                                  £599.99</h5>
+                              </div>
+                            </div>
+                            <div class="additionalContent">
+                              <h5 class="additionalContenth5">iPhone 13</h5>
+                              <h5 class="additionalContenth5">£599.99</h5>
+                              <div class="iphone-selection" id="iphone-13-selection">
+                                <h1>"CUSTOMIZE YOUR IPHONE"</h1>
+                                <div class="size-selection">
+                                  <label for="iphone-13-storage">Storage:</label>
+                                  <select id="iphone-13-storage">
+                                    <option value="">Select Storage</option>
+                                    <option value="128GB">128GB</option>
+                                    <option value="256GB">256GB</option>
+                                    <option value="512GB">512GB</option>
+                                    <option value="1TB">1TB</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-13-color">Color:</label>
+                                  <select id="iphone-13-color">
+                                    <option value="">Select Color</option>
+                                    <option value="Black">Black</option>
+                                    <option value="White">White</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Blue">Blue</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-13-model">Model:</label>
+                                  <select id="iphone-13-model">
+                                    <option value="">Select Model</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Pro">Pro</option>
+                                    <option value="Pro Max">Pro Max</option>
+                                  </select>
+                                </div>
+                                <div id="buttonContainer">
+                                  <button class="buynow" id="iphone-13-addtocart">Add To Cart</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- iPhone 12 -->
+                      <div class="iphone-card">
+                        <div class="col-md-6">
+                          <div class="card" role="button">
+                            <div class="card-body text-center"
+                              style="justify-content: flex-start; flex-direction: row; position: relative; display: block;">
+                              <h5 class="cardimage_heading ai-style-change-1">iPhone 12</h5>
+                              <img class="product card_image_class" id="iphone-12-image"
+                                src="https://images.unsplash.com/photo-1601972602237-8c79241e468b?w=400&h=400&fit=crop"
+                                alt="iPhone 12">
+                              <div class="price"
+                                style="display: flex;flex-Direction: column;justify-Content: center;align-Items: center;position: relative;height: auto;width: 100%;bottom: 75px;">
+                                <h5 class="card-title"
+                                  style="position: absolute;-webkit-text-stroke: 9px black;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 23rem);">
+                                  £499.99
+                                </h5>
+                                <h5 class="card-title"
+                                  style="position: absolute;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 13rem);">
+                                  £499.99</h5>
+                              </div>
+                            </div>
+                            <div class="additionalContent">
+                              <h5 class="additionalContenth5">iPhone 12</h5>
+                              <h5 class="additionalContenth5">£499.99</h5>
+                              <div class="iphone-selection" id="iphone-12-selection">
+                                <h1>"CUSTOMIZE YOUR IPHONE"</h1>
+                                <div class="size-selection">
+                                  <label for="iphone-12-storage">Storage:</label>
+                                  <select id="iphone-12-storage">
+                                    <option value="">Select Storage</option>
+                                    <option value="128GB">128GB</option>
+                                    <option value="256GB">256GB</option>
+                                    <option value="512GB">512GB</option>
+                                    <option value="1TB">1TB</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-12-color">Color:</label>
+                                  <select id="iphone-12-color">
+                                    <option value="">Select Color</option>
+                                    <option value="Black">Black</option>
+                                    <option value="White">White</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Blue">Blue</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-12-model">Model:</label>
+                                  <select id="iphone-12-model">
+                                    <option value="">Select Model</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Pro">Pro</option>
+                                    <option value="Pro Max">Pro Max</option>
+                                  </select>
+                                </div>
+                                <div id="buttonContainer">
+                                  <button class="buynow" id="iphone-12-addtocart">Add To Cart</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- iPhone 11 -->
+                      <div class="iphone-card">
+                        <div class="col-md-6">
+                          <div class="card" role="button">
+                            <div class="card-body text-center"
+                              style="justify-content: flex-start; flex-direction: row; position: relative; display: block;">
+                              <h5 class="cardimage_heading ai-style-change-1">iPhone 11</h5>
+                              <img class="product card_image_class" id="iphone-11-image"
+                                src="https://images.unsplash.com/photo-1574755393849-623942496936?w=400&h=400&fit=crop"
+                                alt="iPhone 11">
+                              <div class="price"
+                                style="display: flex;flex-Direction: column;justify-Content: center;align-Items: center;position: relative;height: auto;width: 100%;bottom: 75px;">
+                                <h5 class="card-title"
+                                  style="position: absolute;-webkit-text-stroke: 9px black;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 23rem);">
+                                  £399.99
+                                </h5>
+                                <h5 class="card-title"
+                                  style="position: absolute;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 13rem);">
+                                  £399.99</h5>
+                              </div>
+                            </div>
+                            <div class="additionalContent">
+                              <h5 class="additionalContenth5">iPhone 11</h5>
+                              <h5 class="additionalContenth5">£399.99</h5>
+                              <div class="iphone-selection" id="iphone-11-selection">
+                                <h1>"CUSTOMIZE YOUR IPHONE"</h1>
+                                <div class="size-selection">
+                                  <label for="iphone-11-storage">Storage:</label>
+                                  <select id="iphone-11-storage">
+                                    <option value="">Select Storage</option>
+                                    <option value="128GB">128GB</option>
+                                    <option value="256GB">256GB</option>
+                                    <option value="512GB">512GB</option>
+                                    <option value="1TB">1TB</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-11-color">Color:</label>
+                                  <select id="iphone-11-color">
+                                    <option value="">Select Color</option>
+                                    <option value="Black">Black</option>
+                                    <option value="White">White</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Blue">Blue</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-11-model">Model:</label>
+                                  <select id="iphone-11-model">
+                                    <option value="">Select Model</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Pro">Pro</option>
+                                    <option value="Pro Max">Pro Max</option>
+                                  </select>
+                                </div>
+                                <div id="buttonContainer">
+                                  <button class="buynow" id="iphone-11-addtocart">Add To Cart</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- iPhone X -->
+                      <div class="iphone-card">
+                        <div class="col-md-6">
+                          <div class="card" role="button">
+                            <div class="card-body text-center"
+                              style="justify-content: flex-start; flex-direction: row; position: relative; display: block;">
+                              <h5 class="cardimage_heading ai-style-change-1">iPhone X</h5>
+                              <img class="product card_image_class" id="iphone-x-image"
+                                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop"
+                                alt="iPhone X">
+                              <div class="price"
+                                style="display: flex;flex-Direction: column;justify-Content: center;align-Items: center;position: relative;height: auto;width: 100%;bottom: 75px;">
+                                <h5 class="card-title"
+                                  style="position: absolute;-webkit-text-stroke: 9px black;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 23rem);">
+                                  £299.99
+                                </h5>
+                                <h5 class="card-title"
+                                  style="position: absolute;right: -18px;width: auto;left: auto;display: inline-block;font-size: clamp(2.25rem, 5vw, 13rem);">
+                                  £299.99</h5>
+                              </div>
+                            </div>
+                            <div class="additionalContent">
+                              <h5 class="additionalContenth5">iPhone X</h5>
+                              <h5 class="additionalContenth5">£299.99</h5>
+                              <div class="iphone-selection" id="iphone-x-selection">
+                                <h1>"CUSTOMIZE YOUR IPHONE"</h1>
+                                <div class="size-selection">
+                                  <label for="iphone-x-storage">Storage:</label>
+                                  <select id="iphone-x-storage">
+                                    <option value="">Select Storage</option>
+                                    <option value="128GB">128GB</option>
+                                    <option value="256GB">256GB</option>
+                                    <option value="512GB">512GB</option>
+                                    <option value="1TB">1TB</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-x-color">Color:</label>
+                                  <select id="iphone-x-color">
+                                    <option value="">Select Color</option>
+                                    <option value="Black">Black</option>
+                                    <option value="White">White</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Blue">Blue</option>
+                                  </select>
+                                </div>
+                                <div class="size-selection">
+                                  <label for="iphone-x-model">Model:</label>
+                                  <select id="iphone-x-model">
+                                    <option value="">Select Model</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Pro">Pro</option>
+                                    <option value="Pro Max">Pro Max</option>
+                                  </select>
+                                </div>
+                                <div id="buttonContainer">
+                                  <button class="buynow" id="iphone-x-addtocart">Add To Cart</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <!-- iPhone Add to Cart Button Logic -->
+                    <script>
+                      document.addEventListener("DOMContentLoaded", function () {
+                        // Array of all iPhone IDs
+                        const iphoneModels = ['16', '15', '14', '13', '12', '11', 'x'];
+                        
+                        // Function to check if all selections are made for a specific iPhone
+                        function checkSelections(iphoneId) {
+                          const storage = document.getElementById(`iphone-${iphoneId}-storage`);
+                          const color = document.getElementById(`iphone-${iphoneId}-color`);
+                          const model = document.getElementById(`iphone-${iphoneId}-model`);
+                          const addToCartBtn = document.getElementById(`iphone-${iphoneId}-addtocart`);
+                          
+                          if (!storage || !color || !model || !addToCartBtn) return;
+                          
+                          // Check if all three have valid selections (not empty)
+                          const storageSelected = storage.value && storage.value !== '';
+                          const colorSelected = color.value && color.value !== '';
+                          const modelSelected = model.value && model.value !== '';
+                          
+                          // Show button only if all three are selected - use inline style with !important
+                          if (storageSelected && colorSelected && modelSelected) {
+                            addToCartBtn.style.cssText = 'display: inline-block !important;';
+                          } else {
+                            addToCartBtn.style.cssText = 'display: none !important;';
+                          }
+                        }
+                        
+                        // Set up event listeners for each iPhone
+                        iphoneModels.forEach(function (iphoneId) {
+                          const storage = document.getElementById(`iphone-${iphoneId}-storage`);
+                          const color = document.getElementById(`iphone-${iphoneId}-color`);
+                          const model = document.getElementById(`iphone-${iphoneId}-model`);
+                          
+                          if (storage) {
+                            storage.addEventListener('change', function () {
+                              checkSelections(iphoneId);
+                            });
+                          }
+                          
+                          if (color) {
+                            color.addEventListener('change', function () {
+                              checkSelections(iphoneId);
+                            });
+                          }
+                          
+                          if (model) {
+                            model.addEventListener('change', function () {
+                              checkSelections(iphoneId);
+                            });
+                          }
+                          
+                          // Check initial state on load
+                          setTimeout(function() {
+                            checkSelections(iphoneId);
+                          }, 100);
+                        });
+                      });
+                    </script>
+
 
 
 
@@ -5900,6 +6431,22 @@
                         font-family: "PRESS START 2P" !important;
                       }
 
+                      /* iPhone selection heading - white color */
+                      .iphone-selection h1 {
+                        color: white !important;
+                      }
+
+                      /* Initially hide iPhone Add to Cart buttons */
+                      #iphone-16-addtocart,
+                      #iphone-15-addtocart,
+                      #iphone-14-addtocart,
+                      #iphone-13-addtocart,
+                      #iphone-12-addtocart,
+                      #iphone-11-addtocart,
+                      #iphone-x-addtocart {
+                        display: none !important;
+                      }
+
                       .bundle-selection,
                       .size-selection {
                         margin: 20px 20px 15px 20px;
@@ -5910,6 +6457,11 @@
                       }
 
                       #bundle-sizesB {
+                        background: #36c1f5;
+                      }
+
+                      /* iPhone select styling - match existing card styling */
+                      .iphone-selection .size-selection select {
                         background: #36c1f5;
                       }
 

@@ -687,6 +687,48 @@ header {
     height: 461.718px;
 }
 
+/* Product Cards Container - ALL-IPHONE */
+.all-iphone.cards,
+.all-iphone.cards * {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.all-iphone.cards img {
+    pointer-events: none;
+}
+
+.all-iphone.cards {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px;
+    justify-items: normal;
+    display: grid;
+    grid-template-columns: repeat(7, 100%);
+    grid-auto-flow: row;
+    overflow-x: visible;
+    grid-auto-rows: auto;
+    height: 521.718px;
+    gap: 20px;
+    transition: transform 0.3s ease-in-out;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-drag: none;
+    position: relative;
+    transform: translateX(0px);
+    z-index: 5;
+}
+
+.all-iphone.cards .col-md-6 {
+    width: auto !important;
+    height: 461.718px;
+}
+
+.all-iphone.cards .col-md-6 > div {
+    height: 461.718px;
+}
+
 /* Products and Order container */
 .products.and.order {
     width: 100%;
@@ -1030,8 +1072,22 @@ h5.cardimage_heading {
         z-index: 100 !important;
     }
     
+    .all-iphone.cards {
+        display: grid !important;
+        grid-template-columns: repeat(7, 100%) !important;
+        grid-auto-flow: column !important;
+        overflow-x: scroll !important;
+        overflow-y: visible !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        transform: none !important;
+        position: relative;
+        z-index: 100 !important;
+    }
+    
     .all-white.cards > *,
-    .all-black.cards > * {
+    .all-black.cards > *,
+    .all-iphone.cards > * {
         min-width: 100% !important;
         width: 100% !important;
         scroll-snap-align: start;
@@ -1055,7 +1111,8 @@ h5.cardimage_heading {
     
     /* Cards stay above background */
     .all-white.cards,
-    .all-black.cards {
+    .all-black.cards,
+    .all-iphone.cards {
         z-index: 100 !important;
         position: relative !important;
         isolation: isolate;
@@ -1068,13 +1125,15 @@ h5.cardimage_heading {
     .all-black.cards .bundle12,
     .all-black.cards .bundle7,
     .all-black.cards .bundle3,
-    .all-black.cards .bundle1 {
+    .all-black.cards .bundle1,
+    .all-iphone.cards .iphone-card {
         z-index: 100 !important;
         position: relative !important;
     }
     
     .all-white.cards .card,
-    .all-black.cards .card {
+    .all-black.cards .card,
+    .all-iphone.cards .card {
         z-index: 100 !important;
         position: relative !important;
         background: #5BC8C8 !important;
